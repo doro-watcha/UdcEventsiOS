@@ -24,9 +24,9 @@ target 'udc' do
   pod 'MaterialComponents/BottomSheet+ShapeThemer'
   pod 'MaterialComponents/Buttons'
   
-  pod 'GoogleSignIn'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
+#  pod 'GoogleSignIn'
+#  pod 'Firebase/Analytics'
+#  pod 'Firebase/Messaging'
 
   # Pods for PodTest
   pod 'Fabric', '~> 1.10.2'

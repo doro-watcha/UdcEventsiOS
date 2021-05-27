@@ -17,6 +17,16 @@
 		C11DA1A1265E7E9B006EA241 /* udcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1A0265E7E9B006EA241 /* udcTests.swift */; };
 		C11DA1AC265E7E9B006EA241 /* udcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1AB265E7E9B006EA241 /* udcUITests.swift */; };
 		C11DA1BC265E8796006EA241 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1BB265E8796006EA241 /* TabBarVC.swift */; };
+		C11DA1C2265E8CC4006EA241 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1C1265E8CC4006EA241 /* HomeVC.swift */; };
+		C11DA1C6265E8D5F006EA241 /* EXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1C5265E8D5F006EA241 /* EXViewController.swift */; };
+		C11DA1C8265E8E29006EA241 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1C7265E8E29006EA241 /* UIImage.swift */; };
+		C11DA1CA265E8E6A006EA241 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1C9265E8E6A006EA241 /* MapVC.swift */; };
+		C11DA1CC265E8E71006EA241 /* ClassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1CB265E8E71006EA241 /* ClassVC.swift */; };
+		C11DA1CE265E8E7B006EA241 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1CD265E8E7B006EA241 /* ProfileVC.swift */; };
+		C11DA1D0265E8F96006EA241 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1CF265E8F96006EA241 /* SplashVC.swift */; };
+		C11DA1D2265E8FD8006EA241 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1D1265E8FD8006EA241 /* UIView.swift */; };
+		C11DA1D4265E907F006EA241 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1D3265E907F006EA241 /* Extensions.swift */; };
+		C11DA1DB265F1FF0006EA241 /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1DA265F1FF0006EA241 /* LogHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +65,16 @@
 		C11DA1AB265E7E9B006EA241 /* udcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = udcUITests.swift; sourceTree = "<group>"; };
 		C11DA1AD265E7E9B006EA241 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C11DA1BB265E8796006EA241 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		C11DA1C1265E8CC4006EA241 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		C11DA1C5265E8D5F006EA241 /* EXViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXViewController.swift; sourceTree = "<group>"; };
+		C11DA1C7265E8E29006EA241 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		C11DA1C9265E8E6A006EA241 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		C11DA1CB265E8E71006EA241 /* ClassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassVC.swift; sourceTree = "<group>"; };
+		C11DA1CD265E8E7B006EA241 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		C11DA1CF265E8F96006EA241 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		C11DA1D1265E8FD8006EA241 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		C11DA1D3265E907F006EA241 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C11DA1DA265F1FF0006EA241 /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,13 +128,13 @@
 		C11DA188265E7E99006EA241 /* udc */ = {
 			isa = PBXGroup;
 			children = (
+				C11DA1D6265E9110006EA241 /* Resources */,
+				C11DA1C3265E8D43006EA241 /* Common */,
 				C11DA1BA265E8778006EA241 /* ViewControllers */,
 				C11DA1B9265E7F3F006EA241 /* Application */,
 				C11DA18B265E7E99006EA241 /* SceneDelegate.swift */,
 				C11DA18D265E7E99006EA241 /* ViewController.swift */,
 				C11DA18F265E7E99006EA241 /* Main.storyboard */,
-				C11DA192265E7E9B006EA241 /* Assets.xcassets */,
-				C11DA194265E7E9B006EA241 /* LaunchScreen.storyboard */,
 				C11DA197265E7E9B006EA241 /* Info.plist */,
 			);
 			path = udc;
@@ -149,6 +169,10 @@
 		C11DA1BA265E8778006EA241 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C11DA1D5265E90B1006EA241 /* Splash */,
+				C11DA1C0265E88F7006EA241 /* Profile */,
+				C11DA1BF265E88EE006EA241 /* Class */,
+				C11DA1BE265E88E8006EA241 /* Map */,
 				C11DA1BD265E87D4006EA241 /* Home */,
 				C11DA1BB265E8796006EA241 /* TabBarVC.swift */,
 			);
@@ -158,8 +182,78 @@
 		C11DA1BD265E87D4006EA241 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C11DA1C1265E8CC4006EA241 /* HomeVC.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		C11DA1BE265E88E8006EA241 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C11DA1C9265E8E6A006EA241 /* MapVC.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		C11DA1BF265E88EE006EA241 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				C11DA1CB265E8E71006EA241 /* ClassVC.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		C11DA1C0265E88F7006EA241 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C11DA1CD265E8E7B006EA241 /* ProfileVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C11DA1C3265E8D43006EA241 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C11DA1D9265F1FE5006EA241 /* Helper */,
+				C11DA1C4265E8D4A006EA241 /* EXKit */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C11DA1C4265E8D4A006EA241 /* EXKit */ = {
+			isa = PBXGroup;
+			children = (
+				C11DA1C5265E8D5F006EA241 /* EXViewController.swift */,
+				C11DA1C7265E8E29006EA241 /* UIImage.swift */,
+				C11DA1D1265E8FD8006EA241 /* UIView.swift */,
+				C11DA1D3265E907F006EA241 /* Extensions.swift */,
+			);
+			path = EXKit;
+			sourceTree = "<group>";
+		};
+		C11DA1D5265E90B1006EA241 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				C11DA194265E7E9B006EA241 /* LaunchScreen.storyboard */,
+				C11DA1CF265E8F96006EA241 /* SplashVC.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		C11DA1D6265E9110006EA241 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C11DA192265E7E9B006EA241 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C11DA1D9265F1FE5006EA241 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C11DA1DA265F1FF0006EA241 /* LogHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		CA729A1C3794159E14F8E55F /* Pods */ = {
@@ -191,7 +285,6 @@
 				C11DA183265E7E99006EA241 /* Frameworks */,
 				C11DA184265E7E99006EA241 /* Resources */,
 				769E573D82533F36EAD44AA7 /* [CP] Embed Pods Frameworks */,
-				EC9FC29D18FC00ACE2C3B5E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,23 +440,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-udc/Pods-udc-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC9FC29D18FC00ACE2C3B5E2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-udc/Pods-udc-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-udc/Pods-udc-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-udc/Pods-udc-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -371,10 +447,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11DA1CE265E8E7B006EA241 /* ProfileVC.swift in Sources */,
+				C11DA1D0265E8F96006EA241 /* SplashVC.swift in Sources */,
 				C11DA18E265E7E99006EA241 /* ViewController.swift in Sources */,
+				C11DA1CC265E8E71006EA241 /* ClassVC.swift in Sources */,
+				C11DA1D2265E8FD8006EA241 /* UIView.swift in Sources */,
+				C11DA1C2265E8CC4006EA241 /* HomeVC.swift in Sources */,
 				C11DA18A265E7E99006EA241 /* AppDelegate.swift in Sources */,
+				C11DA1C6265E8D5F006EA241 /* EXViewController.swift in Sources */,
+				C11DA1D4265E907F006EA241 /* Extensions.swift in Sources */,
 				C11DA1BC265E8796006EA241 /* TabBarVC.swift in Sources */,
+				C11DA1DB265F1FF0006EA241 /* LogHelper.swift in Sources */,
+				C11DA1CA265E8E6A006EA241 /* MapVC.swift in Sources */,
 				C11DA18C265E7E99006EA241 /* SceneDelegate.swift in Sources */,
+				C11DA1C8265E8E29006EA241 /* UIImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

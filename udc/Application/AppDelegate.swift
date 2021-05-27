@@ -10,7 +10,6 @@ import PromiseKit
 import AVFoundation
 import AlamofireNetworkActivityLogger
 import Firebase
-import GoogleSignIn
 import RxSwift
 import AuthenticationServices
 import FirebaseDynamicLinks
@@ -29,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /**
         Firebase Configuration
         */
-        FirebaseApp.configure()
+       // FirebaseApp.configure()
         
 
         
@@ -50,10 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let userInfo = launchOptions![UIApplication.LaunchOptionsKey.remoteNotification] as! [AnyHashable: Any]
 //            let _ = NotificationHelper.navigateWithNotification(window: window!, userInfo: userInfo, isAppRunning: false)
 //        }else{ /// App Running from general launch floww
-//            window!.rootViewController = SplashVC()
+            window!.rootViewController = SplashVC()
 //        }
 //
-//        window!.makeKeyAndVisible()
+        debugE("why not")
+        window!.makeKeyAndVisible()
 //
 //        /**
 //        Etc Settings
@@ -86,8 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
 
+        return true 
         
-        return GIDSignIn.sharedInstance().handle(url)
+       // return GIDSignIn.sharedInstance().handle(url)
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity,
