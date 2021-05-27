@@ -18,4 +18,9 @@ final class HomeVC : EXViewController {
         debugE("HOME")
     }
     
+    private func initLayout() {
+    
+    
+    }
+    
 }

@@ -32,11 +32,11 @@ final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabB
         let vc4 = UINavigationController(rootViewController: ClassVC())
         let vc5 = UINavigationController(rootViewController: ProfileVC())
         
-        vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[0]!)
-        vc2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[1]!)
+        vc1.tabBarItem = UITabBarItem(title: "home", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[0]!)
+        vc2.tabBarItem = UITabBarItem(title: "asd", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[1]!)
         //        vc3.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(named: "explore"), tag: 3)
-        vc4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[2]!)
-        vc5.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[3]!)
+        vc4.tabBarItem = UITabBarItem(title: "fdf", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[2]!)
+        vc5.tabBarItem = UITabBarItem(title: "sdd", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[3]!)
         
         
         vc1.delegate = self
