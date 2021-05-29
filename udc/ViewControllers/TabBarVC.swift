@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import PromiseKit
-import Firebase
 import MaterialComponents
 
 final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabBarControllerDelegate {
@@ -21,11 +20,13 @@ final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabB
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //view.backgroundColor = .systemRed
+        
         debugE("TAbBarVC")
         
         self.delegate = self
         
-//        self.heroTabBarAnimationType = .fade
+//        self.hero.tabBarAnimationType = .hero.fade
         
         let vc1 = UINavigationController(rootViewController: HomeVC())
         let vc2 = UINavigationController(rootViewController: MapVC())
@@ -45,7 +46,7 @@ final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabB
         vc4.delegate = self
         vc5.delegate = self
         
-        viewControllers = [vc1, vc2, /* v3 ,*/ vc4, vc5]
+        self.viewControllers = [vc1, vc2, /* v3 ,*/ vc4, vc5]
         
 //        /// Hero
 //        vc1.hero.isEnabled = true
@@ -56,18 +57,18 @@ final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabB
         
     }
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
-//        /// 새로운 탭을 클릭한 거라면 모든 비디오 중지
-//        if TabBarVC.indexTagMapper[selectedIndex] != item.tag{
-//            Broadcast.VIDEO_ALL_STOP.onNext(())
-//        }
-//        /// 동일한 탭을 클릭한 것이라면 해당 탭 재선택 이벤트 발송
-//        else{
-//            Broadcast.TABBAR_RESELECT.onNext(item.tag)
-//        }
-
-    }
+//    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+//
+////        /// 새로운 탭을 클릭한 거라면 모든 비디오 중지
+////        if TabBarVC.indexTagMapper[selectedIndex] != item.tag{
+////            Broadcast.VIDEO_ALL_STOP.onNext(())
+////        }
+////        /// 동일한 탭을 클릭한 것이라면 해당 탭 재선택 이벤트 발송
+////        else{
+////            Broadcast.TABBAR_RESELECT.onNext(item.tag)
+////        }
+//
+//    }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
@@ -100,9 +101,9 @@ final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabB
 //        present(bottomSheetVC, animated: true, completion: nil)
     }
         
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        /// 스크린이 변했을 때 모든 비디오 pause, 다시 play는 각 VC의 viewDidAppear에서 설정해줌
-      //  Broadcast.VIDEO_ALL_STOP.onNext(())
-    }
+//    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+//        /// 스크린이 변했을 때 모든 비디오 pause, 다시 play는 각 VC의 viewDidAppear에서 설정해줌
+//      //  Broadcast.VIDEO_ALL_STOP.onNext(())
+//    }
 }
 

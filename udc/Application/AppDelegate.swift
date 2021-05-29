@@ -9,10 +9,8 @@ import UIKit
 import PromiseKit
 import AVFoundation
 import AlamofireNetworkActivityLogger
-import Firebase
 import RxSwift
 import AuthenticationServices
-import FirebaseDynamicLinks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /**
         Appearance API UI Settings
         */
-//        UITabBar.appearance().tintColor = .theme
-//        UITabBar.appearance().barTintColor = .surfaceBlack
+        UITabBar.appearance().tintColor = .theme
+        UITabBar.appearance().barTintColor = .surfaceBlack
 //
         /**
         Root VC Intiailization for make view without Storyboard
@@ -79,26 +77,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) != nil {
-            // Handle the deep link. For example, show the deep-linked content or
-            // apply a promotional offer to the user's account.
-            // ...
-            return true
-        }
+//        if DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) != nil {
+//            // Handle the deep link. For example, show the deep-linked content or
+//            // apply a promotional offer to the user's account.
+//            // ...
+//            return true
+//        }
 
         return true 
         
        // return GIDSignIn.sharedInstance().handle(url)
     }
 
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
-                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
-            // ...
-        }
-        
-        return handled
-    }
+//    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+//                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+////        let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+////            // ...
+////        }
+//        
+//    //    return handled
+//    }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         

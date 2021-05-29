@@ -2,64 +2,7 @@ PODS:
   - Alamofire (4.9.1)
   - AlamofireNetworkActivityLogger (2.4.0):
     - Alamofire (~> 4.8)
-  - Crashlytics (3.14.0):
-    - Fabric (~> 1.10.2)
   - DZNEmptyDataSet (1.8.1)
-  - Fabric (1.10.2)
-  - FBSDKCoreKit (9.3.0):
-    - FBSDKCoreKit/Basics (= 9.3.0)
-    - FBSDKCoreKit/Core (= 9.3.0)
-  - FBSDKCoreKit/Basics (9.3.0)
-  - FBSDKCoreKit/Core (9.3.0):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (9.3.0):
-    - FBSDKLoginKit/Login (= 9.3.0)
-  - FBSDKLoginKit/Login (9.3.0):
-    - FBSDKCoreKit (~> 9.3.0)
-  - Firebase/Auth (8.0.0):
-    - Firebase/CoreOnly
-    - FirebaseAuth (~> 8.0.0)
-  - Firebase/CoreOnly (8.0.0):
-    - FirebaseCore (= 8.0.0)
-  - Firebase/DynamicLinks (8.0.0):
-    - Firebase/CoreOnly
-    - FirebaseDynamicLinks (~> 8.0.0)
-  - FirebaseAuth (8.0.0):
-    - FirebaseCore (~> 8.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
-    - GoogleUtilities/Environment (~> 7.4)
-    - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.0.0):
-    - FirebaseCoreDiagnostics (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.4)
-    - GoogleUtilities/Logger (~> 7.4)
-  - FirebaseCoreDiagnostics (8.0.0):
-    - GoogleDataTransport (~> 9.0)
-    - GoogleUtilities/Environment (~> 7.4)
-    - GoogleUtilities/Logger (~> 7.4)
-    - nanopb (~> 2.30908.0)
-  - FirebaseDynamicLinks (8.0.0):
-    - FirebaseCore (~> 8.0)
-  - GoogleDataTransport (9.0.0):
-    - GoogleUtilities/Environment (~> 7.2)
-    - nanopb (~> 2.30908.0)
-    - PromisesObjC (~> 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.4.1):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.4.1):
-    - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (7.4.1):
-    - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.4.1):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.4.1)"
-  - GoogleUtilities/Reachability (7.4.1):
-    - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.5.0)
   - Hero (1.6.1)
   - JGProgressHUD (2.2)
   - Kingfisher (6.3.0)
@@ -131,11 +74,6 @@ PODS:
     - MDFTextAccessibility
   - MDFInternationalization (3.0.0)
   - MDFTextAccessibility (2.0.1)
-  - nanopb (2.30908.0):
-    - nanopb/decode (= 2.30908.0)
-    - nanopb/encode (= 2.30908.0)
-  - nanopb/decode (2.30908.0)
-  - nanopb/encode (2.30908.0)
   - PromiseKit (6.4.0):
     - PromiseKit/CorePromise (= 6.4.0)
     - PromiseKit/Foundation (= 6.4.0)
@@ -148,7 +86,6 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.4.0):
     - PromiseKit/CorePromise
-  - PromisesObjC (1.2.12)
   - RxAlamofire (4.4.1):
     - RxAlamofire/Core (= 4.4.1)
   - RxAlamofire/Core (4.4.1):
@@ -170,12 +107,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 4.9.1)
   - AlamofireNetworkActivityLogger
-  - Crashlytics (~> 3.14.0)
   - DZNEmptyDataSet
-  - Fabric (~> 1.10.2)
-  - FBSDKLoginKit
-  - Firebase/Auth
-  - Firebase/DynamicLinks
   - Hero
   - JGProgressHUD
   - Kingfisher
@@ -201,19 +133,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireNetworkActivityLogger
-    - Crashlytics
     - DZNEmptyDataSet
-    - Fabric
-    - FBSDKCoreKit
-    - FBSDKLoginKit
-    - Firebase
-    - FirebaseAuth
-    - FirebaseCore
-    - FirebaseCoreDiagnostics
-    - FirebaseDynamicLinks
-    - GoogleDataTransport
-    - GoogleUtilities
-    - GTMSessionFetcher
     - Hero
     - JGProgressHUD
     - Kingfisher
@@ -222,9 +142,7 @@ SPEC REPOS:
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
-    - nanopb
     - PromiseKit
-    - PromisesObjC
     - RxAlamofire
     - RxBinding
     - RxCocoa
@@ -237,19 +155,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireNetworkActivityLogger: 6d3398c692d2c5d83b0c58793537860aca1e383d
-  Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  FBSDKCoreKit: 0d1ae58388a458b8222f72025804cdc84eb5d0c3
-  FBSDKLoginKit: aea68df6121c5e165ccae2fabfdc83c4644ee40f
-  Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
-  FirebaseAuth: b8cd992fca5b53dc6eec09e873a3f375f000c5a1
-  FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
-  FirebaseCoreDiagnostics: a31d987ba0fe16d59886a5dbadc2f1de871f88c8
-  FirebaseDynamicLinks: 42858c22626d9c519b28e0421b2ea6bcc5a241ff
-  GoogleDataTransport: 11e3a5f2c190327df1a4a5d7e7ae3d4d5b9c9e4c
-  GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
-  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
@@ -258,9 +164,7 @@ SPEC CHECKSUMS:
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
-  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromiseKit: ae3616f45d7bb9bf4ff1e91abc9b7a8c48a340e0
-  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RxAlamofire: ed65f451f5a9a59419b0b9e705043dc01410edd9
   RxBinding: bf62f59dfb4ff1b84e3d1c293f9a9bdd8ce92280
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
@@ -270,6 +174,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: cb9879410600c2e882d368abaf509f8b72831369
+PODFILE CHECKSUM: 81cf61187be5169cb967ca0e47db3199c6c7ab73
 
 COCOAPODS: 1.10.1

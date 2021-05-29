@@ -29,12 +29,12 @@ target 'udc' do
 #  pod 'Firebase/Messaging'
 
   # Pods for PodTest
-  pod 'Fabric', '~> 1.10.2'
-  pod 'Crashlytics', '~> 3.14.0'
+#  pod 'Fabric', '~> 1.10.2'
+#  pod 'Crashlytics', '~> 3.14.0'
   
-  pod 'Firebase/DynamicLinks'
-  pod 'Firebase/Auth'
-  pod 'FBSDKLoginKit'
+#  pod 'Firebase/DynamicLinks'
+#  pod 'Firebase/Auth'
+#  pod 'FBSDKLoginKit'
   
   pod 'SwiftyJSON'
   

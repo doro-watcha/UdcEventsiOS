@@ -15,6 +15,9 @@ final class HomeVC : EXViewController {
     
     override func viewDidLoad() {
         
+        //self.hero.isEnabled = true
+        navigationItem.title = "asdfsadf"
+        
         debugE("HOME")
     }
     
