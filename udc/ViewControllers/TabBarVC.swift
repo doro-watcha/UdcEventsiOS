@@ -10,17 +10,18 @@ import UIKit
 import PromiseKit
 import MaterialComponents
 
-final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabBarControllerDelegate {
+final class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationControllerDelegate{
     
     /**
     실제 인덱스와 각 탭의 VC에 TabBarItem에 넣어둔 태그번호를 매핑해준 딕셔너리
     */
     static let indexTagMapper = [0:1, 1:2, 2:4, 3:5]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        //view.backgroundColor = .systemRed
+        
+        view.backgroundColor = .systemRed
         
         debugE("TAbBarVC")
         
@@ -28,26 +29,40 @@ final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabB
         
 //        self.hero.tabBarAnimationType = .hero.fade
         
-        let vc1 = UINavigationController(rootViewController: HomeVC())
-        let vc2 = UINavigationController(rootViewController: MapVC())
-        let vc4 = UINavigationController(rootViewController: ClassVC())
-        let vc5 = UINavigationController(rootViewController: ProfileVC())
+        let vc1 =  HomeVC()
+        let vc2 =  MapVC()
+        let vc4 =  ClassVC()
+        let vc5 = ProfileVC()
         
-        vc1.tabBarItem = UITabBarItem(title: "home", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[0]!)
-        vc2.tabBarItem = UITabBarItem(title: "asd", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[1]!)
+        vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[0]!)
+        vc2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[1]!)
         //        vc3.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(named: "explore"), tag: 3)
-        vc4.tabBarItem = UITabBarItem(title: "fdf", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[2]!)
-        vc5.tabBarItem = UITabBarItem(title: "sdd", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[3]!)
+        vc4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[2]!)
+        vc5.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[3]!)
+//
+//
+//
+//        vc1.delegate = self
+//        vc2.delegate = self
+////        vc3.delegate = self
+//        vc4.delegate = self
+//        vc5.delegate = self
+//
+   
+        
+        self.viewControllers = [ vc1, vc2, vc4,vc5]
+        self.selectedIndex = 0
+        //viewControllers = [vc1, vc2, /* v3 ,*/ vc4, vc5]
+    
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         
-        vc1.delegate = self
-        vc2.delegate = self
-//        vc3.delegate = self
-        vc4.delegate = self
-        vc5.delegate = self
         
-        self.viewControllers = [vc1, vc2, /* v3 ,*/ vc4, vc5]
         
+
 //        /// Hero
 //        vc1.hero.isEnabled = true
 //        vc2.hero.isEnabled = true
@@ -55,6 +70,10 @@ final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabB
 //        vc4.hero.isEnabled = true
 //        vc5.hero.isEnabled = true
         
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        debugE("WOW")
     }
     
 //    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -87,7 +106,6 @@ final class TabBarVC: UITabBarController, UINavigationControllerDelegate, UITabB
         }else{
             return true
         }
-        return true 
     }
     
     /**

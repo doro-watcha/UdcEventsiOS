@@ -98,7 +98,7 @@ class EXViewController: UIViewController {
         }
         
         if theme{
-            //nc.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.theme]
+            nc.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.theme]
         }else{
             nc.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         }

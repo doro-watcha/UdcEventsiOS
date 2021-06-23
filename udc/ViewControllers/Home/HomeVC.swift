@@ -10,15 +10,18 @@ import MaterialComponents.MaterialBottomSheet
 import MaterialComponents.MDCFloatingButton
 import RxSwift
 
-final class HomeVC : EXViewController {
+class HomeVC : EXViewController {
     
     
     override func viewDidLoad() {
         
-        //self.hero.isEnabled = true
-        navigationItem.title = "asdfsadf"
-        
+        super.viewDidLoad()
+
+        configureTPNavigationBar()
+
+
         debugE("HOME")
+        initLayout()
     }
     
     private func initLayout() {

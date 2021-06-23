@@ -40,14 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Root VC Intiailization for make view without Storyboard
         */
         window = UIWindow(frame: UIScreen.main.bounds)
-//        window!.tintColor = .theme
+        window!.tintColor = .theme
 //
 //        /// App Running from notification
 //        if launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] != nil{
 //            let userInfo = launchOptions![UIApplication.LaunchOptionsKey.remoteNotification] as! [AnyHashable: Any]
 //            let _ = NotificationHelper.navigateWithNotification(window: window!, userInfo: userInfo, isAppRunning: false)
 //        }else{ /// App Running from general launch floww
-            window!.rootViewController = SplashVC()
+            window!.rootViewController = TabBarVC()
 //        }
 //
         debugE("why not")

@@ -9,6 +9,16 @@ import UIKit
 
 final class ProfileVC : EXViewController {
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        configureTPNavigationBar()
+        
+        self.view.backgroundColor = .red
+        
+        debugE("ProfileVC")
+    }
     
     
 }

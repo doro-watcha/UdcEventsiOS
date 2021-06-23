@@ -12,4 +12,16 @@ import UIKit
 final class ClassVC : EXViewController {
     
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+
+        configureTPNavigationBar()
+        
+        self.view.backgroundColor = .red
+
+        
+        debugE("ClassVC")
+    }
 }
