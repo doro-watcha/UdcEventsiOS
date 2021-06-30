@@ -10,16 +10,17 @@ import MaterialComponents.MaterialBottomSheet
 import MaterialComponents.MDCFloatingButton
 import RxSwift
 
-class HomeVC : EXViewController {
+class HomeVC : UIViewController {
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
 
-        configureTPNavigationBar()
+        //configureTPNavigationBar()
 
 
+        view.backgroundColor = .red
         debugE("HOME")
         initLayout()
     }

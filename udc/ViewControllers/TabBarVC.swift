@@ -17,9 +17,8 @@ final class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigati
     */
     static let indexTagMapper = [0:1, 1:2, 2:4, 3:5]
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         view.backgroundColor = .systemRed
         
@@ -30,18 +29,18 @@ final class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigati
 //        self.hero.tabBarAnimationType = .hero.fade
         
         let vc1 =  HomeVC()
-        let vc2 =  MapVC()
+        let vc2 = MapVC()
         let vc4 =  ClassVC()
-        let vc5 = ProfileVC()
+        let vc5 =  ProfileVC()
         
-        vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[0]!)
-        vc2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[1]!)
+        vc1.tabBarItem = UITabBarItem(title: "HOME", image: UIImage(named: "a1"), selectedImage: UIImage(named:"a1"))
+        vc2.tabBarItem = UITabBarItem(title: "MAP", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[1]!)
         //        vc3.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(named: "explore"), tag: 3)
-        vc4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[2]!)
-        vc5.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[3]!)
-//
-//
-//
+        vc4.tabBarItem = UITabBarItem(title: "CLASS", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[2]!)
+        vc5.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "udc_events"), tag: TabBarVC.indexTagMapper[3]!)
+        
+        
+        
 //        vc1.delegate = self
 //        vc2.delegate = self
 ////        vc3.delegate = self
@@ -51,14 +50,8 @@ final class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigati
    
         
         self.viewControllers = [ vc1, vc2, vc4,vc5]
-        self.selectedIndex = 0
+      
         //viewControllers = [vc1, vc2, /* v3 ,*/ vc4, vc5]
-    
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
         
         
         
