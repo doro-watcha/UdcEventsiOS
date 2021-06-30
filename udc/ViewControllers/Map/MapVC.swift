@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 
 
-class MapVC : UIViewController {
+class MapVC : EXViewController {
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+
+        configureTPNavigationBar()
         
         debugE("MapVC")
     }

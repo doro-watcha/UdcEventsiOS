@@ -10,7 +10,7 @@ import UIKit
 import PromiseKit
 import MaterialComponents
 
-class TabBarVC: UITabBarController, UITabBarControllerDelegate{
+class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationControllerDelegate {
     
     /**
     실제 인덱스와 각 탭의 VC에 TabBarItem에 넣어둔 태그번호를 매핑해준 딕셔너리
@@ -43,7 +43,38 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate{
         
         viewControllers = [ vc1, vc2, vc4,vc5]
       
+
         
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        if [viewControllers?[2], viewControllers?[3]].contains(viewController){
+
+            if AppModel.shared.currentUser == nil{
+                
+                presentLoginDialog{[weak self] in
+                    self?.dismiss(animated: true, completion: nil)
+                }
+                
+                return false
+            }
+            return true
+            
+        }else{
+            return true
+        }
+    }
+    
+    /**
+    로그인 요청 화면
+    */
+    private func presentLoginDialog(_ onTapLogin: @escaping () -> Void){
+        let vc = LoginVC()
+        vc.onTapLogin = onTapLogin
+        let bottomSheetVC = MDCBottomSheetController(contentViewController: vc)
+        bottomSheetVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height : UIScreen.main.bounds.height)
+        present(bottomSheetVC, animated: true, completion: nil)
     }
     
 }

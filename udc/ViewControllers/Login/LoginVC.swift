@@ -1,13 +1,17 @@
 //
-//  ProfileVC.swift
+//  LoginVC.swift
 //  udc
 //
-//  Created by 도로맥 on 2021/05/26.
+//  Created by 도로맥 on 2021/06/30.
 //
 
+import Foundation
 import UIKit
 
-final class ProfileVC : EXViewController {
+class LoginVC : EXViewController {
+    
+    var onTapLogin: (() -> Void)?
+    
     
     override func viewDidLoad() {
         
@@ -17,7 +21,7 @@ final class ProfileVC : EXViewController {
         
         self.view.backgroundColor = .green
         
-        debugE("ProfileVC")
+        debugE("Login VC")
     }
     
     
