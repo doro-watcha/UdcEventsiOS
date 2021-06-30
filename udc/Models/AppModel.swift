@@ -21,21 +21,21 @@ final class AppModel {
     
     // MARK: -  UserDefaults Key-Value
     
-//    /**
-//    API Environment
-//    */
-//    var serviceEnvironment : Int{
-//        get{
-//            let rawValue = defaults.integer(forKey: "serviceEnvironment")
-//            if rawValue != ServiceEnvironment.development.rawValue && rawValue != ServiceEnvironment.production.rawValue{
-//                self.serviceEnvironment = ServiceEnvironment.defaultServer.rawValue
-//                return ServiceEnvironment.defaultServer.rawValue
-//            }
-//            return rawValue
-//        }
-//        set{
-//            defaults.set(newValue, forKey: "serviceEnvironment") }
-//    }
+    /**
+    API Environment
+    */
+    var serviceEnvironment : Int{
+        get{
+            let rawValue = defaults.integer(forKey: "serviceEnvironment")
+            if rawValue != ServiceEnvironment.development.rawValue && rawValue != ServiceEnvironment.production.rawValue{
+                self.serviceEnvironment = ServiceEnvironment.defaultServer.rawValue
+                return ServiceEnvironment.defaultServer.rawValue
+            }
+            return rawValue
+        }
+        set{
+            defaults.set(newValue, forKey: "serviceEnvironment") }
+    }
     
     /**
     Access Token for API

@@ -71,7 +71,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
     */
     private func presentLoginDialog(_ onTapLogin: @escaping () -> Void){
         let vc = LoginVC()
-        vc.onTapLogin = onTapLogin
+//        vc.onTapLogin = onTapLogin
         let bottomSheetVC = MDCBottomSheetController(contentViewController: vc)
         bottomSheetVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height : UIScreen.main.bounds.height)
         present(bottomSheetVC, animated: true, completion: nil)
