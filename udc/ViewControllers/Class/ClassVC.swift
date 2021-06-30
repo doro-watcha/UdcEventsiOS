@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-final class ClassVC : EXViewController {
+final class ClassVC : UIViewController {
     
     
     override func viewDidLoad() {
@@ -17,7 +17,7 @@ final class ClassVC : EXViewController {
         super.viewDidLoad()
         
 
-        configureTPNavigationBar()
+      //  configureTPNavigationBar()
         
         self.view.backgroundColor = .red
 

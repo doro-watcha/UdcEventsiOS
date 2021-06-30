@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B5756CDA0F4257B02839E003 /* Pods_udc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71888A3A290E28E2B2AFB1EB /* Pods_udc.framework */; };
 		C11DA18A265E7E99006EA241 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA189265E7E99006EA241 /* AppDelegate.swift */; };
-		C11DA18C265E7E99006EA241 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA18B265E7E99006EA241 /* SceneDelegate.swift */; };
 		C11DA193265E7E9B006EA241 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C11DA192265E7E9B006EA241 /* Assets.xcassets */; };
 		C11DA196265E7E9B006EA241 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C11DA194265E7E9B006EA241 /* LaunchScreen.storyboard */; };
 		C11DA1A1265E7E9B006EA241 /* udcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1A0265E7E9B006EA241 /* udcTests.swift */; };
@@ -52,7 +51,6 @@
 		97C9C55A9F38F9FAA0528828 /* Pods-udc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-udc.debug.xcconfig"; path = "Target Support Files/Pods-udc/Pods-udc.debug.xcconfig"; sourceTree = "<group>"; };
 		C11DA186265E7E99006EA241 /* udc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = udc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11DA189265E7E99006EA241 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C11DA18B265E7E99006EA241 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C11DA192265E7E9B006EA241 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C11DA195265E7E9B006EA241 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C11DA197265E7E9B006EA241 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 				C11DA1C3265E8D43006EA241 /* Common */,
 				C11DA1BA265E8778006EA241 /* ViewControllers */,
 				C11DA1B9265E7F3F006EA241 /* Application */,
-				C11DA18B265E7E99006EA241 /* SceneDelegate.swift */,
 				C11DA197265E7E9B006EA241 /* Info.plist */,
 			);
 			path = udc;
@@ -459,7 +456,6 @@
 				C11DA1BC265E8796006EA241 /* TabBarVC.swift in Sources */,
 				C11DA1DB265F1FF0006EA241 /* LogHelper.swift in Sources */,
 				C11DA1CA265E8E6A006EA241 /* MapVC.swift in Sources */,
-				C11DA18C265E7E99006EA241 /* SceneDelegate.swift in Sources */,
 				C11DA1C8265E8E29006EA241 /* UIImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
