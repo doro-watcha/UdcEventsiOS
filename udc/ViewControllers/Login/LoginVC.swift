@@ -54,6 +54,7 @@ class LoginVC : EXViewController {
         v.keyboardType = .emailAddress
         v.enablesReturnKeyAutomatically = true
         v.returnKeyType = .continue
+        
         v.text = AppModel.shared.lastLoginnedEmail
         return v
     }()
@@ -113,7 +114,7 @@ extension LoginVC{
             "passwordErrorLabel" : passwordErrorLabel
         ]
 
-        view.addConstraints("H:[appTitle]",  options: .alignAllCenterX, views :views)
+        appTitle.activateCenterXConstraint(to: view)
         view.addConstraints("|-24-[emailLabel]-24-|", views: views)
         view.addConstraints("|-16-[emailTextField]-16-|", views: views)
         view.addConstraints("|-16-[emailErrorLabel]-16-|", views: views)
@@ -122,7 +123,7 @@ extension LoginVC{
         view.addConstraints("|-16-[passwordErrorLabel]-16-|", views: views)
         view.addConstraints("[submitButton]-16-|", views: views)
         
-        emailLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 16).isActive = true
+        appTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 16).isActive = true
         
         view.addConstraints("V:[appTitle]-[emailLabel]-[emailTextField]-[emailErrorLabel]-32-[passwordLabel]-[passwordTextField]-[passwordErrorLabel]-16-[submitButton]", views: views)
     }
@@ -137,12 +138,12 @@ extension LoginVC{
             showEmailErrorMessage(message: Str.error_email_empty)
             return
         }
-        
-        /// Email Regex fail
-        guard emailTextField.text?.isValidEmail == true else {
-            showEmailErrorMessage(message: Str.error_email_regex_invalid)
-            return
-        }
+//
+//        /// Email Regex fail
+//        guard emailTextField.text?.isValidEmail == true else {
+//            showEmailErrorMessage(message: Str.error_email_regex_invalid)
+//            return
+//        }
         
         /// Password Empty
         guard let password = passwordTextField.text, passwordTextField.text?.isEmpty == false else{

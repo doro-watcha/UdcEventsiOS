@@ -32,9 +32,8 @@ extension User {
     */
     static func signIn(withEmail email: String, password: String, acceptedLegalNoticeVersion: String?) -> Promise<User> {
         let params: Parameters = [
-            "email": email,
-            "password": password,
-            "acceptedLegalNoticeVersion": acceptedLegalNoticeVersion
+            "loginId": email,
+            "password": password
             ].filterNotNil()
         return AppService.POST(endPoint: "/auth/signin", params: params, keyPath: "data").then { (result: SignInResultWrapper) -> Promise<User> in
             AppModel.shared.lastLoginnedEmail = result.user.email
