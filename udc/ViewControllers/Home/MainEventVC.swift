@@ -35,25 +35,60 @@ class MainEventVC : EXViewController {
 
 
         view.backgroundColor = .blue
+        initView()
         fetchMainItems()
     }
+    
+    /** Layout */
+    private func initView(){
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.alwaysBounceVertical = true
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.register(MainEventItemCell.self, forCellWithReuseIdentifier: MainEventItemCell.identifier)
+        
+        view.addSubview(collectionView)
+        
+        let views = ["collectionView": collectionView!]
+        view.addConstraints("H:|[collectionView]|", views: views)
+        view.addConstraints("V:|[collectionView]|", views: views)
+        
+        collectionView.refreshControl = refreshControl
+//        refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
+//
+//        if isUsedDetailScreen{
+//            collectionView.isScrollEnabled = false
+//
+//            self.videos = [detailScreenVideo!]
+//            self.updateCurrentVideoInformation()
+//            self.collectionView.reloadData()
+//        }
+    }
+    
 
     func fetchMainItems(forRefresh refresh: Bool = false) {
 
         guard let dataProvider = dataProvider, isFetching == false else {
-            debugE("FUCKMAN")
             if refresh { self.refreshControl.endRefreshing() }
             return
         }
         
         self.isFetching = true
         
-        debugE("TRY")
         firstly {
             dataProvider.fetchItems(refresh: refresh)
         }.done { items in
             
-            debugE("GOOD")
             
             if refresh && !items.isEmpty {
             }
@@ -63,11 +98,10 @@ class MainEventVC : EXViewController {
 
         }.ensure {
             
-            debugE("PELAESE")
             
             self.isFetching = false
             self.isFetchCompleted = true
-            //self.collectionView.reloadData()
+            self.collectionView.reloadData()
             
             if refresh {
                 self.refreshControl.endRefreshing()
@@ -78,5 +112,42 @@ class MainEventVC : EXViewController {
             debugE("ERROR")
             
         }
+    }
+}
+
+
+// MARK: -CollectionView DataSource
+extension MainEventVC : UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return mainEvents.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainEventItemCell.identifier, for: indexPath) as! MainEventItemCell
+        guard let item = mainEvents[safe: indexPath.item] else { return cell }
+        cell.event = item
+
+        
+ 
+//
+//        /**
+//        유저를 눌렀을 때 프로필로 이동
+//        */
+//        cell.userTapHandler = { [unowned self] in
+//            self.navigateUserProfile(item.author!.id)
+//        }
+//
+//
+        return cell
+    }
+    
+    
+}
+
+// MARK: -CollectionViewFlowLayout Delegate
+extension MainEventVC : UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return self.view.frame.size
     }
 }

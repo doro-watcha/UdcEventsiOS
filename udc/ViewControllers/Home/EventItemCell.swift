@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class EventItemcell : EXTableViewCell{
+class EventItemcell : EXCollectionViewCell{
     
     var event : Event?{
         didSet{
@@ -60,33 +60,31 @@ class EventItemcell : EXTableViewCell{
         super.prepareForReuse()
         posterImageView.imageUrl = nil
     }
-}
-
-extension EventItemcell{
+    
     override func setup() {
         super.setup()
-        
+
         contentView.addSubview(posterImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(artistLabel)
         contentView.addSubview(videoCountLabel)
         contentView.addSubview(videoIcon)
-        
+
         let views = ["posterImageView" :posterImageView ,"titleLabel" :titleLabel ,"artistLabel" :artistLabel ,"videoCountLabel" : videoCountLabel
             ,"videoIcon" : videoIcon]
-        
+
         posterImageView.widthAnchor.constraint(equalToConstant: 36).isActive = true
         posterImageView.heightAnchor.constraint(equalToConstant: 36).isActive = true
         posterImageView.activateCenterYConstraint(to: contentView)
-        
+
         titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor).isActive = true
-        
+
         videoCountLabel.activateCenterYConstraint(to: contentView)
         videoIcon.activateCenterYConstraint(to: contentView)
-        
+
         contentView.addConstraints("|-25-[posterImageView]-12-[titleLabel]-12-[videoCountLabel]-6-[videoIcon]-26-|", views: views)
         contentView.addConstraints("V:[titleLabel]-7-[artistLabel]",options: [.alignAllLeading], views: views)
-        
+
+    
     }
 }
-
