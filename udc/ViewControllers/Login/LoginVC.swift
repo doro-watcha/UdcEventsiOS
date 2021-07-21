@@ -159,7 +159,7 @@ extension LoginVC{
         
         showProgress()
         
-        User.signIn(withEmail: email, password: password,acceptedLegalNoticeVersion: nil).done { user in
+        User.signIn(withEmail: email, password: password).done { user in
             self.dismiss(animated: true, completion: nil)
         }.catch {[unowned self] e in
             

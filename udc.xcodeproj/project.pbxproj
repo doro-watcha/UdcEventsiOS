@@ -27,7 +27,7 @@
 		C11DA1DD26600637006EA241 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1DC26600637006EA241 /* UIColor.swift */; };
 		C1BEA8FB267F691700BB8DAB /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BEA8FA267F691700BB8DAB /* AppNavigator.swift */; };
 		C1CD9D72268C5DE00012E141 /* MainEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D71268C5DE00012E141 /* MainEventVC.swift */; };
-		C1CD9D74268C5DF90012E141 /* EventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D73268C5DF90012E141 /* EventVC.swift */; };
+		C1CD9D74268C5DF90012E141 /* EventListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D73268C5DF90012E141 /* EventListVC.swift */; };
 		C1CD9D76268C5E570012E141 /* ExCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D75268C5E570012E141 /* ExCollectionViewCell.swift */; };
 		C1CD9D79268C5F3A0012E141 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D78268C5F3A0012E141 /* LoginVC.swift */; };
 		C1CD9D7C268C60A20012E141 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D7B268C60A20012E141 /* AppModel.swift */; };
@@ -46,6 +46,12 @@
 		C1CD9D99268C947F0012E141 /* ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D98268C947F0012E141 /* ErrorCode.swift */; };
 		C1CD9D9B268C94D10012E141 /* Auth+UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D9A268C94D10012E141 /* Auth+UserService.swift */; };
 		C1CD9D9D268C96020012E141 /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D9C268C96020012E141 /* AppService.swift */; };
+		C1CD9D9F269B12500012E141 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D9E269B12500012E141 /* EventService.swift */; };
+		C1CD9DA1269B12DF0012E141 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9DA0269B12DF0012E141 /* Event.swift */; };
+		C1DA5A9126A7BE44007158F6 /* MainEventItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA5A9026A7BE44007158F6 /* MainEventItemCell.swift */; };
+		C1DA5A9326A7BE5A007158F6 /* EventItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA5A9226A7BE5A007158F6 /* EventItemCell.swift */; };
+		C1DA5A9526A7D25C007158F6 /* ExTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA5A9426A7D25B007158F6 /* ExTableViewCell.swift */; };
+		C1DA5A9726A7D2A9007158F6 /* ExImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA5A9626A7D2A9007158F6 /* ExImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +100,7 @@
 		C11DA1DC26600637006EA241 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		C1BEA8FA267F691700BB8DAB /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		C1CD9D71268C5DE00012E141 /* MainEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEventVC.swift; sourceTree = "<group>"; };
-		C1CD9D73268C5DF90012E141 /* EventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVC.swift; sourceTree = "<group>"; };
+		C1CD9D73268C5DF90012E141 /* EventListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListVC.swift; sourceTree = "<group>"; };
 		C1CD9D75268C5E570012E141 /* ExCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCollectionViewCell.swift; sourceTree = "<group>"; };
 		C1CD9D78268C5F3A0012E141 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		C1CD9D7B268C60A20012E141 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
@@ -113,6 +119,12 @@
 		C1CD9D98268C947F0012E141 /* ErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCode.swift; sourceTree = "<group>"; };
 		C1CD9D9A268C94D10012E141 /* Auth+UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+UserService.swift"; sourceTree = "<group>"; };
 		C1CD9D9C268C96020012E141 /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
+		C1CD9D9E269B12500012E141 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		C1CD9DA0269B12DF0012E141 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		C1DA5A9026A7BE44007158F6 /* MainEventItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEventItemCell.swift; sourceTree = "<group>"; };
+		C1DA5A9226A7BE5A007158F6 /* EventItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemCell.swift; sourceTree = "<group>"; };
+		C1DA5A9426A7D25B007158F6 /* ExTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTableViewCell.swift; sourceTree = "<group>"; };
+		C1DA5A9626A7D2A9007158F6 /* ExImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,7 +237,9 @@
 			children = (
 				C11DA1C1265E8CC4006EA241 /* HomeVC.swift */,
 				C1CD9D71268C5DE00012E141 /* MainEventVC.swift */,
-				C1CD9D73268C5DF90012E141 /* EventVC.swift */,
+				C1CD9D73268C5DF90012E141 /* EventListVC.swift */,
+				C1DA5A9026A7BE44007158F6 /* MainEventItemCell.swift */,
+				C1DA5A9226A7BE5A007158F6 /* EventItemCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -273,6 +287,8 @@
 				C1CD9D75268C5E570012E141 /* ExCollectionViewCell.swift */,
 				C1CD9D7F268C674D0012E141 /* JSONDecoder.swift */,
 				C1CD9D88268C8B220012E141 /* ExTextField.swift */,
+				C1DA5A9426A7D25B007158F6 /* ExTableViewCell.swift */,
+				C1DA5A9626A7D2A9007158F6 /* ExImageView.swift */,
 			);
 			path = EXKit;
 			sourceTree = "<group>";
@@ -319,6 +335,7 @@
 			children = (
 				C1CD9D7B268C60A20012E141 /* AppModel.swift */,
 				C1CD9D7D268C60B90012E141 /* User.swift */,
+				C1CD9DA0269B12DF0012E141 /* Event.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -339,6 +356,7 @@
 				C1CD9D91268C910D0012E141 /* Service.swift */,
 				C1CD9D9A268C94D10012E141 /* Auth+UserService.swift */,
 				C1CD9D9C268C96020012E141 /* AppService.swift */,
+				C1CD9D9E269B12500012E141 /* EventService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -550,16 +568,20 @@
 				C1CD9D72268C5DE00012E141 /* MainEventVC.swift in Sources */,
 				C1CD9D84268C89640012E141 /* Font.swift in Sources */,
 				C1CD9D82268C89020012E141 /* Str.swift in Sources */,
+				C1DA5A9726A7D2A9007158F6 /* ExImageView.swift in Sources */,
 				C1CD9D76268C5E570012E141 /* ExCollectionViewCell.swift in Sources */,
-				C1CD9D74268C5DF90012E141 /* EventVC.swift in Sources */,
+				C1CD9D74268C5DF90012E141 /* EventListVC.swift in Sources */,
 				C1CD9D97268C946E0012E141 /* ServiceError.swift in Sources */,
 				C11DA1CC265E8E71006EA241 /* ClassVC.swift in Sources */,
 				C1CD9D89268C8B220012E141 /* ExTextField.swift in Sources */,
 				C1CD9D8B268C8C0A0012E141 /* ErrorLabel.swift in Sources */,
+				C1DA5A9326A7BE5A007158F6 /* EventItemCell.swift in Sources */,
+				C1CD9D9F269B12500012E141 /* EventService.swift in Sources */,
 				C1CD9D80268C674D0012E141 /* JSONDecoder.swift in Sources */,
 				C1CD9D92268C910D0012E141 /* Service.swift in Sources */,
 				C1CD9D99268C947F0012E141 /* ErrorCode.swift in Sources */,
 				C11DA1DD26600637006EA241 /* UIColor.swift in Sources */,
+				C1DA5A9526A7D25C007158F6 /* ExTableViewCell.swift in Sources */,
 				C11DA1D2265E8FD8006EA241 /* UIView.swift in Sources */,
 				C1CD9D7E268C60B90012E141 /* User.swift in Sources */,
 				C11DA1C2265E8CC4006EA241 /* HomeVC.swift in Sources */,
@@ -570,12 +592,14 @@
 				C11DA1D4265E907F006EA241 /* Extensions.swift in Sources */,
 				C1CD9D87268C8AE80012E141 /* CommonTextField.swift in Sources */,
 				C11DA1BC265E8796006EA241 /* TabBarVC.swift in Sources */,
+				C1CD9DA1269B12DF0012E141 /* Event.swift in Sources */,
 				C1CD9D8F268C8F3A0012E141 /* RegexHelper.swift in Sources */,
 				C1CD9D79268C5F3A0012E141 /* LoginVC.swift in Sources */,
 				C11DA1DB265F1FF0006EA241 /* LogHelper.swift in Sources */,
 				C11DA1CA265E8E6A006EA241 /* MapVC.swift in Sources */,
 				C11DA1C8265E8E29006EA241 /* UIImage.swift in Sources */,
 				C1CD9D9B268C94D10012E141 /* Auth+UserService.swift in Sources */,
+				C1DA5A9126A7BE44007158F6 /* MainEventItemCell.swift in Sources */,
 				C1CD9D9D268C96020012E141 /* AppService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

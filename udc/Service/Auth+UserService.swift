@@ -30,7 +30,7 @@ extension User {
     
     AppModel을 이용해 Token과 현재 유저를 저장한다
     */
-    static func signIn(withEmail email: String, password: String, acceptedLegalNoticeVersion: String?) -> Promise<User> {
+    static func signIn(withEmail email: String, password: String) -> Promise<User> {
         let params: Parameters = [
             "loginId": email,
             "password": password
@@ -46,8 +46,8 @@ extension User {
     /**
     이메일을 이용한 회원가입
     */
-    static func signUpWithEmail(email : String, password: String, acceptedLegalNoticeVersion: String) -> Promise<User>{
-        let params:  Parameters = ["email" : email, "password" : password, "acceptedLegalNoticeVersion" : acceptedLegalNoticeVersion]
+    static func signUpWithEmail(email : String, password: String) -> Promise<User>{
+        let params:  Parameters = ["email" : email, "password" : password]
         
         return AppService.POST(endPoint: "/auth/signup", params: params, keyPath: "data.user")
     }
