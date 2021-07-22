@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import NMapsMap
 
 
 class MapVC : EXViewController {
@@ -19,7 +20,15 @@ class MapVC : EXViewController {
 
         configureTPNavigationBar()
         
+        initMapView()
+        
         debugE("MapVC")
+    }
+    
+    private func initMapView() {
+        
+        let mapView = NMFMapView(frame: view.frame)
+        view.addSubview(mapView)
     }
     
 }

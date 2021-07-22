@@ -16,13 +16,17 @@ class MainEventItemCell : EXCollectionViewCell{
             guard let event = event else { return }
             posterImageView.imageUrl = URL(string: event.posterImgUrl)
             titleLabel.text = event.name
-            
+            subTitleLabel.text = event.subtitle
+            dateLabel.text = event.createdAt
           }
     }
     
+
     private lazy var posterImageView : EXImageView = {
         let v = EXImageView()
-        v.contentMode = .scaleAspectFill
+        v.contentMode = .center
+        v.layer.cornerRadius = CGFloat(15)
+        v.layer.masksToBounds = true
         return v
     }()
     
@@ -34,15 +38,8 @@ class MainEventItemCell : EXCollectionViewCell{
         return v
     }()
     
-    private lazy var artistLabel : UILabel = {
-        let v = UILabel()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        v.font = .regular13
-        v.textColor = .white
-        return v
-    }()
-    
-    private lazy var videoCountLabel : UILabel = {
+    private lazy var subTitleLabel : UILabel = {
+        
         let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.font = .bold13
@@ -50,10 +47,14 @@ class MainEventItemCell : EXCollectionViewCell{
         return v
     }()
     
-    private lazy var videoIcon : UIImageView = {
-        let v = UIImageView(named: "video")
+    private lazy var dateLabel : UILabel = {
+        
+        let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
+        v.font = .bold13
+        v.textColor = .white
         return v
+        
     }()
     
     override func prepareForReuse() {
@@ -63,26 +64,19 @@ class MainEventItemCell : EXCollectionViewCell{
     
     override func setup() {
     
-        contentView.addSubview(posterImageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(artistLabel)
-        contentView.addSubview(videoCountLabel)
-        contentView.addSubview(videoIcon)
+        contentView.addSubviews(posterImageView, titleLabel, subTitleLabel, dateLabel)
 
-        let views = ["posterImageView" :posterImageView ,"titleLabel" :titleLabel ,"artistLabel" :artistLabel ,"videoCountLabel" : videoCountLabel
-            ,"videoIcon" : videoIcon]
+        let views = ["posterImageView" :posterImageView, "titleLabel" :titleLabel ,"subTitleLabel" : subTitleLabel,
+                     "dateLabel" : dateLabel ]
 
-        posterImageView.widthAnchor.constraint(equalToConstant: 36).isActive = true
-        posterImageView.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        posterImageView.activateCenterYConstraint(to: contentView)
-
+        
+ //       topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor,constant: 50).isActive = true
         titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor).isActive = true
+        
+        contentView.addConstraints("V:|-[posterImageView]-|",views: views)
+        contentView.addConstraints("H:|-[posterImageView]-|",views: views)
+        
 
-        videoCountLabel.activateCenterYConstraint(to: contentView)
-        videoIcon.activateCenterYConstraint(to: contentView)
-
-        contentView.addConstraints("|-25-[posterImageView]-12-[titleLabel]-12-[videoCountLabel]-6-[videoIcon]-26-|", views: views)
-        contentView.addConstraints("V:[titleLabel]-7-[artistLabel]",options: [.alignAllLeading], views: views)
 
     }
 }

@@ -11,7 +11,8 @@ struct Str {
     static let common_password = "비밀번호"
     static let common_email = "이메일"
     static let app_name = "UDC EVENTS"
-    
+    static let main_classes = "Main Classes"
+        
     static let error_email_empty = "이메일을 입력해주세요"
     static let error_password_empty = "비밀번호를 입력해주세요"
     static let error_email_regex_invalid = "이메일을 형식에 맞게 입력해주세요"

@@ -23,6 +23,18 @@ class MainEventVC : EXViewController {
     
     
     private var mainEvents: [Event] = []
+    
+    private lazy var blurImageView : EXImageView = {
+       let v = EXImageView()
+        let blurEffect = UIBlurEffect(style : .regular)
+        let visualEffectView = UIVisualEffectView(effect : blurEffect)
+        visualEffectView.frame = v.frame
+        v.addSubview(visualEffectView)
+        v.contentMode = .center
+        
+        return v
+    }()
+    
     var dataProvider: EventProvider?
     
     override func viewDidLoad() {
@@ -32,9 +44,9 @@ class MainEventVC : EXViewController {
         configureTPNavigationBar()
         
         debugE("MainEventVC")
+        
+        
 
-
-        view.backgroundColor = .blue
         initView()
         fetchMainItems()
     }
@@ -42,7 +54,7 @@ class MainEventVC : EXViewController {
     /** Layout */
     private func initView(){
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
@@ -51,17 +63,30 @@ class MainEventVC : EXViewController {
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.alwaysBounceVertical = true
+        collectionView.bounces = false
+        collectionView.alwaysBounceVertical = false
+        collectionView.alwaysBounceHorizontal = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(MainEventItemCell.self, forCellWithReuseIdentifier: MainEventItemCell.identifier)
         
+        view.addSubviews(collectionView, blurImageView)
+        let views = ["collectionView": collectionView!, "blurImageView" : blurImageView]
+        
+        view.addConstraints("H:|[blurImageView]|", views: views)
         view.addSubview(collectionView)
         
-        let views = ["collectionView": collectionView!]
         view.addConstraints("H:|[collectionView]|", views: views)
         view.addConstraints("V:|[collectionView]|", views: views)
+        
+        blurImageView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
+        
+        view.bringSubviewToFront(collectionView)
+        
+
+        
+        
         
         collectionView.refreshControl = refreshControl
 //        refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
@@ -73,6 +98,8 @@ class MainEventVC : EXViewController {
 //            self.updateCurrentVideoInformation()
 //            self.collectionView.reloadData()
 //        }
+        
+        
     }
     
 
@@ -128,7 +155,7 @@ extension MainEventVC : UICollectionViewDataSource{
         guard let item = mainEvents[safe: indexPath.item] else { return cell }
         cell.event = item
 
-        
+        blurImageView.imageUrl = URL(string : item.posterImgUrl)
  
 //
 //        /**
@@ -146,8 +173,9 @@ extension MainEventVC : UICollectionViewDataSource{
 }
 
 // MARK: -CollectionViewFlowLayout Delegate
-extension MainEventVC : UICollectionViewDelegateFlowLayout{
+extension MainEventVC : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.view.frame.size
     }
+    
 }

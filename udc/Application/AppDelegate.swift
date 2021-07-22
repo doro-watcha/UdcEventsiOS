@@ -11,6 +11,7 @@ import AVFoundation
 import AlamofireNetworkActivityLogger
 import RxSwift
 import AuthenticationServices
+import NMapsMap
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -63,6 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        AppModel.shared.uploadingRequestId = 0
 //        observeUploadTarget()
 //
+
+        NMFAuthManager.shared().clientId = "86uizs8uuf"
+
         return true
     }
     
