@@ -18,15 +18,19 @@ class MainEventVC : EXViewController {
     private var isFetching = false
     private var isFetchCompleted = false
     
+    private var pager: UIPageControl!
+    
     private var collectionView: UICollectionView!
     private let refreshControl = UIRefreshControl()
+    
+    private var currentPage = 0
     
     
     private var mainEvents: [Event] = []
     
     private lazy var blurImageView : EXImageView = {
        let v = EXImageView()
-        let blurEffect = UIBlurEffect(style : .regular)
+        let blurEffect = UIBlurEffect(style : .extraLight)
         let visualEffectView = UIVisualEffectView(effect : blurEffect)
         visualEffectView.frame = v.frame
         v.addSubview(visualEffectView)
@@ -40,15 +44,14 @@ class MainEventVC : EXViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
-        configureTPNavigationBar()
         
-        debugE("MainEventVC")
-        
-        
-
         initView()
         fetchMainItems()
+    }
+    
+    private func pageChanged(_ sender: UIPageControl) {
+        let indexPath = IndexPath(item: sender.currentPage, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     /** Layout */
@@ -125,6 +128,7 @@ class MainEventVC : EXViewController {
             if refresh && !items.isEmpty {
             }
             self.mainEvents.append(contentsOf: items)
+            self.blurImageView.imageUrl = URL(string : items[0].posterImgUrl)
             
             debugE(items)
 
@@ -152,15 +156,16 @@ class MainEventVC : EXViewController {
 extension MainEventVC : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        debugE(section)
         return mainEvents.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainEventItemCell.identifier, for: indexPath) as! MainEventItemCell
         guard let item = mainEvents[safe: indexPath.item] else { return cell }
         cell.event = item
 
-        blurImageView.imageUrl = URL(string : item.posterImgUrl)
  
 //
 //        /**
@@ -175,6 +180,8 @@ extension MainEventVC : UICollectionViewDataSource{
     }
     
     
+    
+    
 }
 
 // MARK: -CollectionViewFlowLayout Delegate
@@ -183,4 +190,19 @@ extension MainEventVC : UICollectionViewDelegateFlowLayout, UICollectionViewDele
         return self.view.frame.size
     }
     
+}
+
+extension MainEventVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) { // 컬렉션뷰를 스크롤하면 반복적으로 호출
+        let width = scrollView.bounds.size.width // 너비 저장
+        let x = scrollView.contentOffset.x + (width / 2.0) // 현재 스크롤한 x좌표 저장
+        
+        let newPage = Int(x / width)
+        if currentPage != newPage {
+            currentPage = newPage
+            blurImageView.imageUrl = URL( string : mainEvents[currentPage].posterImgUrl)
+        }
+        
+        debugE(newPage)
+    }
 }

@@ -15,12 +15,13 @@ extension Event {
     }
     
     
-    static func fetchMainEvents() -> Promise<[Event]> {
+    static func fetchEventBySort( sort : String ) -> Promise<[Event]> {
         let params: Parameters = [
-            "sort": "main"
+            "sort": sort
             ].filterNotNil()
         return AppService.GET(endPoint: "/event", params: params, keyPath: "data.events")
     }
+
 
 
     
@@ -69,7 +70,7 @@ final class MainEventProvider: EventProvider {
         if refresh { maxId = Int(Int32.max) }
         guard !reachedEnd else { return Promise.value([]) }
         
-        return Event.fetchMainEvents().then { (result: [Event]) -> Promise<[Event]> in
+        return Event.fetchEventBySort(sort : "main").then { (result: [Event]) -> Promise<[Event]> in
             
             self.reachedEnd = result.count < Event.FETCH_COUNT
             if let lastItem = result.last {
@@ -82,3 +83,76 @@ final class MainEventProvider: EventProvider {
     }
     
 }
+
+final class HotEventProvider : EventProvider {
+    
+    static func newInstance(
+
+    ) -> EventProvider {
+        let provider = HotEventProvider()
+        return provider
+    }
+    
+    private init(){}
+    
+    var currentUserIdForBlocking: Int?
+    var reachedEnd = false
+    
+    // additions
+    private var maxId = Int(Int32.max)
+    
+    func fetchItems(refresh: Bool) -> Promise<[Event]> {
+        if refresh { maxId = Int(Int32.max) }
+        guard !reachedEnd else { return Promise.value([]) }
+        
+        return Event.fetchEventBySort(sort: "hot").then { (result: [Event]) -> Promise<[Event]> in
+            
+            self.reachedEnd = result.count < Event.FETCH_COUNT
+            if let lastItem = result.last {
+                self.maxId = lastItem.id
+            }
+
+            return .value(result)
+
+        }
+    }
+}
+
+
+final class NewEventProvider : EventProvider {
+    
+    static func newInstance(
+
+    ) -> EventProvider {
+        let provider = NewEventProvider()
+        return provider
+    }
+    
+    private init(){}
+    
+    var currentUserIdForBlocking: Int?
+    var reachedEnd = false
+    
+    // additions
+    private var maxId = Int(Int32.max)
+    
+    func fetchItems(refresh: Bool) -> Promise<[Event]> {
+        if refresh { maxId = Int(Int32.max) }
+        guard !reachedEnd else { return Promise.value([]) }
+        
+        return Event.fetchEventBySort(sort: "new").then { (result: [Event]) -> Promise<[Event]> in
+            
+            self.reachedEnd = result.count < Event.FETCH_COUNT
+            if let lastItem = result.last {
+                self.maxId = lastItem.id
+            }
+
+            return .value(result)
+
+        }
+    }
+    
+    
+    
+}
+

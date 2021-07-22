@@ -76,8 +76,8 @@ class MainEventItemCell : EXCollectionViewCell{
 
         titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor).isActive = true
         
-        contentView.addConstraints("V:|-[posterImageView]-|",views: views)
-        contentView.addConstraints("H:|-[posterImageView]-|",views: views)
+        contentView.addConstraints("V:|-50-[posterImageView]-50-|",views: views)
+        contentView.addConstraints("H:|-50-[posterImageView]-50-|",views: views)
         
     }
 }
