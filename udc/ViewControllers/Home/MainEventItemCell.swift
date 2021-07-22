@@ -27,6 +27,7 @@ class MainEventItemCell : EXCollectionViewCell{
         v.contentMode = .center
         v.layer.cornerRadius = CGFloat(15)
         v.layer.masksToBounds = true
+
         return v
     }()
     
@@ -66,18 +67,18 @@ class MainEventItemCell : EXCollectionViewCell{
     
         contentView.addSubviews(posterImageView, titleLabel, subTitleLabel, dateLabel)
 
+
         let views = ["posterImageView" :posterImageView, "titleLabel" :titleLabel ,"subTitleLabel" : subTitleLabel,
                      "dateLabel" : dateLabel ]
 
         
  //       topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor,constant: 50).isActive = true
+
         titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor).isActive = true
         
         contentView.addConstraints("V:|-[posterImageView]-|",views: views)
         contentView.addConstraints("H:|-[posterImageView]-|",views: views)
         
-
-
     }
 }
 

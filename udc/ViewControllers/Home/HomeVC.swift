@@ -37,6 +37,7 @@ class HomeVC : EXViewController {
     }()
     
 
+
     private lazy var newEventLabel : UILabel = {
         let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +55,7 @@ class HomeVC : EXViewController {
         
         return v
     }()
+
 
     
     
@@ -80,9 +82,6 @@ class HomeVC : EXViewController {
     private func initView() {
         
         appNameLabel.text = "UDC Events"
-        newEventLabel.text = "New Event"
-        hotEventLabel.text = "Hot Event"
-        
     }
     
     private func initProvider() {
@@ -102,6 +101,7 @@ class HomeVC : EXViewController {
         view.addSubviews(mainEventVC.view, appNameLabel)
         mainEventVC.didMove(toParent: self)
         
+
         let views = ["mainEventView": mainEventVC.view!, "appNameLabel" : appNameLabel, "newEventLabel" : newEventLabel, "hotEventLabel" : hotEventLabel]
         
         view.addConstraints("H:|[mainEventView]|", views: views)

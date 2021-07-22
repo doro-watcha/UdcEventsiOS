@@ -63,18 +63,23 @@ class MainEventVC : EXViewController {
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
+
         collectionView.bounces = false
+
+
         collectionView.alwaysBounceVertical = false
         collectionView.alwaysBounceHorizontal = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(MainEventItemCell.self, forCellWithReuseIdentifier: MainEventItemCell.identifier)
+
         
         view.addSubviews(collectionView, blurImageView)
         let views = ["collectionView": collectionView!, "blurImageView" : blurImageView]
         
         view.addConstraints("H:|[blurImageView]|", views: views)
+
         view.addSubview(collectionView)
         
         view.addConstraints("H:|[collectionView]|", views: views)

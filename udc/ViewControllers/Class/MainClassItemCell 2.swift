@@ -32,9 +32,9 @@ final class MainClassItemCell: EXTableViewCell {
 
 final class DanceClassView: UIView {
     
+
     private let posterImageView = EXImageView()
 
-    private let posterImgUrl = EXImageView()
     private let titleLabel = UILabel(text: "", font: .bold13, color: .white)
     private let artistLabel = UILabel(text: "", font: .regular12, color: .white)
     
@@ -52,15 +52,15 @@ final class DanceClassView: UIView {
         backgroundColor = .bgBlack
         
         addSubview(posterImageView)
+
         addSubview(titleLabel)
         addSubview(artistLabel)
  
 
-
+        
         let views = ["posterImageView": posterImageView, "titleLabel": titleLabel, "artistLabel": artistLabel]
         
         addConstraints("H:|-24-[posterImageView(40)]-024-|", options: .alignAllCenterY, metrics: nil, views: views)
-
 
    
     }
@@ -72,6 +72,7 @@ final class DanceClassView: UIView {
             
 
             posterImageView.imageUrl = URL(string : danceClass.posterImgUrl)
+
             titleLabel.text = danceClass.title
             artistLabel.text = danceClass.title
 

@@ -65,7 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        observeUploadTarget()
 //
 
+
         NMFAuthManager.shared().clientId = "86uizs8uuf"
+
 
         return true
     }

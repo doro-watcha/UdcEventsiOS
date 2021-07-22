@@ -39,6 +39,7 @@ final class MainClassVC : EXViewController {
 //        tableView.emptyDataSetDelegate = self
         tableView.register(SectionHeaderTVCell.self, forHeaderFooterViewReuseIdentifier: SectionHeaderTVCell.identifier)
         tableView.register(MainClassItemCell.self, forCellReuseIdentifier: MainClassItemCell.identifier)
+
         view.addSubview(tableView)
         
         let views = ["tableView": tableView]
