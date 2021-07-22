@@ -74,6 +74,7 @@ PODS:
     - MDFTextAccessibility
   - MDFInternationalization (3.0.0)
   - MDFTextAccessibility (2.0.1)
+  - NMapsMap (3.13.0)
   - PromiseKit (6.4.0):
     - PromiseKit/CorePromise (= 6.4.0)
     - PromiseKit/Foundation (= 6.4.0)
@@ -118,6 +119,7 @@ DEPENDENCIES:
   - MaterialComponents/Buttons
   - MaterialComponents/Ink
   - MaterialComponents/Ripple
+  - NMapsMap
   - PromiseKit (= 6.4.0)
   - PromiseKit/Alamofire (= 6.4.0)
   - RxAlamofire (~> 4)
@@ -142,6 +144,7 @@ SPEC REPOS:
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
+    - NMapsMap
     - PromiseKit
     - RxAlamofire
     - RxBinding
@@ -164,6 +167,7 @@ SPEC CHECKSUMS:
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
+  NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
   PromiseKit: ae3616f45d7bb9bf4ff1e91abc9b7a8c48a340e0
   RxAlamofire: ed65f451f5a9a59419b0b9e705043dc01410edd9
   RxBinding: bf62f59dfb4ff1b84e3d1c293f9a9bdd8ce92280
@@ -174,6 +178,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: 81cf61187be5169cb967ca0e47db3199c6c7ab73
+PODFILE CHECKSUM: a70f3e45fba2fa9437f0ebd37d35397bb4084410
 
 COCOAPODS: 1.10.1

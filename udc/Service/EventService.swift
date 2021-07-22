@@ -67,19 +67,15 @@ final class MainEventProvider: EventProvider {
     
     func fetchItems(refresh: Bool) -> Promise<[Event]> {
         if refresh { maxId = Int(Int32.max) }
-        debugE("WOWOWOWO")
         guard !reachedEnd else { return Promise.value([]) }
         
         return Event.fetchMainEvents().then { (result: [Event]) -> Promise<[Event]> in
             
-
             self.reachedEnd = result.count < Event.FETCH_COUNT
             if let lastItem = result.last {
                 self.maxId = lastItem.id
             }
-            debugE("RESULT")
-            debugE( result )
-            
+
             return .value(result)
 
         }

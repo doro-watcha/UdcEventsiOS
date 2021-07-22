@@ -42,7 +42,7 @@ class MainEventVC : EXViewController {
     /** Layout */
     private func initView(){
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
@@ -51,12 +51,12 @@ class MainEventVC : EXViewController {
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.alwaysBounceVertical = true
+        collectionView.alwaysBounceVertical = false
+        collectionView.alwaysBounceHorizontal = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(MainEventItemCell.self, forCellWithReuseIdentifier: MainEventItemCell.identifier)
-        
         view.addSubview(collectionView)
         
         let views = ["collectionView": collectionView!]
@@ -146,8 +146,9 @@ extension MainEventVC : UICollectionViewDataSource{
 }
 
 // MARK: -CollectionViewFlowLayout Delegate
-extension MainEventVC : UICollectionViewDelegateFlowLayout{
+extension MainEventVC : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.view.frame.size
     }
+    
 }

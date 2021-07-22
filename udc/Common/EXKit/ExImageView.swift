@@ -26,9 +26,9 @@ class EXImageView: UIView {
         setup()
     }
     
-    init(contentMode: UIView.ContentMode) {
+    init(contentMode: UIView.ContentMode, cornerRadius : CGFloat) {
         super.init(frame: CGRect.zero)
-        setup(contentMode: contentMode)
+        setup(contentMode: contentMode )
     }
     
     func setup(contentMode: UIView.ContentMode = .scaleAspectFill) {
@@ -74,6 +74,7 @@ class EXImageView: UIView {
             }
         }
     }
+    
     
     func setLocalImageUrl(url: URL?){
         guard let url = url else { return }

@@ -782,6 +782,12 @@ IN THE SOFTWARE.
    limitations under the License.
 
 
+## NMapsMap
+
+Copyright © 2018 NAVER Corp.
+All rights reserved.
+
+
 ## PromiseKit
 
 Copyright 2016-present, Max Howell; mxcl@me.com

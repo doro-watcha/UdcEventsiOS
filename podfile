@@ -47,5 +47,7 @@ target 'udc' do
   
   pod 'MarqueeLabel'
   pod 'SwiftVideoGenerator'
+  
+  pod 'NMapsMap'
 #  pod 'SwiftLint'
 end

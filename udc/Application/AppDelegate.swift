@@ -63,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        AppModel.shared.uploadingRequestId = 0
 //        observeUploadTarget()
 //
+        
         return true
     }
     
