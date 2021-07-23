@@ -29,6 +29,11 @@ class HomeVC : EXViewController {
     private var hotEventVC = EventListVC()
     private var newEventVC = EventListVC()
     
+    private let scrollView = UIScrollView()
+    
+    var uploadTapHandler: (() -> Void)?
+    
+    
     private lazy var appNameLabel : UILabel = {
         let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -76,15 +81,25 @@ class HomeVC : EXViewController {
         initView()
         initLayout()
         setupView()
+        initTapHandler()
         
+
 
     }
     
+    private func initTapHandler() {
+        
+        uploadTapHandler = { [unowned self] in
+            self.presentUpload()
+        }
+    }
     private func initView() {
         
         appNameLabel.text = "UDC Events"
         hotEventLabel.text = "Hot Events"
         newEventLabel.text = "New Events"
+        
+
     }
     
     private func initProvider() {
@@ -102,37 +117,83 @@ class HomeVC : EXViewController {
     }
     
     private func setupView(){
-    
+        
         addChild(mainEventVC)
+        addChild(hotEventVC)
+        addChild(newEventVC)
+        
         mainEventVC.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubviews(mainEventVC.view, appNameLabel, newEventLabel, hotEventLabel, hotEventVC.view, newEventVC.view )
+        hotEventVC.view.translatesAutoresizingMaskIntoConstraints = false
+        newEventVC.view.translatesAutoresizingMaskIntoConstraints = false
+        
         mainEventVC.didMove(toParent: self)
+        hotEventVC.didMove(toParent: self)
+        newEventVC.didMove(toParent: self)
         
+        /// 스크롤 뷰
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.zOrder = -1
+        
+        /// 스크롤 뷰 안 Container
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(container)
+    
+        let views = [
+            "scrollView" : scrollView,
+            "container" : container,
+            "mainEventView": mainEventVC.view!,
+            "appNameLabel" : appNameLabel,
+            "newEventLabel" : newEventLabel,
+            "hotEventLabel" : hotEventLabel,
+            "hotEventView" : hotEventVC.view!,
+            "newEventView" : newEventVC.view!
+        ]
 
-        let views = ["mainEventView": mainEventVC.view!, "appNameLabel" : appNameLabel, "newEventLabel" : newEventLabel, "hotEventLabel" : hotEventLabel,"hotEventView" : hotEventVC.view!, "newEventView" : newEventVC.view! ]
+        view.addConstraints("|[scrollView]|", views : views)
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+ 
         
-        view.addConstraints("H:|[mainEventView]|", views: views)
-        view.addConstraints("H:|[newEventView]|", views : views)
-        view.addConstraints("H:|[hotEventView]|", views : views)
-        view.addConstraints("V:[mainEventView]", views: views)
+        scrollView.addConstraints("|[container]|", views: views)
+        scrollView.addConstraints("V:|[container]|", views: views)
+        container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        container.heightAnchor.constraint(equalToConstant: 2000).isActive = true
         
-        appNameLabel.activateCenterXConstraint(to: view)
-        appNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 16).isActive = true
+        container.addSubview(appNameLabel)
+        container.addSubview(newEventLabel)
+        container.addSubview(hotEventLabel)
+        container.addSubview(hotEventVC.view)
+        container.addSubview(newEventVC.view)
+        container.addSubview(mainEventVC.view )
+    
+        
+        container.addConstraints("H:|[mainEventView]|", views: views)
+        container.addConstraints("H:|[newEventView]|", views : views)
+        container.addConstraints("H:|[hotEventView]|", views : views)
+        container.addConstraints("V:|-0@250-[mainEventView]-16-[newEventLabel]-16-[newEventView]-16-[hotEventLabel]-16-[hotEventView]-|", views: views)
+        
+        
+        appNameLabel.activateCenterXConstraint(to: container)
+        appNameLabel.topAnchor.constraint(equalTo: container.topAnchor,constant: 16).isActive = true
+        appNameLabel.zOrder = 1
     
         mainEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-        mainEventVC.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        mainEventVC.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
         
-        newEventLabel.activateCenterXConstraint(to: view)
-        newEventLabel.topAnchor.constraint(equalTo: mainEventVC.view.bottomAnchor, constant : 16).isActive = true
+        newEventLabel.activateCenterXConstraint(to: container)
+        hotEventLabel.activateCenterXConstraint(to: container)
         
-        newEventVC.view.topAnchor.constraint(equalTo: newEventLabel.topAnchor, constant : 16).isActive = true
-        
-        hotEventLabel.activateCenterXConstraint(to: view)
-        hotEventLabel.topAnchor.constraint(equalTo: newEventVC.view.bottomAnchor, constant : 16).isActive = true
-        
-        hotEventVC.view.topAnchor.constraint(equalTo: hotEventLabel.topAnchor, constant : 16).isActive = true
-
         
     }
     
+    @objc func uploadButtonTapped(){
+        uploadTapHandler?()
+    }
+    
+    
 }
+
+

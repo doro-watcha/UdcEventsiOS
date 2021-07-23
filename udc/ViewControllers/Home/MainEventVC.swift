@@ -202,7 +202,5 @@ extension MainEventVC: UIScrollViewDelegate {
             currentPage = newPage
             blurImageView.imageUrl = URL( string : mainEvents[currentPage].posterImgUrl)
         }
-        
-        debugE(newPage)
     }
 }

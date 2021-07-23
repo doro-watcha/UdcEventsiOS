@@ -25,6 +25,7 @@
 		C11DA1D4265E907F006EA241 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1D3265E907F006EA241 /* Extensions.swift */; };
 		C11DA1DB265F1FF0006EA241 /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1DA265F1FF0006EA241 /* LogHelper.swift */; };
 		C11DA1DD26600637006EA241 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1DC26600637006EA241 /* UIColor.swift */; };
+		C1A51D4F26AA550800501440 /* EventUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D4E26AA550800501440 /* EventUploadVC.swift */; };
 		C1BEA8FB267F691700BB8DAB /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BEA8FA267F691700BB8DAB /* AppNavigator.swift */; };
 		C1CD9D72268C5DE00012E141 /* MainEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D71268C5DE00012E141 /* MainEventVC.swift */; };
 		C1CD9D74268C5DF90012E141 /* EventListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD9D73268C5DF90012E141 /* EventListVC.swift */; };
@@ -104,6 +105,7 @@
 		C11DA1D3265E907F006EA241 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C11DA1DA265F1FF0006EA241 /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 		C11DA1DC26600637006EA241 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		C1A51D4E26AA550800501440 /* EventUploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUploadVC.swift; sourceTree = "<group>"; };
 		C1BEA8FA267F691700BB8DAB /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		C1CD9D71268C5DE00012E141 /* MainEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEventVC.swift; sourceTree = "<group>"; };
 		C1CD9D73268C5DF90012E141 /* EventListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListVC.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		C11DA1BA265E8778006EA241 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C1A51D4D26AA54FA00501440 /* Upload */,
 				C1CD9D77268C5F290012E141 /* Login */,
 				C11DA1D5265E90B1006EA241 /* Splash */,
 				C11DA1C0265E88F7006EA241 /* Profile */,
@@ -335,6 +338,14 @@
 				C1CD9D8E268C8F3A0012E141 /* RegexHelper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		C1A51D4D26AA54FA00501440 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				C1A51D4E26AA550800501440 /* EventUploadVC.swift */,
+			);
+			path = Upload;
 			sourceTree = "<group>";
 		};
 		C1CD9D77268C5F290012E141 /* Login */ = {
@@ -607,6 +618,7 @@
 				C1CD9D89268C8B220012E141 /* ExTextField.swift in Sources */,
 				C1CD9D8B268C8C0A0012E141 /* ErrorLabel.swift in Sources */,
 				C1DA5A9326A7BE5A007158F6 /* EventItemCell.swift in Sources */,
+				C1A51D4F26AA550800501440 /* EventUploadVC.swift in Sources */,
 				C1CD9D9F269B12500012E141 /* EventService.swift in Sources */,
 				C1CD9D80268C674D0012E141 /* JSONDecoder.swift in Sources */,
 				C1CD9D92268C910D0012E141 /* Service.swift in Sources */,

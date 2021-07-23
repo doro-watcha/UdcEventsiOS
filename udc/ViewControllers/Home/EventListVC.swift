@@ -29,6 +29,8 @@ class EventListVC: EXViewController {
         
         super.viewDidLoad()
         
+        debugE(self)
+        
         debugE("EventListVc")
         
         initView()
@@ -54,9 +56,8 @@ class EventListVC: EXViewController {
         collectionView.alwaysBounceVertical = false
         collectionView.alwaysBounceHorizontal = false
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.isPagingEnabled = true
         collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.register(MainEventItemCell.self, forCellWithReuseIdentifier: MainEventItemCell.identifier)
+        collectionView.register(EventItemCell.self, forCellWithReuseIdentifier: EventItemCell.identifier)
 
         
         view.addSubviews(collectionView)
@@ -126,7 +127,7 @@ extension EventListVC : UICollectionViewDataSource{
     }
     
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainEventItemCell.identifier, for: indexPath) as! MainEventItemCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventItemCell.identifier, for: indexPath) as! EventItemCell
         guard let item = eventList[safe: indexPath.item] else { return cell }
         cell.event = item
 
@@ -142,9 +143,6 @@ extension EventListVC : UICollectionViewDataSource{
 //
         return cell
     }
-    
-    
-    
     
 }
 

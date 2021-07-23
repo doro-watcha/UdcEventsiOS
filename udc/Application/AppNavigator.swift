@@ -26,5 +26,12 @@ extension EXViewController: UIViewControllerTransitioningDelegate {
 //            self?.isTransitioning = false
 //            }, onError: {_ in })
 //    }
+    
+    /** 프로필 - About 화면 */
+    func presentUpload(){
+        let vc = EventUploadVC()
+
+        self.presentModal(vc)
+    }
 
 }

@@ -71,13 +71,10 @@ class MainEventItemCell : EXCollectionViewCell{
         let views = ["posterImageView" :posterImageView, "titleLabel" :titleLabel ,"subTitleLabel" : subTitleLabel,
                      "dateLabel" : dateLabel ]
 
-        
- //       topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor,constant: 50).isActive = true
-
-        titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor).isActive = true
-        
         contentView.addConstraints("V:|-50-[posterImageView]-50-|",views: views)
         contentView.addConstraints("H:|-50-[posterImageView]-50-|",views: views)
+        
+        titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor).isActive = true
         
     }
 }
