@@ -138,7 +138,9 @@ final class SplashVC: EXViewController {
 //            }else{
 //
 //            }
-        self.presentVC(TabBarVC(), animated: true)
+        debugE("SPLASH")
+        debugE(navigationController)
+       // self.presentVC(TabBarVC(), animated: true)
         
 //        }.catch{e in
 //            let errorMessage: String?

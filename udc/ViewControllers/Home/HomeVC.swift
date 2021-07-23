@@ -76,6 +76,7 @@ class HomeVC : EXViewController {
         initProvider()
 
         debugE("HOME VC")
+        debugE(self.navigationController)
 
         view.backgroundColor = .black
         initView()
@@ -84,12 +85,20 @@ class HomeVC : EXViewController {
         initTapHandler()
         
 
+        
+
 
     }
     
     private func initTapHandler() {
         
+        newEventLabel.isUserInteractionEnabled = true
+        
+        let guestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uploadButtonTapped(_ :)))
+        newEventLabel.addGestureRecognizer(guestureRecognizer)
         uploadTapHandler = { [unowned self] in
+            debugE("presentUpload")
+            debugE(self.navigationController)
             self.presentUpload()
         }
     }
@@ -189,7 +198,8 @@ class HomeVC : EXViewController {
         
     }
     
-    @objc func uploadButtonTapped(){
+    @objc func uploadButtonTapped(_ sender : Any){
+        debugE("uploadButtonTapped")
         uploadTapHandler?()
     }
     

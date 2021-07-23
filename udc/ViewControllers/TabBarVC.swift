@@ -39,13 +39,27 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
         vc2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "music"), tag: TabBarVC.indexTagMapper[1]!)
         vc4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "notif"), tag: TabBarVC.indexTagMapper[2]!)
         vc5.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "profilePurple100"), tag: TabBarVC.indexTagMapper[3]!)
+     
         
+//        vc1.delegate = self
+//        vc2.delegate = self
+////        vc3.delegate = self
+//        vc4.delegate = self
+//        vc5.delegate = self
         
         viewControllers = [ vc1, vc2, vc4,vc5]
       
 
+
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        debugE("TABBAR")
+        debugE(self.navigationController)
+    }
+    
+    
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         

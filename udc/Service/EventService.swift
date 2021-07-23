@@ -21,7 +21,7 @@ extension Event {
             ].filterNotNil()
         return AppService.GET(endPoint: "/event", params: params, keyPath: "data.events")
     }
-
+    
 
 
     
@@ -151,8 +151,41 @@ final class NewEventProvider : EventProvider {
 
         }
     }
+}
+
+final class EventCollectionProvider : EventProvider {
     
     
+    static func newInstance(
+
+    ) -> EventProvider {
+        let provider = EventCollectionProvider()
+        return provider
+    }
+    
+    private init(){}
+    
+    var currentUserIdForBlocking: Int?
+    var reachedEnd = false
+    
+    // additions
+    private var maxId = Int(Int32.max)
+    
+    func fetchItems(refresh: Bool) -> Promise<[Event]> {
+        if refresh { maxId = Int(Int32.max) }
+        guard !reachedEnd else { return Promise.value([]) }
+        
+        return Event.fetchEventBySort(sort: "new").then { (result: [Event]) -> Promise<[Event]> in
+            
+            self.reachedEnd = result.count < Event.FETCH_COUNT
+            if let lastItem = result.last {
+                self.maxId = lastItem.id
+            }
+
+            return .value(result)
+
+        }
+    }
     
 }
 

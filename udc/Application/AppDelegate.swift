@@ -49,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let _ = NotificationHelper.navigateWithNotification(window: window!, userInfo: userInfo, isAppRunning: false)
 //        }else{ /// App Running from general launch floww
             window!.rootViewController = TabBarVC()
+        
 //        }
 //
         debugE("why not")
