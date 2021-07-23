@@ -76,7 +76,6 @@ class HomeVC : EXViewController {
         initProvider()
 
         debugE("HOME VC")
-        debugE(self.navigationController)
 
         view.backgroundColor = .black
         initView()
@@ -85,20 +84,13 @@ class HomeVC : EXViewController {
         initTapHandler()
         
 
-        
-
 
     }
     
     private func initTapHandler() {
         
-        newEventLabel.isUserInteractionEnabled = true
         
-        let guestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uploadButtonTapped(_ :)))
-        newEventLabel.addGestureRecognizer(guestureRecognizer)
         uploadTapHandler = { [unowned self] in
-            debugE("presentUpload")
-            debugE(self.navigationController)
             self.presentUpload()
         }
     }
@@ -142,7 +134,7 @@ class HomeVC : EXViewController {
         /// 스크롤 뷰
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.zOrder = -1
-        
+        scrollView.bounces = scrollView.contentOffset.y > 0
         /// 스크롤 뷰 안 Container
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -162,7 +154,7 @@ class HomeVC : EXViewController {
         ]
 
         view.addConstraints("|[scrollView]|", views : views)
-        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
  
         
@@ -198,8 +190,7 @@ class HomeVC : EXViewController {
         
     }
     
-    @objc func uploadButtonTapped(_ sender : Any){
-        debugE("uploadButtonTapped")
+    @objc func uploadButtonTapped(){
         uploadTapHandler?()
     }
     
