@@ -174,7 +174,7 @@ class HomeVC : EXViewController {
         container.addConstraints("H:|[mainEventView]|", views: views)
         container.addConstraints("H:|[newEventView]|", views : views)
         container.addConstraints("H:|[hotEventView]|", views : views)
-        container.addConstraints("V:|-0@250-[mainEventView]-16-[newEventLabel]-16-[newEventView]-16-[hotEventLabel]-16-[hotEventView]-|", views: views)
+        container.addConstraints("V:[mainEventView]-16-[newEventLabel]-16-[newEventView]-16-[hotEventLabel]-16-[hotEventView]", views: views)
         
         
         appNameLabel.activateCenterXConstraint(to: container)
@@ -182,6 +182,9 @@ class HomeVC : EXViewController {
         appNameLabel.zOrder = 1
     
         mainEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        newEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        hotEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        
         mainEventVC.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
         
         newEventLabel.activateCenterXConstraint(to: container)

@@ -15,7 +15,7 @@ class EventItemCell : EXCollectionViewCell{
         didSet{
             guard let event = event else { return }
             posterImageView.imageUrl = URL(string: event.posterImgUrl)
-            titleLabel.text = event.name
+            titleLabel.text = "TEST LABEL"
             
           }
     }
@@ -58,10 +58,10 @@ class EventItemCell : EXCollectionViewCell{
 
         let views = ["posterImageView" :posterImageView ,"titleLabel" :titleLabel ,"dateLabel" :dateLabel]
 
-        contentView.addConstraints("H:|-[posterImageView]-|", views: views)
-        contentView.addConstraints("V:|-[posterImageView]-|", views : views )
-
-        titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor).isActive = true
+        contentView.addConstraints("H:|-10-[posterImageView]-10-|", views: views)
+        contentView.addConstraints("V:|[posterImageView]|", views : views )
+        
+        titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor).isActive = true
 
     
     }
