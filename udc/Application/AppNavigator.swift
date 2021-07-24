@@ -26,20 +26,21 @@ extension EXViewController: UIViewControllerTransitioningDelegate {
     func pushToNaviVC(_ pushedVC: UIViewController, animated: Bool = true){
         guard !isTransitioning else { return }
         isTransitioning = true
+        debugE("pushToNaviVC")
         debugE(pushedVC)
         debugE(self.navigationController)
         self.navigationController?.pushViewController(pushedVC, animated: animated)
         debugE("GOOD")
-//        let _ = Single.timer(0.5, scheduler: MainScheduler.instance).subscribe(onSuccess: {[weak self] (t: Int) in
-//            self?.isTransitioning = false
-//            }, onError: {_ in })
+        let _ = Single.timer(0.5, scheduler: MainScheduler.instance).subscribe(onSuccess: {[weak self] (t: Int) in
+            self?.isTransitioning = false
+            }, onError: {_ in })
     }
     
     /** 프로필 - About 화면 */
     func presentUpload(){
         let vc = EventUploadVC()
         
-        debugE(vc)
+        debugE("presetUpload")
 
         self.pushToNaviVC(vc)
     }

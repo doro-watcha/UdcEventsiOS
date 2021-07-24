@@ -52,9 +52,6 @@ class EventListVC: EXViewController {
 
         collectionView.bounces = false
 
-
-        collectionView.alwaysBounceVertical = false
-        collectionView.alwaysBounceHorizontal = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(EventItemCell.self, forCellWithReuseIdentifier: EventItemCell.identifier)

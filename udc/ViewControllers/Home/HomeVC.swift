@@ -31,7 +31,7 @@ class HomeVC : EXViewController {
     
     private let scrollView = UIScrollView()
     
-    var uploadTapHandler: (() -> Void)?
+    @objc var uploadTapHandler: (() -> Void)?
     
     
     private lazy var appNameLabel : UILabel = {
@@ -39,6 +39,8 @@ class HomeVC : EXViewController {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.font = .bold13
         v.textColor = .white
+        v.isUserInteractionEnabled = true
+        v.addGestureRecognizer(self.tapGesture)
         return v
     }()
     
@@ -49,6 +51,8 @@ class HomeVC : EXViewController {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.font = .bold13
         v.textColor = .white
+        v.isUserInteractionEnabled = true
+        v.addGestureRecognizer(self.tapGesture)
         
         return v
     }()
@@ -61,11 +65,12 @@ class HomeVC : EXViewController {
         
         return v
     }()
-
-
     
-    
-
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let t = UITapGestureRecognizer()
+        t.addTarget(self, action: #selector(uploadButtonTapped(_ :)))
+        return t
+    }()
     
     override func viewDidLoad() {
         
@@ -76,6 +81,7 @@ class HomeVC : EXViewController {
         initProvider()
 
         debugE("HOME VC")
+        debugE(navigationController)
 
         view.backgroundColor = .black
         initView()
@@ -83,14 +89,12 @@ class HomeVC : EXViewController {
         setupView()
         initTapHandler()
         
-
-
     }
     
     private func initTapHandler() {
         
-        
         uploadTapHandler = { [unowned self] in
+            debugE("UPloadTapHandler")
             self.presentUpload()
         }
     }
@@ -170,7 +174,6 @@ class HomeVC : EXViewController {
         container.addSubview(newEventVC.view)
         container.addSubview(mainEventVC.view )
     
-        
         container.addConstraints("H:|[mainEventView]|", views: views)
         container.addConstraints("H:|[newEventView]|", views : views)
         container.addConstraints("H:|[hotEventView]|", views : views)
@@ -191,13 +194,20 @@ class HomeVC : EXViewController {
         hotEventLabel.activateCenterXConstraint(to: container)
         
         
+        
     }
     
-    @objc func uploadButtonTapped(){
-        uploadTapHandler?()
-    }
+
     
     
 }
 
+extension HomeVC {
+    
+    @objc func uploadButtonTapped(_ sender : UITapGestureRecognizer){
+        debugE("UploadButtonTapped")
+        uploadTapHandler?()
+    }
+    
+}
 

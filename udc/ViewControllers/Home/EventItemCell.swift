@@ -24,7 +24,7 @@ class EventItemCell : EXCollectionViewCell{
         let v = EXImageView()
         v.layer.cornerRadius = CGFloat(15)
         v.layer.masksToBounds = true
-        v.contentMode = .scaleAspectFill
+        ///v.contentMode = .scaleAspectFill
         return v
     }()
     
@@ -55,6 +55,7 @@ class EventItemCell : EXCollectionViewCell{
 
         contentView.addSubviews(posterImageView,titleLabel, dateLabel)
 
+        contentView.backgroundColor = .white
 
         let views = ["posterImageView" :posterImageView ,"titleLabel" :titleLabel ,"dateLabel" :dateLabel]
 

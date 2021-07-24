@@ -48,7 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let userInfo = launchOptions![UIApplication.LaunchOptionsKey.remoteNotification] as! [AnyHashable: Any]
 //            let _ = NotificationHelper.navigateWithNotification(window: window!, userInfo: userInfo, isAppRunning: false)
 //        }else{ /// App Running from general launch floww
-            window!.rootViewController = TabBarVC()
+        
+        let navigationController = UINavigationController(rootViewController: TabBarVC())
+        window!.rootViewController = navigationController
+    
         
 //        }
 //
