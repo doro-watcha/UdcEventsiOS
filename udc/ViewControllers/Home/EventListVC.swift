@@ -33,6 +33,8 @@ class EventListVC: EXViewController {
         
         debugE("EventListVc")
         
+        view.backgroundColor = .black
+        
         initView()
         fetchItems()
     }
@@ -43,6 +45,7 @@ class EventListVC: EXViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
+        
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -147,7 +150,7 @@ extension EventListVC : UICollectionViewDataSource{
 extension EventListVC : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 200, height: 250)
+        return CGSize(width: view.frame.width / 2, height: view.frame.height)
     }
     
 }

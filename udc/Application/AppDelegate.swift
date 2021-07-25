@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }else{ /// App Running from general launch floww
         
         let navigationController = UINavigationController(rootViewController: TabBarVC())
+        navigationController.setNavigationBarHidden(true, animated: false)
         window!.rootViewController = navigationController
     
         

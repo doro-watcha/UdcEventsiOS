@@ -79,10 +79,7 @@ class HomeVC : EXViewController {
         configureTPNavigationBar()
         
         initProvider()
-
-        debugE("HOME VC")
-        debugE(navigationController)
-
+        
         view.backgroundColor = .black
         initView()
         initLayout()
@@ -185,8 +182,8 @@ class HomeVC : EXViewController {
         appNameLabel.zOrder = 1
     
         mainEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-        newEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-        hotEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        newEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3 * 2).isActive = true
+        hotEventVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3 * 2).isActive = true
         
         mainEventVC.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
         

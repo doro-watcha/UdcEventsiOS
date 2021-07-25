@@ -15,24 +15,24 @@ class EventItemCell : EXCollectionViewCell{
         didSet{
             guard let event = event else { return }
             posterImageView.imageUrl = URL(string: event.posterImgUrl)
-            titleLabel.text = "TEST LABEL"
-            
+        
           }
     }
     
     private lazy var posterImageView : EXImageView = {
         let v = EXImageView()
-        v.layer.cornerRadius = CGFloat(15)
+        v.layer.cornerRadius = CGFloat(10)
         v.layer.masksToBounds = true
         ///v.contentMode = .scaleAspectFill
         return v
     }()
     
-    private lazy var titleLabel : UILabel = {
+    private var titleLabel : UILabel = {
         let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.font = .bold13
         v.textColor = .white
+        v.text = "TEST LABEL"
         return v
     }()
     
@@ -53,16 +53,21 @@ class EventItemCell : EXCollectionViewCell{
     override func setup() {
         super.setup()
 
-        contentView.addSubviews(posterImageView,titleLabel, dateLabel)
+        contentView.addSubview(posterImageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(dateLabel)
 
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .black
 
         let views = ["posterImageView" :posterImageView ,"titleLabel" :titleLabel ,"dateLabel" :dateLabel]
-
-        contentView.addConstraints("H:|-10-[posterImageView]-10-|", views: views)
-        contentView.addConstraints("V:|[posterImageView]|", views : views )
         
-        titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor).isActive = true
+        
+      
+        titleLabel.activateCenterXConstraint(to: contentView)
+        titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        contentView.addConstraints("H:|-10-[posterImageView]-10-|", views: views)
+  //      contentView.addConstraints("H:|[titleLabel]|", views: views)
+        contentView.addConstraints("V:|-10-[posterImageView]-20-|", views : views )
 
     
     }
