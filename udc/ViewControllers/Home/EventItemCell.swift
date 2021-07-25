@@ -11,6 +11,8 @@ import UIKit
 
 class EventItemCell : EXCollectionViewCell{
     
+    var imageTapHandler : (() -> Void)?
+    
     var event : Event?{
         didSet{
             guard let event = event else { return }
@@ -23,6 +25,7 @@ class EventItemCell : EXCollectionViewCell{
         let v = EXImageView()
         v.layer.cornerRadius = CGFloat(10)
         v.layer.masksToBounds = true
+        v.addGestureRecognizer(self.tapGesture)
         ///v.contentMode = .scaleAspectFill
         return v
     }()
@@ -44,6 +47,12 @@ class EventItemCell : EXCollectionViewCell{
         return v
     }()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let t = UITapGestureRecognizer()
+        t.addTarget(self, action: #selector(imageViewTapped(_ :)))
+        return t
+    }()
+    
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -52,6 +61,7 @@ class EventItemCell : EXCollectionViewCell{
     
     override func setup() {
         super.setup()
+    
 
         contentView.addSubview(posterImageView)
         contentView.addSubview(titleLabel)
@@ -71,4 +81,9 @@ class EventItemCell : EXCollectionViewCell{
 
     
     }
+    
+    @objc func imageViewTapped(_ sender : UITapGestureRecognizer) {
+        imageTapHandler?()
+    }
+    
 }

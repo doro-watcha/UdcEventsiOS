@@ -44,5 +44,12 @@ extension EXViewController: UIViewControllerTransitioningDelegate {
 
         self.pushToNaviVC(vc)
     }
+    
+    func presetEventDetail( event : Event ) {
+        
+        let vc = EventDetailVC()
+        vc.event = event 
+        self.pushToNaviVC(vc)
+    }
 
 }

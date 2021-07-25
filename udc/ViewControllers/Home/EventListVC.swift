@@ -132,16 +132,25 @@ extension EventListVC : UICollectionViewDataSource{
         cell.event = item
 
  
-//
-//        /**
-//        유저를 눌렀을 때 프로필로 이동
-//        */
-//        cell.userTapHandler = { [unowned self] in
+
+        /**
+        유저를 눌렀을 때 프로필로 이동
+        */
+//        cell.imageTapHandler = { [unowned self] in
 //            self.navigateUserProfile(item.author!.id)
 //        }
-//
-//
+            
+        cell.imageTapHandler = { [unowned self] in
+            self.navigateEventDetail(event : item)
+        }
+
+
         return cell
+    }
+    
+    private func navigateEventDetail(event : Event ){
+        
+        self.presetEventDetail(event: event)
     }
     
 }
@@ -154,3 +163,4 @@ extension EventListVC : UICollectionViewDelegateFlowLayout, UICollectionViewDele
     }
     
 }
+
