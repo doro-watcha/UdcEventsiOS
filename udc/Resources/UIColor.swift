@@ -18,6 +18,8 @@ extension UIColor {
     class var textWhite: UIColor { return UIColor(rgb: 0xf9f9f9) }
     class var textGray:  UIColor { return UIColor(red: 153, green: 153, blue: 153) }
     
+    class var boxGray : UIColor { return UIColor(rgb:0xCCCCCCCC)}
+    
     // BG 컬러
     class var bgBlack:      UIColor {return #colorLiteral(red: 0.1411764706, green: 0.1411764706, blue: 0.1411764706, alpha: 1) }
     class var surfaceBlack: UIColor {return #colorLiteral(red: 0.06274509804, green: 0.06274509804, blue: 0.06274509804, alpha: 1) }

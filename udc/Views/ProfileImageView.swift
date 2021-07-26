@@ -67,6 +67,8 @@ final class ProfileImageView: UIView {
         self.layer.cornerRadius = self.frame.height/2
         self.layer.masksToBounds = true
     }
+    
+
 
     // NOTE: 프로필 편집등 사진 업로드시 직접 image 세팅
 //    var image: UIImage? {
