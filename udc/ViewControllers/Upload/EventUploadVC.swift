@@ -104,16 +104,23 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4 ).isActive = true
         v.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4).isActive = true
-//        v.frame.size.width = UIScreen.main.bounds.width / 4
-//        v.contentMode = .scaleAspectFit
-//        v.shadowRadius = 5
-//        v.shadowOpacity = 0.1
-//        v.shadowColorExtension = .black
         v.isUserInteractionEnabled = true
         v.addGestureRecognizer(imagePickerGesture)
         return v
     }()
     
+    private lazy var posterImageView : EXImageView = {
+        let v = EXImageView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .clear
+        v.contentMode = .scaleAspectFill
+        v.layer.cornerRadius = CGFloat(4)
+        v.layer.masksToBounds = true
+        v.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4 ).isActive = true
+        v.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4).isActive = true
+        v.isHidden = true
+        return v
+    }()
     
     private lazy var tapBackArrowGesture: UITapGestureRecognizer = {
         let t = UITapGestureRecognizer()
@@ -198,7 +205,8 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
             "eventLocationLabel" :eventLocationLabel,
             "eventDateLabel" : eventDateLabel,
             "backArrowImage" : backArrowImage,
-            "titleLabel" : titleLabel
+            "titleLabel" : titleLabel,
+            "posterImageView" : posterImageView
         ]
         
         view.addConstraints("H:|[scrollView]|", views: views)
@@ -221,18 +229,22 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         container.addSubview(pickGalleryImage)
 //        container.addSubview(pickSketchesLabel)
         container.addSubview(pickSketchesLabel)
+        container.addSubview(posterImageView)
         
 
         
 
         container.addConstraints("H:|-16-[pickPosterLabel]|", views: views)
-        container.addConstraints("H:|-16-[pickGalleryImage]", views: views)
+        container.addConstraints("H:|-16-[pickGalleryImage]-15-[posterImageView]", views: views)
         container.addConstraints("H:|-16-[pickSketchesLabel]|", views :views)
 //        container.addConstraints("H:|-16-[pickSketchImage]|", views: views)
 //        container.addConstraints("H:|-16-[eventNameLabel]", views: views)
 //        container.addConstraints("H:|-16-[eventDescriptionLabel]|", views: views)
 //        container.addConstraints("H:|-16-[eventLocationLabel]|" , views: views)
 //        container.addConstraints("H:|-16-[eventDateLabel]|", views : views)
+        
+        posterImageView.topAnchor.constraint(equalTo: pickGalleryImage.topAnchor).isActive = true
+        posterImageView.bottomAnchor.constraint(equalTo: pickGalleryImage.bottomAnchor).isActive = true
 //
     
         container.addConstraints("V:|-20-[pickPosterLabel]-[pickGalleryImage]-[pickSketchesLabel]", views: views)
@@ -292,6 +304,9 @@ extension EventUploadVC : UIImagePickerControllerDelegate, UINavigationControlle
 //        }else{
 //            changeProfileImage(file: UploadFile(data: data, name: "avatar", fileName: url.absoluteURL.lastPathComponent , mimeType: "image/*"), image: image)
 //        }
+        
+        posterImageView.image = image
+        posterImageView.isHidden = false 
         picker.dismiss(animated: true, completion: nil)
     }
 }

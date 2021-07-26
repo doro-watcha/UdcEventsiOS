@@ -23,22 +23,21 @@ class ImagePickerView : UIView {
 
     func setup() {
         translatesAutoresizingMaskIntoConstraints = false
-//
-//        imageView = UIImageView(named: "camera")
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.clipsToBounds = true
+
+        imageView = UIImageView(named: "camera")
+        //imageView.translatesAutoresizingMaskIntoConstraints = false
+
 //        imageView.backgroundColor = .bgBlack
 //        imageView.layer.borderColor = UIColor.white.cgColor
 //        imageView.layer.borderWidth = 2
-//
-////        statusBadge.isHidden = true
-//
-//        addSubview(imageView)
-//
-//        let views = ["imageView": imageView!]
-//        addConstraints("H:|[imageView]|", views: views)
-//        addConstraints("V:|[imageView]|", views: views)
+
+        addSubview(imageView)
+        
+        imageView.activateCenterConstraints(to: self)
+
+        //let views = ["imageView": imageView!]
+        //addConstraints("|[imageView]|", views: views)
+
     }
     
     
