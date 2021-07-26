@@ -17,6 +17,7 @@ extension UIColor {
     // 폰트 컬러
     class var textWhite: UIColor { return UIColor(rgb: 0xf9f9f9) }
     class var textGray:  UIColor { return UIColor(red: 153, green: 153, blue: 153) }
+    class var textGray2 : UIColor { return UIColor(rgb: 0xbdbdbd)}
     
     class var boxGray : UIColor { return UIColor(rgb:0xCCCCCCCC)}
     
@@ -39,4 +40,6 @@ extension UIColor {
     // 대화상자 컬러
     class var textFieldBorder: UIColor { return #colorLiteral(red: 0.4117647059, green: 0.4117647059, blue: 0.4117647059, alpha: 1) }
     class var dialogCancelGray: UIColor { return #colorLiteral(red: 0.4872976542, green: 0.4873096347, blue: 0.4873031378, alpha: 1) }
+    
+
 }

@@ -22,6 +22,19 @@ extension Event {
         return AppService.GET(endPoint: "/event", params: params, keyPath: "data.events")
     }
     
+    static func uploadEvent ( title : String, description : String , location : String, date : String, type : String,
+                              posterImg : [UploadFile], sketchImgs : [UploadFile]) -> Promise<[VoidResult]> {
+        
+        let params : Parameters = [
+            "name" : title,
+            "description" : description,
+            
+        ].filterNotNil()
+        
+        return AppService.POST(endPoint: "/event", params :params)
+
+    }
+    
 
 
     

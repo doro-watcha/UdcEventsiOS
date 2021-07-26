@@ -28,6 +28,9 @@
 		C16B83EC26ADA1230028FFD8 /* EventDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83EB26ADA1230028FFD8 /* EventDetailVC.swift */; };
 		C16B83EE26ADA60E0028FFD8 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83ED26ADA60E0028FFD8 /* PopAnimator.swift */; };
 		C16B83F026AEC34D0028FFD8 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83EF26AEC34D0028FFD8 /* ImagePickerView.swift */; };
+		C16B83F226AF1A6E0028FFD8 /* CommonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83F126AF1A6E0028FFD8 /* CommonTextView.swift */; };
+		C16B83F426AF1A830028FFD8 /* EXTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83F326AF1A830028FFD8 /* EXTextView.swift */; };
+		C16B83F626AF1E6C0028FFD8 /* BoxLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83F526AF1E6C0028FFD8 /* BoxLabel.swift */; };
 		C1A51D4F26AA550800501440 /* EventUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D4E26AA550800501440 /* EventUploadVC.swift */; };
 		C1A51D5326AAABFD00501440 /* ProfileHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D5226AAABFD00501440 /* ProfileHeaderVC.swift */; };
 		C1A51D5626AAAC7C00501440 /* EventCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D5526AAAC7C00501440 /* EventCollectionVC.swift */; };
@@ -118,6 +121,9 @@
 		C16B83EB26ADA1230028FFD8 /* EventDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailVC.swift; sourceTree = "<group>"; };
 		C16B83ED26ADA60E0028FFD8 /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		C16B83EF26AEC34D0028FFD8 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		C16B83F126AF1A6E0028FFD8 /* CommonTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextView.swift; sourceTree = "<group>"; };
+		C16B83F326AF1A830028FFD8 /* EXTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXTextView.swift; sourceTree = "<group>"; };
+		C16B83F526AF1E6C0028FFD8 /* BoxLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxLabel.swift; sourceTree = "<group>"; };
 		C1A51D4E26AA550800501440 /* EventUploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUploadVC.swift; sourceTree = "<group>"; };
 		C1A51D5226AAABFD00501440 /* ProfileHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderVC.swift; sourceTree = "<group>"; };
 		C1A51D5526AAAC7C00501440 /* EventCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionVC.swift; sourceTree = "<group>"; };
@@ -332,6 +338,7 @@
 				C1CD9D88268C8B220012E141 /* ExTextField.swift */,
 				C1DA5A9426A7D25B007158F6 /* ExTableViewCell.swift */,
 				C1DA5A9626A7D2A9007158F6 /* ExImageView.swift */,
+				C16B83F326AF1A830028FFD8 /* EXTextView.swift */,
 			);
 			path = EXKit;
 			sourceTree = "<group>";
@@ -429,6 +436,8 @@
 				C1A51D5B26AAAD4400501440 /* Segment.swift */,
 				C1A51D6026AAB62D00501440 /* ProfileImageView.swift */,
 				C16B83EF26AEC34D0028FFD8 /* ImagePickerView.swift */,
+				C16B83F126AF1A6E0028FFD8 /* CommonTextView.swift */,
+				C16B83F526AF1E6C0028FFD8 /* BoxLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -653,6 +662,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1DA5AA426A8F589007158F6 /* DanceClass.swift in Sources */,
+				C16B83F426AF1A830028FFD8 /* EXTextView.swift in Sources */,
 				C1CD9D8D268C8DC20012E141 /* RoundButton.swift in Sources */,
 				C1DA5AA226A8F558007158F6 /* DanceClassService.swift in Sources */,
 				C1DA5AA626A8F626007158F6 /* Artist.swift in Sources */,
@@ -665,6 +675,7 @@
 				C1CD9D84268C89640012E141 /* Font.swift in Sources */,
 				C1CD9D82268C89020012E141 /* Str.swift in Sources */,
 				C1DA5A9726A7D2A9007158F6 /* ExImageView.swift in Sources */,
+				C16B83F626AF1E6C0028FFD8 /* BoxLabel.swift in Sources */,
 				C1A51D5826AAAC8500501440 /* PendingEventVC.swift in Sources */,
 				C16B83EE26ADA60E0028FFD8 /* PopAnimator.swift in Sources */,
 				C1CD9D76268C5E570012E141 /* ExCollectionViewCell.swift in Sources */,
@@ -708,6 +719,7 @@
 				C1CD9D9B268C94D10012E141 /* Auth+UserService.swift in Sources */,
 				C1DA5A9126A7BE44007158F6 /* MainEventItemCell.swift in Sources */,
 				C1A51D5626AAAC7C00501440 /* EventCollectionVC.swift in Sources */,
+				C16B83F226AF1A6E0028FFD8 /* CommonTextView.swift in Sources */,
 				C1CD9D9D268C96020012E141 /* AppService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

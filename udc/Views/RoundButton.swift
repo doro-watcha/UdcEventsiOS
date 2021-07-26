@@ -40,6 +40,7 @@ class RoundButton : MDCButton{
         self.backgroundColor = .theme
         self.translatesAutoresizingMaskIntoConstraints  = false
         self.isUppercaseTitle = false
+        
         //self.layer.cornerRadius = CGFloat(height.rawValue/2)
         
         self.heightAnchor.constraint(equalToConstant: height.rawValue).isActive = true

@@ -24,6 +24,7 @@ class EXTextField : UITextField{
         self.keyboardAppearance = UIKeyboardAppearance.dark
         self.autocorrectionType = .no
         self.autocapitalizationType = .none
+        self.tintColor = .black
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
