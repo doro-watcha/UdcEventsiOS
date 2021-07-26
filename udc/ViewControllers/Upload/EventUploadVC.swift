@@ -10,6 +10,8 @@ final class EventUploadVC : EXViewController {
     
     private let scrollView = UIScrollView()
     
+    @objc var backArrowTapHandler: (() -> Void)?
+    
     private var pickPosterLabel : UILabel = {
         let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -98,13 +100,30 @@ final class EventUploadVC : EXViewController {
     }()
     
     
+    private lazy var tapBackArrowGesture: UITapGestureRecognizer = {
+        let t = UITapGestureRecognizer()
+        t.addTarget(self, action: #selector(backArrowTapped(_ :)))
+        return t
+    }()
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+    private lazy var backArrowImage : UIImageView = {
+        
+        let v = UIImageView(named: "backarrow")
+        v.isUserInteractionEnabled = true
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        v.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        v.contentMode = .scaleAspectFit
+        v.addGestureRecognizer(self.tapBackArrowGesture)
+        
+        return v
+        
+    }()
+    
+    
+    
 
-    }
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -113,36 +132,25 @@ final class EventUploadVC : EXViewController {
         
         self.view.backgroundColor = .green
         
-        initNavigationBar()
         initView()
         
         debugE("EVENT")
+        
+        backArrowTapHandler = { [unowned self] in
+            debugE("back arrow tap handler")
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
-    private func initNavigationBar() {
-        
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
-        view.addSubview(navBar)
-
-        let navItem = UINavigationItem(title: "행사 등록하기")
-        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(done))
-        navItem.rightBarButtonItem = doneItem
-
-        navBar.setItems([navItem], animated: false)
-
-    }
     
     @objc func done() { // remove @objc for Swift 3
 
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
-    }
-    
-    
     private func initView() {
+        
+
         /// 스크롤 뷰
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.zOrder = -1
@@ -163,7 +171,8 @@ final class EventUploadVC : EXViewController {
             "eventNameLabel" : eventNameLabel,
             "eventDescriptionLabel" : eventDescriptionLabel,
             "eventLocationLabel" :eventLocationLabel,
-            "eventDateLabel" : eventDateLabel
+            "eventDateLabel" : eventDateLabel,
+            "backArrowImage" : backArrowImage
         ]
         
         view.addConstraints("|[scrollView]|", views: views)
@@ -175,17 +184,27 @@ final class EventUploadVC : EXViewController {
         container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         container.heightAnchor.constraint(equalToConstant: 2000).isActive = true
         
-        container.addSubviews(pickPosterLabel, pickGalleryImage, pickSketchesLabel, eventNameLabel, eventDescriptionLabel, eventLocationLabel, eventDateLabel)
+        container.addSubviews(pickPosterLabel, pickGalleryImage, pickSketchesLabel, eventNameLabel, eventDescriptionLabel, eventLocationLabel, eventDateLabel, backArrowImage)
         
         
-        container.addConstraints("|-24-[pickPosterLabel]-24-|", views: views)
-        container.addConstraints("|-16-[pickGalleryImage]|", views: views)
+        container.addConstraints("H:|-16-[backArrowImage]", views : views )
+        container.addConstraints("H:|-24-[pickPosterLabel]-24-|", views: views)
+        container.addConstraints("H:|-16-[pickGalleryImage]|", views: views)
+        container.addConstraints("H:|-16-[pickSketchesLabel]-16-|", views :views)
+        container.addConstraints("H:|-16-[pickGalleryImage]|", views: views)
+        container.addConstraints("H:|-16-[eventNameLabel]", views: views)
+        container.addConstraints("H:|-16-[eventDescriptionLabel]|", views: views)
+        container.addConstraints("H:|-16-[eventLocationLabel]|" , views: views)
+        container.addConstraints("H:|-16-[eventDateLabel]|", views : views)
+        
+    
+        container.addConstraints("V:|-24-[backArrowImage]-50-[pickPosterLabel]-16-[pickGalleryImage]-16-[pickGalleryImage]-16-[pickSketchesLabel]-16-[eventNameLabel]-16-[eventDescriptionLabel]-16-[eventLocationLabel]-16-[eventDateLabel]", views: views)
         
         
-        
-        container.addConstraints("V:|-0@250-[pickPosterLabel(120)]-16-[pickGalleryImage]-|", views: views)
-        
-        
+    }
+    
+    @objc func backArrowTapped(_ sender : UITapGestureRecognizer){
+        backArrowTapHandler?()
     }
 }
 

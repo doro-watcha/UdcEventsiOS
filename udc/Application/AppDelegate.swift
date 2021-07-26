@@ -78,8 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 
-    
-    private func startAlamofireLogging(){
+        private func startAlamofireLogging(){
         #if DEBUG
         NetworkActivityLogger.shared.level = .debug
         NetworkActivityLogger.shared.startLogging()
