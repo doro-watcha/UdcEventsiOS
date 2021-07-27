@@ -35,6 +35,7 @@
 		C16B83FA26AFC7D20028FFD8 /* LocationPickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83F926AFC7D20028FFD8 /* LocationPickVC.swift */; };
 		C16B83FC26AFD0B60028FFD8 /* NaverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83FB26AFD0B60028FFD8 /* NaverMap.swift */; };
 		C16B83FE26AFD3790028FFD8 /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83FD26AFD3790028FFD8 /* NaverMapService.swift */; };
+		C16B840026AFF5FB0028FFD8 /* TypePickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83FF26AFF5FB0028FFD8 /* TypePickVC.swift */; };
 		C1A51D4F26AA550800501440 /* EventUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D4E26AA550800501440 /* EventUploadVC.swift */; };
 		C1A51D5326AAABFD00501440 /* ProfileHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D5226AAABFD00501440 /* ProfileHeaderVC.swift */; };
 		C1A51D5626AAAC7C00501440 /* EventCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D5526AAAC7C00501440 /* EventCollectionVC.swift */; };
@@ -132,6 +133,7 @@
 		C16B83F926AFC7D20028FFD8 /* LocationPickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickVC.swift; sourceTree = "<group>"; };
 		C16B83FB26AFD0B60028FFD8 /* NaverMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMap.swift; sourceTree = "<group>"; };
 		C16B83FD26AFD3790028FFD8 /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
+		C16B83FF26AFF5FB0028FFD8 /* TypePickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickVC.swift; sourceTree = "<group>"; };
 		C1A51D4E26AA550800501440 /* EventUploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUploadVC.swift; sourceTree = "<group>"; };
 		C1A51D5226AAABFD00501440 /* ProfileHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderVC.swift; sourceTree = "<group>"; };
 		C1A51D5526AAAC7C00501440 /* EventCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionVC.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				C16B83F726AF9B400028FFD8 /* DatePickVC.swift */,
 				C16B83F926AFC7D20028FFD8 /* LocationPickVC.swift */,
 				C1A51D4E26AA550800501440 /* EventUploadVC.swift */,
+				C16B83FF26AFF5FB0028FFD8 /* TypePickVC.swift */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				C16B83F426AF1A830028FFD8 /* EXTextView.swift in Sources */,
 				C1CD9D8D268C8DC20012E141 /* RoundButton.swift in Sources */,
 				C16B83FE26AFD3790028FFD8 /* NaverMapService.swift in Sources */,
+				C16B840026AFF5FB0028FFD8 /* TypePickVC.swift in Sources */,
 				C16B83FC26AFD0B60028FFD8 /* NaverMap.swift in Sources */,
 				C1DA5AA226A8F558007158F6 /* DanceClassService.swift in Sources */,
 				C1DA5AA626A8F626007158F6 /* Artist.swift in Sources */,

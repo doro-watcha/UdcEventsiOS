@@ -53,7 +53,7 @@ class DatePickVC : UIViewController {
         
         super.viewDidLoad()
         
-        view.layer.cornerRadius = 3
+        view.layer.cornerRadius = 15
         view.backgroundColor = .white
         initView()
         

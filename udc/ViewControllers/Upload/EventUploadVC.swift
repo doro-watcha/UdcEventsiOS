@@ -14,6 +14,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     @objc var backArrowTapHandler: (() -> Void)?
     @objc var datePickTapHandler:( () -> Void)?
     @objc var locationPickTapHandler: (() -> Void)?
+    @objc var typePickTapHandler: ( () -> Void)?
     
     private var titleLabel : UILabel = {
         
@@ -126,6 +127,8 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     private lazy var typeBoxLabel : BoxLabel = {
         let v = BoxLabel()
         v.text = "행사 종류를 골라주세요!"
+        v.isUserInteractionEnabled = true
+        v.addGestureRecognizer(typePickGesture)
         
         return v
     }()
@@ -177,6 +180,13 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         tap.delegate = self
         return tap
     }()
+    
+    private lazy var typePickGesture : UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(typePickTapped(_:)))
+        tap.delegate = self
+        return tap
+    }()
+    
     
     
     
@@ -234,6 +244,10 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         locationPickTapHandler = { [unowned self] in
             
             self.presentPickLocation()
+        }
+        typePickTapHandler = { [unowned self] in
+            
+            self.presentPickType()
         }
     }
     
@@ -365,6 +379,10 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         locationPickTapHandler?()
     }
     
+    @objc func typePickTapped (_ sender : UITapGestureRecognizer ){
+        typePickTapHandler?()
+    }
+    
     @objc private func imagePickerTapped(){
         self.presentImagePicker(self)
     }
@@ -439,6 +457,16 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         present(vc, animated: true, completion: nil)
     }
     
+    func presentPickType() {
+        
+        let vc = TypePickVC()
+        
+        let bottomSheetVC = MDCBottomSheetController(contentViewController: vc)
+        bottomSheetVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3)
+        present(bottomSheetVC, animated: true, completion: nil)
+        
+        
+    }
 }
 
 
