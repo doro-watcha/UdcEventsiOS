@@ -242,9 +242,22 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
 
     }
     
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+
+    
     
     private func initView() {
     
+        //Looks for single or multiple taps.
+         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
 
         /// 스크롤 뷰
         scrollView.translatesAutoresizingMaskIntoConstraints = false
