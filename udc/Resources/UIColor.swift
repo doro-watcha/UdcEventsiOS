@@ -41,5 +41,9 @@ extension UIColor {
     class var textFieldBorder: UIColor { return #colorLiteral(red: 0.4117647059, green: 0.4117647059, blue: 0.4117647059, alpha: 1) }
     class var dialogCancelGray: UIColor { return #colorLiteral(red: 0.4872976542, green: 0.4873096347, blue: 0.4873031378, alpha: 1) }
     
+    // SNS Login
+    class var naverGreen : UIColor { return UIColor ( rgb : 0x03C75A)}
+    class var kakaoYellow : UIColor { return UIColor ( red : 251 , green : 227 , blue:77)}
+    
 
 }

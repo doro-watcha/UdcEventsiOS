@@ -10,52 +10,107 @@ import UIKit
 import PromiseKit
 
 
-final class MainClassVC : EXViewController {
-    
-    
-    
-    var dataProvider: DanceClassProvider?
-
-    private let tableView = UITableView()
-    private let refreshControl = UIRefreshControl()
-    private var items: [DanceClass] = []
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        debugE("MainClassVC")
-        
-
-
-        tableView.adjustDifferencesBetweenOSVersions()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .bgBlack
-        tableView.separatorStyle = .none
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = 50
-        tableView.estimatedRowHeight = 100
-//        tableView.emptyDataSetSource = self
-//        tableView.emptyDataSetDelegate = self
-        tableView.register(SectionHeaderTVCell.self, forHeaderFooterViewReuseIdentifier: SectionHeaderTVCell.identifier)
-        tableView.register(MainClassItemCell.self, forCellReuseIdentifier: MainClassItemCell.identifier)
-        view.addSubview(tableView)
-        
-        let views = ["tableView": tableView]
-        view.addConstraints("H:|[tableView]|", views: views)
-        view.addConstraints("V:|[tableView]|", views: views)
-        
-        tableView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
-        
-        fetchItems()
-    }
+class MainClassVC : EXViewController {
     
     
     private var isFetching = false
     private var isFetchCompleted = false
+    
+    private var pager: UIPageControl!
+    
+    private var collectionView: UICollectionView!
+    private let refreshControl = UIRefreshControl()
+    
+    private var currentPage = 0
+    
+    
+    private var mainClasses: [DanceClass] = []
+    
+    private lazy var blurImageView : EXImageView = {
+       let v = EXImageView()
+        let blurEffect = UIBlurEffect(style : .extraLight)
+        let visualEffectView = UIVisualEffectView(effect : blurEffect)
+        visualEffectView.frame = v.frame
+        v.addSubview(visualEffectView)
+        v.contentMode = .center
+        
+        return v
+    }()
+    
+    var dataProvider: EventProvider?
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        initView()
+        fetchMainItems()
+    }
+    
+    private func pageChanged(_ sender: UIPageControl) {
+        let indexPath = IndexPath(item: sender.currentPage, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    /** Layout */
+    private func initView(){
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = self
+        collectionView.delegate = self
 
-    func fetchItems(forRefresh refresh: Bool = false, showsProgress: Bool = false) {
+        collectionView.bounces = false
+
+
+        collectionView.alwaysBounceVertical = false
+        collectionView.alwaysBounceHorizontal = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.register(MainClassItemCell.self, forCellWithReuseIdentifier: MainClassItemCell.identifier)
+
+        
+        view.addSubviews(collectionView, blurImageView)
+        let views = ["collectionView": collectionView!, "blurImageView" : blurImageView]
+        
+        view.addConstraints("H:|[blurImageView]|", views: views)
+
+        view.addSubview(collectionView)
+        
+        view.addConstraints("H:|[collectionView]|", views: views)
+        view.addConstraints("V:|[collectionView]|", views: views)
+        
+        blurImageView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
+        
+        view.bringSubviewToFront(collectionView)
+        
+
+        
+        
+        
+        collectionView.refreshControl = refreshControl
+//        refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
+//
+//        if isUsedDetailScreen{
+//            collectionView.isScrollEnabled = false
+//
+//            self.videos = [detailScreenVideo!]
+//            self.updateCurrentVideoInformation()
+//            self.collectionView.reloadData()
+//        }
+        
+        
+    }
+    
+
+    func fetchMainItems(forRefresh refresh: Bool = false) {
+//
 //        guard let dataProvider = dataProvider, isFetching == false else {
 //            if refresh { self.refreshControl.endRefreshing() }
 //            return
@@ -63,85 +118,74 @@ final class MainClassVC : EXViewController {
 //
 //        self.isFetching = true
 //
-//        if showsProgress {
-//            self.showProgress()
-//        }
-        
-        let mockData : [DanceClass] = [ DanceClass.init(), DanceClass.init()]
-        
-        self.items.append (contentsOf : mockData)
-
 //        firstly {
 //            dataProvider.fetchItems(refresh: refresh)
 //        }.done { items in
-//            if refresh { self.items.removeAll() }
-//            self.items.append(contentsOf: items)
+//
+//
+//            if refresh && !items.isEmpty {
+//            }
+//            self.mainClasses.append(contentsOf: items)
+//            self.blurImageView.imageUrl = URL(string : items[0].posterImgUrl)
+//
+//            debugE(items)
+//
 //        }.ensure {
 //
-//            self.hideProgress()
-//
-//            if refresh {
-//                self.refreshControl.endRefreshing()
-////                self.tableView.contentOffset = CGPoint(x: 0, y: -self.tableView.contentInset.top)
-////                self.tableView.layoutIfNeeded()
-//            }
 //
 //            self.isFetching = false
 //            self.isFetchCompleted = true
-//            self.tableView.reloadData()
+//            self.collectionView.reloadData()
 //
-//        }.catch {e in
+//            if refresh {
+//                self.refreshControl.endRefreshing()
+//                self.collectionView.scrollToItem(at: 0.toIndexPath, at: .top, animated: true)
+//            }
+//        }.catch {_ in
+//
+//            debugE("ERROR")
+//
 //        }
     }
-    
-    @objc func refreshControlActivated(sender: UIRefreshControl) {
-        fetchItems(forRefresh: true)
-    }
-    
-
 }
 
 
-
-extension MainClassVC: UITableViewDataSource, UITableViewDelegate {
+// MARK: -CollectionView DataSource
+extension MainClassVC : UICollectionViewDataSource{
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderTVCell.identifier) as! SectionHeaderTVCell
-        headerView.titleLabel.text = Str.main_classes
-        return headerView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        debugE(section)
+        return mainClasses.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MainClassItemCell.identifier, for: indexPath) as! MainClassItemCell
-        
-        guard let item = items[safe: indexPath.row] else {
-            return cell
-        }
-        
-//        cell.onPartTap = {[unowned self] part in
-//            self.presentMusicDetailPart(music: item, part: part)
-//        }
-        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainClassItemCell.identifier, for: indexPath) as! MainClassItemCell
+        guard let item = mainClasses[safe: indexPath.item] else { return cell }
         cell.danceClass = item
+
+ 
+//
+//        /**
+//        유저를 눌렀을 때 프로필로 이동
+//        */
+//        cell.userTapHandler = { [unowned self] in
+//            self.navigateUserProfile(item.author!.id)
+//        }
+//
+//
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let reachedEnd = dataProvider?.reachedEnd {
-            if reachedEnd == false && indexPath.row == self.items.count - 1 {
-                fetchItems()
-            }
-        }
-    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let danceClass = items[safe: indexPath.item], let firstPart = music.parts.first else { return }
-//        presentMusicDetailPart(music: music, part: firstPart)
-//    }
-//
+    
+    
+    
 }
 
+// MARK: -CollectionViewFlowLayout Delegate
+extension MainClassVC : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return self.view.frame.size
+    }
+    
+}

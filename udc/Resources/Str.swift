@@ -10,6 +10,9 @@ struct Str {
     static let common_id = "ID"
     static let common_password = "비밀번호"
     static let common_email = "이메일"
+    static let common_naver_login = "네이버로 로그인"
+    static let common_kakao_login = "카카오로 로그인"
+    static let common_apple_login = "Apple로 로그인"
     static let app_name = "UDC EVENTS"
     static let main_classes = "Main Classes"
         

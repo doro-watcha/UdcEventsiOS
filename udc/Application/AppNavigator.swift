@@ -26,11 +26,8 @@ extension EXViewController: UIViewControllerTransitioningDelegate {
     func pushToNaviVC(_ pushedVC: UIViewController, animated: Bool = true){
         guard !isTransitioning else { return }
         isTransitioning = true
-        debugE("pushToNaviVC")
-        debugE(pushedVC)
-        debugE(self.navigationController)
         self.navigationController?.pushViewController(pushedVC, animated: animated)
-        debugE("GOOD")
+
         let _ = Single.timer(0.5, scheduler: MainScheduler.instance).subscribe(onSuccess: {[weak self] (t: Int) in
             self?.isTransitioning = false
             }, onError: {_ in })

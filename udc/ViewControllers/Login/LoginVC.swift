@@ -7,8 +7,14 @@
 
 import Foundation
 import UIKit
+import AuthenticationServices
 
 class LoginVC : EXViewController {
+    
+    @objc var naverTapHandler :( () -> Void)?
+    @objc var kakaoTapHandler :( () -> Void)?
+    @objc var appleTapHandler :( () -> Void)?
+    @objc var closeTapHandler :( () -> Void)?
     
     
     // MARK: - View
@@ -31,58 +37,91 @@ class LoginVC : EXViewController {
         return v
     }()
     
-    private lazy var emailLabel : UILabel = {
-        let v = UILabel()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        v.textColor = .black
-        v.text = Str.common_email
-        v.font = .bold20
+    
+    
+    private lazy var naverLoginButton : RoundButton = {
+        let v = RoundButton(heightType: .Height54)
+        v.text = Str.common_naver_login
+        v.backgroundColor = .naverGreen
+        v.layer.cornerRadius = 10
+        v.addTarget(self, action: #selector(naverLoginTapped), for: .touchUpInside)
         return v
     }()
     
-    private lazy var passwordLabel : UILabel = {
-        let v = UILabel()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        v.textColor = .black
-        v.text = Str.common_password
-        v.font = .bold20
-        return v
-    }()
-    
-    private lazy var emailTextField : CommonTextField = {
-        let v = CommonTextField()
-        v.keyboardType = .emailAddress
-        v.enablesReturnKeyAutomatically = true
-        v.returnKeyType = .continue
+    private lazy var kakaoLoginButton : RoundButton = {
+        let v = RoundButton(heightType: .Height54)
+        v.text = Str.common_kakao_login
+        v.backgroundColor = .kakaoYellow
+        v.setTitleColor(.black, for: .normal)
         
-        v.text = AppModel.shared.lastLoginnedEmail
+        v.addTarget(self, action: #selector(kakaoLoginTapped(_:)), for: .touchUpInside)
         return v
     }()
     
-    private lazy var passwordTextField : CommonTextField = {
-        let v = CommonTextField()
-        v.enablesReturnKeyAutomatically = true
-        v.isSecureTextEntry = true
-        v.returnKeyType = .done
+    private lazy var appleLoginButton : RoundButton = {
+        let v = RoundButton(heightType: .Height54)
+        v.text = Str.common_apple_login
+        v.backgroundColor = .black
+        v.layer.cornerRadius = 10
+        v.addTarget(self, action: #selector(appleLoginTapped(_:)), for: .touchUpInside)
         return v
     }()
     
-    private lazy var emailErrorLabel: ErrorLabel = {
-        let v = ErrorLabel()
+//    @available(iOS 13.0,*)
+//    private lazy var appleFakeButton: ASAuthorizationAppleIDButton = {
+//        let v = ASAuthorizationAppleIDButton()
+//        v.isHidden = true
+//        v.translatesAutoresizingMaskIntoConstraints = false
+//        v.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+//        return v
+//    }()
+    
+    private var naverLogo : UIImageView = {
+        let v = UIImageView(named:"naver")
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        v.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        v.contentMode = .scaleAspectFit
         return v
     }()
     
-    private lazy var passwordErrorLabel: ErrorLabel = {
-        let v = ErrorLabel()
+    private var kakaoLogo : UIImageView = {
+        let v = UIImageView(named:"kakao_small")
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        v.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        v.contentMode = .scaleAspectFit
         return v
     }()
     
-    private lazy var submitButton : RoundButton = {
-        let v = RoundButton(heightType: .Height36)
-        v.text = Str.common_login
-        v.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+    private var appleLogo : UIImageView = {
+        let v = UIImageView(named:"iconLoginApple")
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        v.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        v.contentMode = .scaleAspectFit
+        v.image = v.image!.withRenderingMode(.alwaysTemplate)
+        v.tintColor = .white
         return v
     }()
+    
+    private lazy var closeButton : UIImageView = {
+        
+        let v = UIImageView(named:"close")
+        
+        v.isUserInteractionEnabled = true
+        v.addGestureRecognizer(closeTapGesture)
+        v.image = v.image!.withRenderingMode(.alwaysTemplate)
+        v.tintColor = .black
+        
+        return v
+    }()
+    
+    private lazy var closeTapGesture : UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closeTapped(_:)))
+        return tap
+    }()
+    
     
 }
 
@@ -96,104 +135,156 @@ extension LoginVC{
         view.backgroundColor = .white
         
         initView()
+        initHandler()
+    }
+    private func initHandler() {
+        
+        naverTapHandler = { [unowned self] in
+            self.naverLogin()
+        }
+        kakaoTapHandler = { [unowned self ] in
+            self.kakaoLogin()
+        }
+        appleTapHandler = { [unowned self ] in
+            self.appleLogin()
+        }
+        
+        closeTapHandler = { [unowned self] in
+            debugE("가즈아")
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     private func initView(){
         view.addGestureRecognizer(bgTap)
         
-        view.addSubviews(emailLabel, emailTextField,emailErrorLabel, passwordLabel, passwordTextField,passwordErrorLabel, submitButton, appTitle)
+        view.addSubviews(appTitle, naverLoginButton, kakaoLoginButton, appleLoginButton, naverLogo, kakaoLogo, appleLogo, closeButton )
         
         let views = [
             "appTitle" : appTitle,
-            "emailLabel": emailLabel,
-            "emailTextField" : emailTextField,
-            "passwordLabel" : passwordLabel,
-            "passwordTextField" : passwordTextField,
-            "submitButton" : submitButton,
-            "emailErrorLabel" : emailErrorLabel,
-            "passwordErrorLabel" : passwordErrorLabel
+            "naverLoginButton" : naverLoginButton,
+            "kakaoLoginButton" : kakaoLoginButton,
+            "appleLoginButton" : appleLoginButton,
+            "naverLogo" : naverLogo,
+            "kakaoLogo" : kakaoLogo,
+            "appleLogo" : appleLogo,
+            "closeButton" : closeButton
+
         ]
 
         appTitle.activateCenterXConstraint(to: view)
-        view.addConstraints("|-24-[emailLabel]-24-|", views: views)
-        view.addConstraints("|-16-[emailTextField]-16-|", views: views)
-        view.addConstraints("|-16-[emailErrorLabel]-16-|", views: views)
-        view.addConstraints("|-24-[passwordLabel]-24-|", views: views)
-        view.addConstraints("|-16-[passwordTextField]-16-|", views: views)
-        view.addConstraints("|-16-[passwordErrorLabel]-16-|", views: views)
-        view.addConstraints("[submitButton]-16-|", views: views)
         
         appTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 16).isActive = true
         
-        view.addConstraints("V:[appTitle]-[emailLabel]-[emailTextField]-[emailErrorLabel]-32-[passwordLabel]-[passwordTextField]-[passwordErrorLabel]-16-[submitButton]", views: views)
+        view.addConstraints("V:|-100-[appTitle]-10-[naverLoginButton]-10-[kakaoLoginButton]-10-[appleLoginButton]", views: views)
+        view.addConstraints("H:|-24-[naverLoginButton]-24-|", views : views )
+        view.addConstraints("H:|-24-[kakaoLoginButton]-24-|", views : views )
+        view.addConstraints("H:|-24-[appleLoginButton]-24-|", views : views )
+        view.addConstraints("H:[closeButton]-24-|", views : views)
+        
+        naverLogo.topAnchor.constraint(equalTo: naverLoginButton.topAnchor).isActive = true
+        naverLogo.bottomAnchor.constraint(equalTo: naverLoginButton.bottomAnchor).isActive = true
+        naverLogo.leftAnchor.constraint(equalTo: naverLoginButton.leftAnchor).isActive = true
+        
+        kakaoLogo.topAnchor.constraint(equalTo: kakaoLoginButton.topAnchor).isActive = true
+        kakaoLogo.bottomAnchor.constraint(equalTo: kakaoLoginButton.bottomAnchor).isActive = true
+        kakaoLogo.leftAnchor.constraint(equalTo: kakaoLoginButton.leftAnchor).isActive = true
+        
+        appleLogo.topAnchor.constraint(equalTo: appleLoginButton.topAnchor).isActive = true
+        appleLogo.bottomAnchor.constraint(equalTo: appleLoginButton.bottomAnchor).isActive = true
+        appleLogo.leftAnchor.constraint(equalTo: appleLoginButton.leftAnchor).isActive = true
+        
+        closeButton.topAnchor.constraint(equalTo: appTitle.topAnchor).isActive = true 
     }
     
-    @objc func submitButtonTapped() {
-        view.endEditing(true)
-        
-        clearErrorMessages()
-        
-        /// Email Empty
-        guard let email = emailTextField.text, emailTextField.text?.isEmpty == false else{
-            showEmailErrorMessage(message: Str.error_email_empty)
-            return
-        }
-//
-//        /// Email Regex fail
-//        guard emailTextField.text?.isValidEmail == true else {
-//            showEmailErrorMessage(message: Str.error_email_regex_invalid)
-//            return
-//        }
-        
-        /// Password Empty
-        guard let password = passwordTextField.text, passwordTextField.text?.isEmpty == false else{
-            showPasswordErrorMessage(message: Str.error_password_empty)
-            return
-        }
-        
-        /// Password Regex fail
-        guard passwordTextField.text?.isValidPassword == true else {
-            showPasswordErrorMessage(message: Str.error_password_regex_invalid)
-            return
-        }
-        
-        showProgress()
-        
-        User.signIn(withEmail: email, password: password).done { user in
-            self.dismiss(animated: true, completion: nil)
-        }.catch {[unowned self] e in
-            
-            switch e.errorCode{
- 
-                case .userNotFound:
-                    self.showEmailErrorMessage(message: e.errorCode!.localizedDescription)
-                    break
-                case .passwordInvalid:
-                    self.showPasswordErrorMessage(message: e.errorCode!.localizedDescription)
-                    break
-                default:
-//                    CommonDialog.show(error: e)
-                break
-            }
-        }.finally {
-            self.hideProgress()
-        }
+    @objc func naverLoginTapped(_ sender : UITapGestureRecognizer){
+        naverTapHandler?()
+    }
+    @objc func kakaoLoginTapped (_ sender :UITapGestureRecognizer) {
+        kakaoTapHandler?()
+    }
+    
+    @objc func appleLoginTapped (_ sender : UITapGestureRecognizer ){
+        appleTapHandler?()
     }
     
     
-    private func showEmailErrorMessage(message: String?){
-        clearErrorMessages()
-        emailErrorLabel.text = message
-        emailErrorLabel.startShakeAnimation()
-    }
-    private func showPasswordErrorMessage(message: String?){
-        clearErrorMessages()
-        passwordErrorLabel.text = message
-        passwordTextField.startShakeAnimation()
+    @objc func closeTapped (_ sender : UITapGestureRecognizer ){
+        closeTapHandler?()
     }
     
-    private func clearErrorMessages(){
-        emailErrorLabel.text = ""
-        passwordErrorLabel.text = ""
+    
+    private func naverLogin() {
+        
     }
+    
+    private func kakaoLogin() {
+        
+    }
+    
+    private func appleLogin () {
+        
+        
+    }
+    
+    
 }
+
+//
+//// MARK: - Apple Login
+//extension LoginVC: ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding {
+//    @available(iOS 13.0, *)
+//    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+//        return self.view.window!
+//    }
+//    @available(iOS 13.0, *)
+//    @objc func handleAuthorizationAppleIDButtonPress() {
+//        let appleIDProvider = ASAuthorizationAppleIDProvider()
+//        let appleIDRequest = appleIDProvider.createRequest()
+//        appleIDRequest.requestedScopes = [.fullName, .email]
+//
+//        let authorizationController = ASAuthorizationController(authorizationRequests: [appleIDRequest])
+//        authorizationController.delegate = self
+//        authorizationController.presentationContextProvider = self
+//        authorizationController.performRequests()
+//    }
+//    @available(iOS 13.0, *)
+//    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+//        debugE(#function, error)
+//        AuthHelper.logout()
+//    }
+//    @available(iOS 13.0, *)
+//    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+//        switch authorization.credential {
+//            case let appleIDCredential as ASAuthorizationAppleIDCredential:
+//
+//                // Create an account in your system.
+//                let userIdentifier = appleIDCredential.user
+//                let fullName = appleIDCredential.fullName
+//                let name = "\(fullName?.givenName ?? "") \(fullName?.familyName ?? "")"
+//                let email = appleIDCredential.email
+//
+//                debugE(#function,"grant")
+//                // First Grant
+//                if let email = email, fullName != nil{
+//                    AppModel.shared.appleIDEmail = email
+//                    AppModel.shared.appleIDFullName = name
+//                }
+//                DispatchQueue.main.async {[weak self] in
+//                    self?.snsLogin(
+//                        .apple,
+//                        userIdentifier,
+//                        nil,
+//                        AppModel.shared.appleIDFullName,
+//                        AppModel.shared.appleIDEmail
+//                    )
+//            }
+//
+//
+//            default:
+//                break
+//        }
+//    }
+//
+//
+//}

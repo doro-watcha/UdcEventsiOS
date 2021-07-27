@@ -8,16 +8,23 @@
 import Foundation
 import UIKit
 
-class EventDetailVC : EXViewController {
+class EventDetailVC : UIViewController {
     
     var event : Event?{
         didSet{
             guard let event = event else { return }
             posterImageView.imageUrl = URL(string: event.posterImgUrl)
+            backgroundImageView.imageUrl = URL(string: event.posterImgUrl)
         
           }
     }
     
+    private lazy var backgroundImageView:EXImageView = {
+        let v = EXImageView()
+        v.contentMode = .center
+        
+        return v
+    }()
     
     private lazy var posterImageView : EXImageView = {
         let v = EXImageView()
@@ -29,49 +36,34 @@ class EventDetailVC : EXViewController {
     }()
     
     override func viewDidLoad() {
-        
+
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         view.backgroundColor = .red
         initView()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//
-//        self.navigationController?.isNavigationBarHidden = false
-//
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationController?.isNavigationBarHidden = true
-//    }
-//
+   
+    
     private func initView() {
-        
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200))
-        navBar.backIndicatorImage = UIImage(named: "backarrow")
-        
-        navBar.backgroundColor = .black
-        view.addSubview(navBar)
-        
+
+        let views = ["posterImageView": posterImageView, "backgroundImageView" : backgroundImageView]
         
 
-        let navItem = UINavigationItem(title: "행사 등록하기")
-        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(done))
-        navItem.rightBarButtonItem = doneItem
-        navItem.leftBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: nil, action: nil)
-
-        navBar.setItems([navItem], animated: false)
         
-        let views = ["posterImageView": posterImageView, "navBar": navBar]
+        view.addSubviews(posterImageView, backgroundImageView)
         
-
-
-        view.addSubviews(posterImageView, navBar)
+        view.addConstraints("H:|[backgroundImageView]|", views: views)
+        view.addConstraints("H:|-20-[posterImageView]", views : views)
+        backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true 
+        backgroundImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 3).isActive = true
+        posterImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2).isActive = true
+        posterImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4).isActive = true
+        posterImageView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor).isActive = true
+        posterImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor).isActive = true
+        posterImageView.bringSubviewToFront(view)
         
-        view.addConstraints("H:|[navBar]|",views: views)
-        view.addConstraints("H:|[posterImageView]|", views: views)
-        view.addConstraints("V:|-200-[posterImageView]|", views: views)
-    }
-    @objc func done() { // remove @objc for Swift 3
-
+        
     }
 }
+
+

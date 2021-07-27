@@ -57,6 +57,8 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
     override func viewDidAppear(_ animated: Bool) {
         debugE("TABBAR")
         debugE(self.navigationController)
+        
+        
     }
     
     
@@ -65,14 +67,14 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
         
         if [viewControllers?[2], viewControllers?[3]].contains(viewController){
 
-            if AppModel.shared.currentUser == nil{
+//            if AppModel.shared.currentUser == nil{
                 
                 presentLoginDialog{[weak self] in
                     self?.dismiss(animated: true, completion: nil)
                 }
                 
                 return false
-            }
+//            }
             return true
             
         }else{

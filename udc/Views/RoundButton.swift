@@ -14,6 +14,7 @@ import MaterialComponents
 class RoundButton : MDCButton{
     
     enum HeightType : CGFloat, CaseIterable{
+        case Height54 = 54
         case Height36 = 36
         case Height24 = 24
     }
@@ -25,6 +26,7 @@ class RoundButton : MDCButton{
         get{return self.currentTitle ?? ""}
         set{self.setTitle(newValue, for: .normal)}
     }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("not implemented")
@@ -53,7 +55,10 @@ class RoundButton : MDCButton{
                 setTitleFont(.bold10, for: .normal)
             case .Height36:
                 setTitleFont(.bold16, for: .normal)
+            case .Height54:
+                setTitleFont(.bold16, for: .normal)
         }
+    
     }
     
     @objc private func tapped(){
