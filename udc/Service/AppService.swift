@@ -45,5 +45,10 @@ final class AppService {
     static func PUT<T>(endPoint: String, files: [UploadFile], params: Parameters? = nil, keyPath: String? = nil) -> Promise<T> where T: Decodable {
         return Service.upload(endPoint: ServiceEnvironment.currentServer.apiHostURLString + endPoint, method: .put, files: files, params: params, keyPath: keyPath)
     }
+    
+    
+    static func NaverGET<T>(endPoint: String, params: Parameters? = nil, keyPath: String? = nil) -> Promise<T> where T: Decodable {
+        return NaverService.request(endPoint: "https://naveropenapi.apigw.ntruss.com" + endPoint, method: .get, params: params, keyPath: keyPath)
+    }
 
 }

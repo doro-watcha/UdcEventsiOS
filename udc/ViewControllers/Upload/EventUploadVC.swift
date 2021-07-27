@@ -13,6 +13,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     
     @objc var backArrowTapHandler: (() -> Void)?
     @objc var datePickTapHandler:( () -> Void)?
+    @objc var locationPickTapHandler: (() -> Void)?
     
     private var titleLabel : UILabel = {
         
@@ -108,6 +109,8 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         
         let v = BoxLabel()
         v.text = "행사 장소를 골라주세요!"
+        v.isUserInteractionEnabled = true
+        v.addGestureRecognizer(locationPickGesture)
         return v
         
     }()
@@ -169,6 +172,12 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         return tap
     }()
     
+    private lazy var locationPickGesture : UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(locationPickTapped(_:)))
+        tap.delegate = self
+        return tap
+    }()
+    
     
     
     
@@ -221,6 +230,10 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         datePickTapHandler = { [unowned self] in
             debugE("back arrow tap handler")
             self.presentPickDate()
+        }
+        locationPickTapHandler = { [unowned self] in
+            
+            self.presentPickLocation()
         }
     }
     
@@ -335,6 +348,9 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     @objc func backArrowTapped(_ sender : UITapGestureRecognizer){
         backArrowTapHandler?()
     }
+    @objc func locationPickTapped (_ sender :UITapGestureRecognizer) {
+        locationPickTapHandler?()
+    }
     
     @objc private func imagePickerTapped(){
         self.presentImagePicker(self)
@@ -400,6 +416,14 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         bottomSheetVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3)
         present(bottomSheetVC, animated: true, completion: nil)
 
+    }
+    
+    func presentPickLocation () {
+        
+        let vc = LocationPickVC()
+        
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
 }

@@ -25,6 +25,7 @@ enum ServiceEnvironment: Int, CaseIterable, Codable {
             case .production: return "http://ec2-13-209-64-88.ap-northeast-2.compute.amazonaws.com:3000"
         }
     }
+
     
     enum CodingKeys: String, CodingKey{
         case development = "development"
@@ -171,6 +172,68 @@ final class Service {
     
 }
 
+final class NaverService {
+
+    
+    static func request<T>(endPoint: String, method: HTTPMethod, params: Parameters? = nil, fields: Parameters? = nil, keyPath: String? = nil, otherDecoder: JSONDecoder? = nil) -> Promise<T> where T: Decodable {
+        var urlString = endPoint
+        let headers: HTTPHeaders = ["Content-Type": "application/json",
+                                    "Accept-Language": Locale.current.languageCode ?? "en",
+                                    "X-NCP-APIGW-API-KEY": "6vwzVaUiBFyV6nRNWeJQXbVffFaUY0XjIMsSQ41T",
+                                    "X-NCP-APIGW-API-KEY-ID" : "86uizs8uuf"
+        ]
+        var parameters = params
+        var queryString = ""
+        
+        if method == .get || method == .delete {
+            if let params = params {
+                queryString = params.compactMap({ "\($0)=\($1)" }).joined(separator: "&")
+                urlString += "?\(queryString)"
+            }
+            parameters = fields
+        }
+        
+        
+        
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.session.configuration.timeoutIntervalForRequest = 8
+        
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString
+        
+        return sessionManager.request(urlString, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(contentType: ["application/json"])
+            .responseData().then { (data, response) -> Promise<T> in
+                
+                let decoder : JSONDecoder
+                
+                if otherDecoder != nil{
+                    decoder = otherDecoder!
+                }else{
+                    decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                }
+                
+//
+//                 //호출결과 에러값이 오는 경우
+//                if let serviceError = try? decoder.decode(UDCError.self, from: data) {
+//                    if !serviceError.success {
+//                        throw serviceError
+//                    }
+//                }
+//
+                do {
+                    let value = try decoder.decode(T.self, from: data, keyPath: keyPath)
+                    return .value(value)
+                } catch {
+                    debugE(error)
+                    throw error
+                }
+                
+        }
+    }
+    
+}
 
 
 struct UploadFile {

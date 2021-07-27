@@ -50,4 +50,5 @@ target 'udc' do
   
   pod 'NMapsMap'
 #  pod 'SwiftLint'
+  pod 'Bagel', '~>  1.4.0'
 end
