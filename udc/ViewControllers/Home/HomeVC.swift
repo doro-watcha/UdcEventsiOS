@@ -162,7 +162,7 @@ class HomeVC : EXViewController {
         scrollView.addConstraints("|[container]|", views: views)
         scrollView.addConstraints("V:|[container]|", views: views)
         container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        container.heightAnchor.constraint(equalToConstant: 2000).isActive = true
+        container.heightAnchor.constraint(equalToConstant: view.frame.height * 2).isActive = true
         
         container.addSubview(appNameLabel)
         container.addSubview(newEventLabel)
@@ -189,8 +189,7 @@ class HomeVC : EXViewController {
         
         newEventLabel.activateCenterXConstraint(to: container)
         hotEventLabel.activateCenterXConstraint(to: container)
-        
-        
+
         
     }
     

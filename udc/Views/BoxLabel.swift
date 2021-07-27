@@ -31,6 +31,7 @@ class BoxLabel : UILabel {
         textColor = .textGray2
         borderColor = .boxGray
         borderWidth = 1.0
+        layer.cornerRadius = 3.0
     }
     
     override func drawText(in rect: CGRect) {

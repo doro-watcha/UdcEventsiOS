@@ -5,12 +5,14 @@
 //  Created by 도로맥 on 2021/07/23.
 //
 import UIKit
+import MaterialComponents
 
 final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     
     private let scrollView = UIScrollView()
     
     @objc var backArrowTapHandler: (() -> Void)?
+    @objc var datePickTapHandler:( () -> Void)?
     
     private var titleLabel : UILabel = {
         
@@ -113,6 +115,8 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     private lazy var dateBoxLabel : BoxLabel = {
         let v = BoxLabel()
         v.text = "행사 날짜를 골라주세요!"
+        v.isUserInteractionEnabled = true
+        v.addGestureRecognizer(datePickGesture)
         return v
     }()
     
@@ -157,6 +161,14 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         tap.delegate = self
         return tap
     }()
+    
+    
+    private lazy var datePickGesture : UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(datePickTapped(_:)))
+        tap.delegate = self
+        return tap
+    }()
+    
     
     
     
@@ -204,6 +216,11 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         backArrowTapHandler = { [unowned self] in
             debugE("back arrow tap handler")
             self.navigationController?.popViewController(animated: true)
+        }
+        
+        datePickTapHandler = { [unowned self] in
+            debugE("back arrow tap handler")
+            self.presentPickDate()
         }
     }
     
@@ -312,7 +329,9 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         
         
     }
-    
+    @objc func datePickTapped (_ sender : UITapGestureRecognizer){
+        datePickTapHandler?()
+    }
     @objc func backArrowTapped(_ sender : UITapGestureRecognizer){
         backArrowTapHandler?()
     }
@@ -372,6 +391,15 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         vc.sourceType = .photoLibrary
         vc.delegate = delegate
         self.presentModal(vc)
+    }
+    
+    func presentPickDate () {
+        
+        let vc = DatePickVC()
+        let bottomSheetVC = MDCBottomSheetController(contentViewController: vc)
+        bottomSheetVC.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3)
+        present(bottomSheetVC, animated: true, completion: nil)
+
     }
     
 }
