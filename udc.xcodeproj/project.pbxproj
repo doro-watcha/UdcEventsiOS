@@ -37,6 +37,7 @@
 		C16B83FE26AFD3790028FFD8 /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83FD26AFD3790028FFD8 /* NaverMapService.swift */; };
 		C16B840026AFF5FB0028FFD8 /* TypePickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83FF26AFF5FB0028FFD8 /* TypePickVC.swift */; };
 		C16B840226B0929C0028FFD8 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B840126B0929C0028FFD8 /* AuthHelper.swift */; };
+		C19C82D926B1B2B80054DD3D /* Broadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19C82D826B1B2B80054DD3D /* Broadcast.swift */; };
 		C1A51D4F26AA550800501440 /* EventUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D4E26AA550800501440 /* EventUploadVC.swift */; };
 		C1A51D5326AAABFD00501440 /* ProfileHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D5226AAABFD00501440 /* ProfileHeaderVC.swift */; };
 		C1A51D5626AAAC7C00501440 /* EventCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D5526AAAC7C00501440 /* EventCollectionVC.swift */; };
@@ -138,6 +139,7 @@
 		C16B83FD26AFD3790028FFD8 /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
 		C16B83FF26AFF5FB0028FFD8 /* TypePickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickVC.swift; sourceTree = "<group>"; };
 		C16B840126B0929C0028FFD8 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
+		C19C82D826B1B2B80054DD3D /* Broadcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Broadcast.swift; sourceTree = "<group>"; };
 		C1A51D4E26AA550800501440 /* EventUploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUploadVC.swift; sourceTree = "<group>"; };
 		C1A51D5226AAABFD00501440 /* ProfileHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderVC.swift; sourceTree = "<group>"; };
 		C1A51D5526AAAC7C00501440 /* EventCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionVC.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			children = (
 				C11DA1D9265F1FE5006EA241 /* Helper */,
 				C11DA1C4265E8D4A006EA241 /* EXKit */,
+				C19C82D826B1B2B80054DD3D /* Broadcast.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -742,6 +745,7 @@
 				C1A51D6126AAB62D00501440 /* ProfileImageView.swift in Sources */,
 				C1CD9DA1269B12DF0012E141 /* Event.swift in Sources */,
 				C1CD9D8F268C8F3A0012E141 /* RegexHelper.swift in Sources */,
+				C19C82D926B1B2B80054DD3D /* Broadcast.swift in Sources */,
 				C1CD9D79268C5F3A0012E141 /* LoginVC.swift in Sources */,
 				C11DA1DB265F1FF0006EA241 /* LogHelper.swift in Sources */,
 				C16B83F826AF9B400028FFD8 /* DatePickVC.swift in Sources */,

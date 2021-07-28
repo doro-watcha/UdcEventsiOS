@@ -45,6 +45,8 @@ class DatePickVC : UIViewController {
         
         let v = UIDatePicker()
         v.translatesAutoresizingMaskIntoConstraints = false
+        v.locale = Locale(identifier: "ko")
+        v.tintColor = .black
         
         return v
     }()
@@ -62,10 +64,7 @@ class DatePickVC : UIViewController {
     }
     
     private func initView(){
-        
-        datePicker.tintColor = .black
-        let loc = Locale(identifier: "ko")
-        self.datePicker.locale = loc
+    
 
         
         let views = [
@@ -89,6 +88,14 @@ class DatePickVC : UIViewController {
 
     
     @objc private func confirmButtonTapped(){
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .short
+        dateformatter.locale = Locale(identifier: "ko")
+        
+  
+        let date = dateformatter.string(from: datePicker.date)
+        Broadcast.EVENT_DATE_PICK_BROADCAST.onNext(date)
         self.dismiss(animated:true)
     }
     

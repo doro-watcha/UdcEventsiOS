@@ -8,8 +8,11 @@ import UIKit
 import MaterialComponents
 import BSImagePicker
 import Photos
+import RxSwift
 
 final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
+    
+    private let disposeBag = DisposeBag()
     
     private let scrollView = UIScrollView()
     
@@ -249,6 +252,8 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         
         configureTPNavigationBar()
         
+        observeBroadcast()
+        
         self.view.backgroundColor = .white
         
         initView()
@@ -283,6 +288,15 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
+    private func observeBroadcast(){
+        Broadcast.EVENT_DATE_PICK_BROADCAST.subscribe(onNext: { date in
+            self.dateBoxLabel.text = date 
+        }).disposed(by: disposeBag)
+            
+           
+    }
+    
 
     
     

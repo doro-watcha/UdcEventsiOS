@@ -92,11 +92,17 @@ class LocationPickVC : EXViewController{
     private func initMapView() {
         
         let mapView = NMFMapView(frame: view.frame)
+        
+  //      let naverMapView = NMFNaverMapView(frame : view.frame)
         mapView.addCameraDelegate(delegate: self)
-        mapView.positionMode = .normal
+        mapView.positionMode = .direction
+    
+        
+//        naverMapView.showLocationButton = true
     
 
         view.addSubview(mapView)
+    //    view.addSubview(naverMapView)
         
         let views = [
             "closeButton" :closeButton,
@@ -119,7 +125,7 @@ class LocationPickVC : EXViewController{
         
     }
     
-    private func getAddresByLocation ( longitude : Double, latitude : Double) {
+    private func getAddressByLocation ( longitude : Double, latitude : Double) {
         
         debugE(longitude)
         debugE(latitude)
@@ -160,7 +166,7 @@ extension LocationPickVC : NMFMapViewCameraDelegate {
     
 
     func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
-        getAddresByLocation(longitude : mapView.longitude, latitude : mapView.latitude)
+        getAddressByLocation(longitude : mapView.longitude, latitude : mapView.latitude)
     }
 
 }
