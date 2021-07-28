@@ -88,13 +88,7 @@ class EventListVC: EXViewController {
             dataProvider.fetchItems(refresh: refresh)
         }.done { items in
             
-            
-            if refresh && !items.isEmpty {
-            }
             self.eventList.append(contentsOf: items)
-
-            debugE(self.sort)
-            debugE(items)
 
         }.ensure {
             
@@ -122,14 +116,17 @@ extension EventListVC : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        debugE(section)
+        debugE("여기도 가즈아!")
+        debugE(eventList.count)
         return eventList.count
     }
     
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventItemCell.identifier, for: indexPath) as! EventItemCell
         guard let item = eventList[safe: indexPath.item] else { return cell }
         cell.event = item
+            
+        debugE("여기 가즈아!!!")
 
  
 

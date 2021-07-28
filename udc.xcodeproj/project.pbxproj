@@ -78,6 +78,8 @@
 		C1DA5AA426A8F589007158F6 /* DanceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA5AA326A8F589007158F6 /* DanceClass.swift */; };
 		C1DA5AA626A8F626007158F6 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA5AA526A8F626007158F6 /* Artist.swift */; };
 		C1DA5AA826A8FAE5007158F6 /* SectionHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA5AA726A8FAE5007158F6 /* SectionHeaderTVCell.swift */; };
+		C1E3C48D26B152EF00D0858E /* SketchImagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E3C48C26B152EF00D0858E /* SketchImagesVC.swift */; };
+		C1E3C48F26B153EA00D0858E /* SketchImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E3C48E26B153EA00D0858E /* SketchImageItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +179,8 @@
 		C1DA5AA326A8F589007158F6 /* DanceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClass.swift; sourceTree = "<group>"; };
 		C1DA5AA526A8F626007158F6 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		C1DA5AA726A8FAE5007158F6 /* SectionHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderTVCell.swift; sourceTree = "<group>"; };
+		C1E3C48C26B152EF00D0858E /* SketchImagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchImagesVC.swift; sourceTree = "<group>"; };
+		C1E3C48E26B153EA00D0858E /* SketchImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchImageItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +405,8 @@
 				C16B83F926AFC7D20028FFD8 /* LocationPickVC.swift */,
 				C1A51D4E26AA550800501440 /* EventUploadVC.swift */,
 				C16B83FF26AFF5FB0028FFD8 /* TypePickVC.swift */,
+				C1E3C48C26B152EF00D0858E /* SketchImagesVC.swift */,
+				C1E3C48E26B153EA00D0858E /* SketchImageItem.swift */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -689,6 +695,7 @@
 				C1DA5AA626A8F626007158F6 /* Artist.swift in Sources */,
 				C16B83EC26ADA1230028FFD8 /* EventDetailVC.swift in Sources */,
 				C1A51D5A26AAAD0200501440 /* ProfileHeaderView.swift in Sources */,
+				C1E3C48D26B152EF00D0858E /* SketchImagesVC.swift in Sources */,
 				C1CD9D95268C940D0012E141 /* UDCError.swift in Sources */,
 				C11DA1CE265E8E7B006EA241 /* ProfileVC.swift in Sources */,
 				C11DA1D0265E8F96006EA241 /* SplashVC.swift in Sources */,
@@ -719,6 +726,7 @@
 				C1DA5A9526A7D25C007158F6 /* ExTableViewCell.swift in Sources */,
 				C11DA1D2265E8FD8006EA241 /* UIView.swift in Sources */,
 				C1CD9D7E268C60B90012E141 /* User.swift in Sources */,
+				C1E3C48F26B153EA00D0858E /* SketchImageItem.swift in Sources */,
 				C11DA1C2265E8CC4006EA241 /* HomeVC.swift in Sources */,
 				C11DA18A265E7E99006EA241 /* AppDelegate.swift in Sources */,
 				C16B83FA26AFC7D20028FFD8 /* LocationPickVC.swift in Sources */,

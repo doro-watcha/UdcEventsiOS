@@ -7,6 +7,7 @@
 import UIKit
 import MaterialComponents
 import BSImagePicker
+import Photos
 
 final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     
@@ -16,6 +17,8 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     @objc var datePickTapHandler:( () -> Void)?
     @objc var locationPickTapHandler: (() -> Void)?
     @objc var typePickTapHandler: ( () -> Void)?
+    
+    private var sketchVC = SketchImagesVC()
     
     private var titleLabel : UILabel = {
         
@@ -284,6 +287,10 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     
     
     private func initView() {
+        
+        addChild(sketchVC)
+        sketchVC.view.translatesAutoresizingMaskIntoConstraints = false
+        sketchVC.didMove(toParent: self)
     
         //Looks for single or multiple taps.
          let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -325,9 +332,9 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
             "locationBoxLabel" : locationBoxLabel,
             "dateBoxLabel" : dateBoxLabel,
             "typeBoxLabel" : typeBoxLabel,
-            "uploadButton" : uploadButton
+            "uploadButton" : uploadButton,
+            "sketchVC" : sketchVC.view!
         ]
-        
         view.addConstraints("H:|[scrollView]|", views: views)
         view.addConstraints("H:|-16-[backArrowImage]-10-[titleLabel]", views : views )
         view.addConstraints("V:|-50-[backArrowImage]-[scrollView]|" , views : views)
@@ -361,7 +368,9 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         container.addSubview(typeBoxLabel)
         container.addSubview(uploadButton)
         container.addSubview(pickSketchImage)
+        container.addSubview(sketchVC.view)
         
+        debugE("AS2DF")
 
         
 
@@ -369,7 +378,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         container.addConstraints("H:|-16-[pickGalleryImage]-15-[posterImageView]", views: views)
         container.addConstraints("H:|-16-[pickSketchesLabel]|", views :views)
         container.addConstraints("H:|-16-[titleField]-16-|", views: views)
-        container.addConstraints("H:|-16-[pickSketchImage]", views: views)
+        container.addConstraints("H:|-16-[pickSketchImage]-10-[sketchVC]|", views: views)
         container.addConstraints("H:|-16-[eventNameLabel]", views: views)
         container.addConstraints("H:|-16-[eventDescriptionLabel]|", views: views)
         container.addConstraints("H:|-16-[descriptionTextView]-16-|", views : views )
@@ -381,6 +390,12 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         container.addConstraints("H:|-16-[dateBoxLabel]-16-|", views: views )
         container.addConstraints("H:|-16-[typeBoxLabel]-16-|", views: views )
         container.addConstraints("H:|-16-[uploadButton]-16-|", views: views )
+    
+        
+        sketchVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4).isActive = true
+        sketchVC.view.topAnchor.constraint(equalTo: pickSketchImage.topAnchor).isActive = true
+        sketchVC.view.bottomAnchor.constraint(equalTo: pickSketchImage.bottomAnchor).isActive = true
+
     
         
         posterImageView.topAnchor.constraint(equalTo: pickGalleryImage.topAnchor).isActive = true
@@ -430,32 +445,6 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
             return
         }
         
-//    
-//        
-//        Event.signIn(withEmail: email, password: password,acceptedLegalNoticeVersion: nil).done { user in
-//            self.dismiss(animated: true, completion: nil)
-//        }.catch {[unowned self] e in
-//            
-//            switch e.errorCode{
-//                case .emailUnverified:
-//                    self.showEmailVerificationErrorDialog(e: e.errorCode!)
-//                    break;
-//                case .termsOfAgreeNotAgreed:
-//                    CommonDialog.show(error: e)
-//                    self.presentTermsConfirm(usedSignUp: false,loginType: .email, socialUuid: nil, name: nil, email: email, avatarUrl: nil, password: password)
-//                case .userNotFound:
-//                    self.showEmailErrorMessage(message: e.errorCode!.localizedDescription)
-//                    break
-//                case .passwordInvalid:
-//                    self.showPasswordErrorMessage(message: e.errorCode!.localizedDescription)
-//                    break
-//                default:
-//                    CommonDialog.show(error: e)
-//                break
-//            }
-//        }.finally {
-//            self.hideProgress()
-//        }
 
     }
     
@@ -469,35 +458,50 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     }
     
     func presentSketchPicker() {
-        
-        debugE("FUCK")
 
         let imagePicker = ImagePickerController()
         imagePicker.settings.selection.max = 10
         imagePicker.settings.fetch.assets.supportedMediaTypes = [.image]
-        imagePicker.settings.list.cellsPerRow = {(verticalSize: UIUserInterfaceSizeClass, horizontalSize: UIUserInterfaceSizeClass) -> Int in
-            switch (verticalSize, horizontalSize) {
-            case (.compact, .regular): // iPhone5-6 portrait
-                return 2
-            case (.compact, .compact): // iPhone5-6 landscape
-                return 2
-            case (.regular, .regular): // iPad portrait/landscape
-                return 3
-            default:
-                return 2
-            }
-        }
+//        imagePicker.settings.list.cellsPerRow = {(verticalSize: UIUserInterfaceSizeClass, horizontalSize: UIUserInterfaceSizeClass) -> Int in
+//            switch (verticalSize, horizontalSize) {
+//            case (.compact, .regular): // iPhone5-6 portrait
+//                return 2
+//            case (.compact, .compact): // iPhone5-6 landscape
+//                return 2
+//            case (.regular, .regular): // iPad portrait/landscape
+//                return 3
+//            default:
+//                return 2
+//            }
+//        }
 
-        self.presentImagePicker(imagePicker, select: { (asset) in
-            print("Selected: \(asset)")
+        self.presentImagePicker(imagePicker, select: { (_asset) in
+            print("Selected: \(_asset)")
         }, deselect: { (asset) in
             print("Deselected: \(asset)")
         }, cancel: { (assets) in
             print("Canceled with selections: \(assets)")
         }, finish: { (assets) in
+            let images = assets.map { (_asset) in
+                self.getAssetThumbnail(asset: _asset)
+            }
+            self.sketchVC.setImages (images : (images))
             print("Finished with selections: \(assets)")
         })
     }
+    
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions()
+        option.deliveryMode = .highQualityFormat
+        var thumbnail = UIImage()
+        option.isSynchronous = true
+        manager.requestImage(for: asset, targetSize: thumbnail.size , contentMode: .aspectFill, options: option, resultHandler: {(result, info)->Void in
+                thumbnail = result!
+        })
+        return thumbnail
+    }
+
     func presentPickDate () {
         
         let vc = DatePickVC()
