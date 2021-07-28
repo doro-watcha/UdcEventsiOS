@@ -11,8 +11,8 @@ import UIKit
 extension UIColor {
     
     // 기본 컬러
-    class var theme:  UIColor {return  #colorLiteral(red: 0.5294117647, green: 0.3450980392, blue: 0.9764705882, alpha: 1) }
-    class var theme2: UIColor {return  #colorLiteral(red: 0.6705882353, green: 0.5098039216, blue: 0.9764705882, alpha: 1) }
+    class var theme:  UIColor {return  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) }
+    class var theme2: UIColor {return  #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1) }
     
     // 폰트 컬러
     class var textWhite: UIColor { return UIColor(rgb: 0xf9f9f9) }

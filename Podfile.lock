@@ -4,6 +4,7 @@ PODS:
     - Alamofire (~> 4.8)
   - Bagel (1.4.0):
     - CocoaAsyncSocket
+  - BSImagePicker (3.3.1)
   - CocoaAsyncSocket (7.6.5)
   - DZNEmptyDataSet (1.8.1)
   - Hero (1.6.1)
@@ -112,6 +113,7 @@ DEPENDENCIES:
   - Alamofire (= 4.9.1)
   - AlamofireNetworkActivityLogger
   - Bagel (~> 1.4.0)
+  - BSImagePicker (~> 3.1)
   - DZNEmptyDataSet
   - Hero
   - JGProgressHUD
@@ -140,6 +142,7 @@ SPEC REPOS:
     - Alamofire
     - AlamofireNetworkActivityLogger
     - Bagel
+    - BSImagePicker
     - CocoaAsyncSocket
     - DZNEmptyDataSet
     - Hero
@@ -165,6 +168,7 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireNetworkActivityLogger: 6d3398c692d2c5d83b0c58793537860aca1e383d
   Bagel: c3fa6bcbd52db9ca976edbafd7638f0553ded101
+  BSImagePicker: 0fe04b574d4d6b81093785d2af6c26227efc8428
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
@@ -186,6 +190,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: c3ecb78aeb3b7cd3b83f9cadf06264d485f13e81
+PODFILE CHECKSUM: bb3ae67340628cf0df4b3f7c8d4727797601700c
 
 COCOAPODS: 1.10.1

@@ -32,10 +32,11 @@ class DatePickVC : UIViewController {
     }()
     
     private lazy var confirmButton : RoundButton = {
-        let v = RoundButton(heightType: .Height36)
+        let v = RoundButton(heightType: .Height54)
         v.text = "확인"
         v.backgroundColor = .black
         v.setTitleColor(.white, for: .normal)
+        v.layer.cornerRadius = 10
         v.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         return v
     }()
@@ -79,8 +80,8 @@ class DatePickVC : UIViewController {
         view.addConstraints("H:|-16-[pickDateLabel]|", views: views)
         view.addConstraints("H:|-16-[datePicker]|" , views : views )
         view.addConstraints("H:|-16-[confirmButton]-16-|", views : views )
-        view.addConstraints("V:|-16-[pickDateLabel]-16-[datePicker]", views : views )
-        view.addConstraints("V:[confirmButton]-20-|", views : views )
+        view.addConstraints("V:|-16-[pickDateLabel]-30-[datePicker]", views : views )
+        view.addConstraints("V:[confirmButton]-40-|", views : views )
         pickDateLabel.activateCenterXConstraint(to: view)
         
     }

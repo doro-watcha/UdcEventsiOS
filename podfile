@@ -51,4 +51,5 @@ target 'udc' do
   pod 'NMapsMap'
 #  pod 'SwiftLint'
   pod 'Bagel', '~>  1.4.0'
+  pod "BSImagePicker", "~> 3.1"
 end

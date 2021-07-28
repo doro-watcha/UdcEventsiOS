@@ -6,6 +6,7 @@
 //
 import UIKit
 import MaterialComponents
+import BSImagePicker
 
 final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     
@@ -21,7 +22,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.text = "행사 등록하기"
-        v.font = .bold13
+        v.font = .bold20
         v.textColor = .black
         
         return v
@@ -94,6 +95,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     private lazy var titleField : CommonTextField = {
         let v = CommonTextField()
         v.delegate = self
+        v.font = .bold13
         v.placeholder = "행사명을 알려주세요!"
         return v
     }()
@@ -143,6 +145,17 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         return v
     }()
     
+    private lazy var pickSketchImage : ImagePickerView = {
+        let v = ImagePickerView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4 ).isActive = true
+        v.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4).isActive = true
+        v.isUserInteractionEnabled = true
+        v.addGestureRecognizer(sketchPickerGesture)
+        return v
+    }()
+    
+    
     private lazy var posterImageView : EXImageView = {
         let v = EXImageView()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -167,6 +180,13 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         tap.delegate = self
         return tap
     }()
+    
+    private lazy var sketchPickerGesture : UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(sketchPickerTapped))
+        tap.delegate = self
+        return tap
+    }()
+    
     
     
     private lazy var datePickGesture : UITapGestureRecognizer = {
@@ -291,6 +311,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
             "pickPosterLabel" : pickPosterLabel,
             "pickSketchesLabel" :pickSketchesLabel,
             "pickGalleryImage": pickGalleryImage,
+            "pickSketchImage" : pickSketchImage,
             "eventNameLabel" : eventNameLabel,
             "eventDescriptionLabel" : eventDescriptionLabel,
             "eventLocationLabel" :eventLocationLabel,
@@ -320,7 +341,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
 
         scrollView.addConstraints("V:|[container]|", views: views)
         container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        container.heightAnchor.constraint(equalToConstant: 2000).isActive = true
+        container.heightAnchor.constraint(equalToConstant: 900).isActive = true
         
        // container.addSubviews(pickPosterLabel, pickGalleryImage, pickSketchesLabel, eventNameLabel, eventDescriptionLabel, eventLocationLabel, eventDateLabel)
         container.addSubview(pickPosterLabel)
@@ -339,6 +360,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         container.addSubview(dateBoxLabel)
         container.addSubview(typeBoxLabel)
         container.addSubview(uploadButton)
+        container.addSubview(pickSketchImage)
         
 
         
@@ -347,7 +369,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         container.addConstraints("H:|-16-[pickGalleryImage]-15-[posterImageView]", views: views)
         container.addConstraints("H:|-16-[pickSketchesLabel]|", views :views)
         container.addConstraints("H:|-16-[titleField]-16-|", views: views)
-//        container.addConstraints("H:|-16-[pickSketchImage]|", views: views)
+        container.addConstraints("H:|-16-[pickSketchImage]", views: views)
         container.addConstraints("H:|-16-[eventNameLabel]", views: views)
         container.addConstraints("H:|-16-[eventDescriptionLabel]|", views: views)
         container.addConstraints("H:|-16-[descriptionTextView]-16-|", views : views )
@@ -365,7 +387,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         posterImageView.bottomAnchor.constraint(equalTo: pickGalleryImage.bottomAnchor).isActive = true
 //
     
-        container.addConstraints("V:|-20-[pickPosterLabel]-[pickGalleryImage]-[pickSketchesLabel]-[eventNameLabel]-[titleField(45)]-[eventDescriptionLabel]-[descriptionTextView(150)]-16-[eventLocationLabel]-16-[locationBoxLabel(45)]-16-[eventDateLabel]-16-[dateBoxLabel(45)]-16-[eventTypeLabel]-16-[typeBoxLabel(45)]-16-[uploadButton]", views: views)
+        container.addConstraints("V:|-20-[pickPosterLabel]-[pickGalleryImage]-[pickSketchesLabel]-[pickSketchImage]-[eventNameLabel]-[titleField(45)]-[eventDescriptionLabel]-[descriptionTextView(150)]-16-[eventLocationLabel]-16-[locationBoxLabel(45)]-16-[eventDateLabel]-16-[dateBoxLabel(45)]-16-[eventTypeLabel]-16-[typeBoxLabel(45)]-16-[uploadButton]", views: views)
         
         
     }
@@ -384,7 +406,13 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     }
     
     @objc private func imagePickerTapped(){
-        self.presentImagePicker(self)
+        self.presentPosterPicker(self)
+    }
+    
+    @objc private func sketchPickerTapped(){
+        
+        self.presentSketchPicker()
+        
     }
     
     @objc private func uploadButtonTapped(){
@@ -433,13 +461,43 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
     
     
     /** 이미지 고르는 화면 - UIImagePickerController */
-    func presentImagePicker(_ delegate : UIImagePickerControllerDelegate & UINavigationControllerDelegate){
+    func presentPosterPicker(_ delegate : UIImagePickerControllerDelegate & UINavigationControllerDelegate){
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = delegate
         self.presentModal(vc)
     }
     
+    func presentSketchPicker() {
+        
+        debugE("FUCK")
+
+        let imagePicker = ImagePickerController()
+        imagePicker.settings.selection.max = 10
+        imagePicker.settings.fetch.assets.supportedMediaTypes = [.image]
+        imagePicker.settings.list.cellsPerRow = {(verticalSize: UIUserInterfaceSizeClass, horizontalSize: UIUserInterfaceSizeClass) -> Int in
+            switch (verticalSize, horizontalSize) {
+            case (.compact, .regular): // iPhone5-6 portrait
+                return 2
+            case (.compact, .compact): // iPhone5-6 landscape
+                return 2
+            case (.regular, .regular): // iPad portrait/landscape
+                return 3
+            default:
+                return 2
+            }
+        }
+
+        self.presentImagePicker(imagePicker, select: { (asset) in
+            print("Selected: \(asset)")
+        }, deselect: { (asset) in
+            print("Deselected: \(asset)")
+        }, cancel: { (assets) in
+            print("Canceled with selections: \(assets)")
+        }, finish: { (assets) in
+            print("Finished with selections: \(assets)")
+        })
+    }
     func presentPickDate () {
         
         let vc = DatePickVC()
