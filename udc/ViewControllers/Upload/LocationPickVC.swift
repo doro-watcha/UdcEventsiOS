@@ -28,7 +28,11 @@ class LocationPickVC : EXViewController{
         let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.backgroundColor = .white
-        v.text = "지도를 검색해주세요"
+        v.font = .bold13
+        v.text = "위치를 설정해주세요"
+        v.textAlignment = .center
+        v.layer.cornerRadius = 10
+        v.layer.masksToBounds = true
         
         return v
     }()
@@ -37,8 +41,7 @@ class LocationPickVC : EXViewController{
         let v = RoundButton(heightType: .Height36)
         v.translatesAutoresizingMaskIntoConstraints = false
         v.text = "확인"
-        v.isHidden = true
-        
+        v.layer.cornerRadius = 10
         return v
     }()
     
@@ -90,7 +93,8 @@ class LocationPickVC : EXViewController{
         
         let mapView = NMFMapView(frame: view.frame)
         mapView.addCameraDelegate(delegate: self)
-        
+        mapView.positionMode = .normal
+    
 
         view.addSubview(mapView)
         
@@ -107,27 +111,35 @@ class LocationPickVC : EXViewController{
         view.addConstraints("H:[closeButton]-30-|",views:views)
         view.addConstraints("H:|-16-[confirmButton]-16-|", views :views )
  
-        view.addConstraints("V:[curAddressLabel(45)]-15-[confirmButton(45)]|",views: views )
+        view.addConstraints("V:[curAddressLabel(45)]-15-[confirmButton(45)]-50-|",views: views )
         centerImageView.activateCenterConstraints(to: view)
         curAddressLabel.activateCenterXConstraint(to: view)
+        curAddressLabel.leftAnchor.constraint(equalTo: confirmButton.leftAnchor).isActive = true
+        curAddressLabel.rightAnchor.constraint(equalTo: confirmButton.rightAnchor).isActive = true
         
     }
     
     private func getAddresByLocation ( longitude : Double, latitude : Double) {
+        
+        debugE(longitude)
+        debugE(latitude)
         NaverMap.getAddressByLocation(latitude :latitude, longitude : longitude ).done { response in
             
-            debugE(response.status?.message)
-            if ( response.status?.name ==  "ok") {
-                let address = response.results?[0]
-                let curAddress : String = "\(address?.region?.area1?.name) \(address?.region?.area2?.name) \(address?.region?.area3?.name) \(address?.region?.area4?.name) \(address?.land?.name) \(address?.land?.number1)"
+
+            if ( response.status.name ==  "ok") {
+                let address = response.results[0]
+                let curAddress : String = "\(address.region.area1.name) \(address.region.area2.name) \(address.region.area3.name) \(address.land.name) \(address.land.number1) \(address.land.number2)"
+
                 self.curAddressLabel.text = curAddress
                 
-                self.confirmButton.isHidden = false
+                self.confirmButton.isUserInteractionEnabled = true
+                self.confirmButton.backgroundColor = .black
             }
             else {
                 
                 self.curAddressLabel.text = "좀 더 줌을 땡겨서 정확한 주소를 찾아주세요!"
-                self.confirmButton.isHidden = true
+                self.confirmButton.isUserInteractionEnabled = false
+                self.confirmButton.backgroundColor = .gray
             }
             
         

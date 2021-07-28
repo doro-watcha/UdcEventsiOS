@@ -462,6 +462,7 @@ final class EventUploadVC : EXViewController, UIGestureRecognizerDelegate {
         let imagePicker = ImagePickerController()
         imagePicker.settings.selection.max = 10
         imagePicker.settings.fetch.assets.supportedMediaTypes = [.image]
+    
 //        imagePicker.settings.list.cellsPerRow = {(verticalSize: UIUserInterfaceSizeClass, horizontalSize: UIUserInterfaceSizeClass) -> Int in
 //            switch (verticalSize, horizontalSize) {
 //            case (.compact, .regular): // iPhone5-6 portrait
