@@ -8,6 +8,25 @@
 import Foundation
 import PromiseKit
 
+
+extension String{
+    var withDocumentDirPrefix: URL{
+        let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        return URL(fileURLWithPath: self, relativeTo: documentDir)
+    }
+    var withDocumentDirPrefixPath: String{
+        withDocumentDirPrefix.absoluteString
+    }
+    var withoutFileSchema: String{
+        replacingOccurrences(of: "file://", with: "")
+    }
+}
+extension URL{
+    func removeFileSchema() -> URL?{
+        return URL(string: self.absoluteString.replacingOccurrences(of: "file://", with: ""))
+    }
+}
+
 extension Event {
     
     static var FETCH_COUNT : Int{
@@ -24,18 +43,24 @@ extension Event {
     
     static func uploadEvent ( title : String, description : String , location : String, date : String, type : String,
                               posterImg : [UploadFile], sketchImgs : [UploadFile]) -> Promise<[VoidResult]> {
-        
-        let params : Parameters = [
-            "name" : title,
-            "description" : description,
-            
-        ].filterNotNil()
-        
-        return AppService.POST(endPoint: "/event", params :params)
+//
+//        let params : Parameters = [
+//            "name" : title,
+//            "description" : description,
+//
+//        ].filterNotNil()
+//
+//        guard let thumbnailData = try? Data(contentsOf: posterImg.withDocumentDirPrefix) else{
+//            return Promise.init(error: BeatfloError.uploadVideoFailed)
+//        }
+//
+//        let thumbnailFile = UploadFile(data: thumbnailData, name: "posterImg", fileName: "good", mimeType: "image/jpg")
+//
+//        return AppService.POST(endPoint: "/event", , files: [params :params)
+//
+//
 
     }
-    
-
 
     
 }
