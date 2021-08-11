@@ -41,26 +41,26 @@ extension Event {
         return AppService.GET(endPoint: "/event", params: params, keyPath: "data.events")
     }
     
-    static func uploadEvent ( title : String, description : String , location : String, date : String, type : String,
-                              posterImg : [UploadFile], sketchImgs : [UploadFile]) -> Promise<[VoidResult]> {
+//    static func uploadEvent ( title : String, description : String , location : String, date : String, type : String,
+//                              posterImg : [UploadFile], sketchImgs : [UploadFile]) -> Promise<[VoidResult]> {
+////
+////        let params : Parameters = [
+////            "name" : title,
+////            "description" : description,
+////
+////        ].filterNotNil()
+////
+////        guard let thumbnailData = try? Data(contentsOf: posterImg.withDocumentDirPrefix) else{
+////            return Promise.init(error: BeatfloError.uploadVideoFailed)
+////        }
+////
+////        let thumbnailFile = UploadFile(data: thumbnailData, name: "posterImg", fileName: "good", mimeType: "image/jpg")
+////
+////        return AppService.POST(endPoint: "/event", , files: [params :params)
+////
+////
 //
-//        let params : Parameters = [
-//            "name" : title,
-//            "description" : description,
-//
-//        ].filterNotNil()
-//
-//        guard let thumbnailData = try? Data(contentsOf: posterImg.withDocumentDirPrefix) else{
-//            return Promise.init(error: BeatfloError.uploadVideoFailed)
-//        }
-//
-//        let thumbnailFile = UploadFile(data: thumbnailData, name: "posterImg", fileName: "good", mimeType: "image/jpg")
-//
-//        return AppService.POST(endPoint: "/event", , files: [params :params)
-//
-//
-
-    }
+//    }
 
     
 }

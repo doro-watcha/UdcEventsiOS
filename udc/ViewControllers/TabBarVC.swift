@@ -30,9 +30,9 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
         
 
         
-        let vc1 =  HomeVC()
+        let vc1 =  ClassVC()
         let vc2 = MapVC()
-        let vc4 =  ClassVC()
+        let vc4 =  HomeVC()
         let vc5 =  ProfileVC()
         
         vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "feedPurple100"), tag: TabBarVC.indexTagMapper[0]!)
@@ -53,14 +53,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
 
         
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        debugE("TABBAR")
-        debugE(self.navigationController)
-        
-        
-    }
-    
+
     
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

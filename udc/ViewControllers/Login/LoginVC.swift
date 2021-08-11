@@ -43,6 +43,7 @@ class LoginVC : EXViewController {
         let v = RoundButton(heightType: .Height54)
         v.text = Str.common_naver_login
         v.backgroundColor = .naverGreen
+        v.rippleColor = .naverGreen
         v.layer.cornerRadius = 10
         v.addTarget(self, action: #selector(naverLoginTapped), for: .touchUpInside)
         return v
@@ -53,7 +54,8 @@ class LoginVC : EXViewController {
         v.text = Str.common_kakao_login
         v.backgroundColor = .kakaoYellow
         v.setTitleColor(.black, for: .normal)
-        
+        v.rippleColor = .kakaoYellow
+        v.layer.cornerRadius = 10
         v.addTarget(self, action: #selector(kakaoLoginTapped(_:)), for: .touchUpInside)
         return v
     }()
@@ -77,7 +79,7 @@ class LoginVC : EXViewController {
 //    }()
     
     private var naverLogo : UIImageView = {
-        let v = UIImageView(named:"naver")
+        let v = UIImageView(named:"naver_no_bg")
         v.translatesAutoresizingMaskIntoConstraints = false
         v.widthAnchor.constraint(equalToConstant: 50).isActive = true
         v.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -86,7 +88,7 @@ class LoginVC : EXViewController {
     }()
     
     private var kakaoLogo : UIImageView = {
-        let v = UIImageView(named:"kakao_small")
+        let v = UIImageView(named:"kakao_no_bg")
         v.translatesAutoresizingMaskIntoConstraints = false
         v.widthAnchor.constraint(equalToConstant: 50).isActive = true
         v.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -174,9 +176,9 @@ extension LoginVC{
 
         appTitle.activateCenterXConstraint(to: view)
         
-        appTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 16).isActive = true
+        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 16).isActive = true
         
-        view.addConstraints("V:|-100-[appTitle]-10-[naverLoginButton]-10-[kakaoLoginButton]-10-[appleLoginButton]", views: views)
+        view.addConstraints("V:|-100-[appTitle]-20-[naverLoginButton]-15-[kakaoLoginButton]-15-[appleLoginButton]", views: views)
         view.addConstraints("H:|-24-[naverLoginButton]-24-|", views : views )
         view.addConstraints("H:|-24-[kakaoLoginButton]-24-|", views : views )
         view.addConstraints("H:|-24-[appleLoginButton]-24-|", views : views )
@@ -194,7 +196,7 @@ extension LoginVC{
         appleLogo.bottomAnchor.constraint(equalTo: appleLoginButton.bottomAnchor).isActive = true
         appleLogo.leftAnchor.constraint(equalTo: appleLoginButton.leftAnchor).isActive = true
         
-        closeButton.topAnchor.constraint(equalTo: appTitle.topAnchor).isActive = true 
+        appTitle.topAnchor.constraint(equalTo: closeButton.topAnchor, constant: 100).isActive = true
     }
     
     @objc func naverLoginTapped(_ sender : UITapGestureRecognizer){
