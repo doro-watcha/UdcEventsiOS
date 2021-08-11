@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import AuthenticationServices
+import NaverThirdPartyLogin
+import Alamofire
 
 class LoginVC : EXViewController {
     
@@ -15,6 +17,8 @@ class LoginVC : EXViewController {
     @objc var kakaoTapHandler :( () -> Void)?
     @objc var appleTapHandler :( () -> Void)?
     @objc var closeTapHandler :( () -> Void)?
+    
+    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
     
     // MARK: - View
@@ -215,9 +219,42 @@ extension LoginVC{
         closeTapHandler?()
     }
     
+    private func getNaverInfo() {
+        guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
+        
+        if !isValidAccessToken {
+          return
+        }
+        
+        guard let tokenType = loginInstance?.tokenType else { return }
+        guard let accessToken = loginInstance?.accessToken else { return }
+        let urlStr = "https://openapi.naver.com/v1/nid/me"
+        let url = URL(string: urlStr)!
+        
+        let authorization = "\(tokenType) \(accessToken)"
+        
+        let req = Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
+        
+        req.responseJSON { response in
+          guard let result = response.result.value as? [String: Any] else { return }
+          guard let object = result["response"] as? [String: Any] else { return }
+          guard let profileImage = object["profile_image"] as? String else { return }
+          guard let nickname = object["nickname"] as? String else { return }
+          
+//          self.nameLabel.text = "\(name)"
+//          self.emailLabel.text = "\(email)"
+//          self.nicknameLabel.text = "\(nickname)"
+            
+            debugE(nickname)
+            debugE(profileImage)
+        }
+      }
+    
     
     private func naverLogin() {
-        
+        debugE("NAVER LOGIN")
+        loginInstance?.delegate = self
+        loginInstance?.requestThirdPartyLogin()
     }
     
     private func kakaoLogin() {
@@ -231,6 +268,8 @@ extension LoginVC{
     
     
 }
+
+
 
 //
 //// MARK: - Apple Login
@@ -290,3 +329,33 @@ extension LoginVC{
 //
 //
 //}
+
+extension LoginVC: NaverThirdPartyLoginConnectionDelegate {
+  // 로그인 버튼을 눌렀을 경우 열게 될 브라우저
+  func oauth20ConnectionDidOpenInAppBrowser(forOAuth request: URLRequest!) {
+//     let naverSignInVC = NLoginThirdPartyOAuth20InAppBrowserViewController(request: request)!
+//     naverSignInVC.parentOrientation = UIInterfaceOrientation(rawValue: UIDevice.current.orientation.rawValue)!
+//     present(naverSignInVC, animated: false, completion: nil)
+  }
+  
+  // 로그인에 성공했을 경우 호출
+  func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+    print("[Success] : Success Naver Login")
+    getNaverInfo()
+  }
+  
+  // 접근 토큰 갱신
+  func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+    
+  }
+  
+  // 로그아웃 할 경우 호출(토큰 삭제)
+  func oauth20ConnectionDidFinishDeleteToken() {
+    loginInstance?.requestDeleteToken()
+  }
+  
+  // 모든 Error
+  func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
+    print("[Error] :", error.localizedDescription)
+  }
+}

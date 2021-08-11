@@ -52,4 +52,6 @@ target 'udc' do
 #  pod 'SwiftLint'
   pod 'Bagel', '~>  1.4.0'
   pod "BSImagePicker", "~> 3.1"
+  
+  pod 'naveridlogin-sdk-ios'
 end
