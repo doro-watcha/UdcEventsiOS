@@ -220,26 +220,34 @@ extension LoginVC{
     }
     
     private func getNaverInfo() {
+        
+        debugE("GOOD")
         guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
         
         if !isValidAccessToken {
           return
         }
         
+        debugE("GOOD!")
+        
         guard let tokenType = loginInstance?.tokenType else { return }
         guard let accessToken = loginInstance?.accessToken else { return }
         let urlStr = "https://openapi.naver.com/v1/nid/me"
         let url = URL(string: urlStr)!
         
-        let authorization = "\(tokenType) \(accessToken)"
+        debugE("ASDF")
+        debugE(accessToken)
+        let authorization = "Bearer \(accessToken)"
         
         let req = Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
         
         req.responseJSON { response in
+            
+            debugE(response)
           guard let result = response.result.value as? [String: Any] else { return }
           guard let object = result["response"] as? [String: Any] else { return }
           guard let profileImage = object["profile_image"] as? String else { return }
-          guard let nickname = object["nickname"] as? String else { return }
+          guard let nickname = object["name"] as? String else { return }
           
 //          self.nameLabel.text = "\(name)"
 //          self.emailLabel.text = "\(email)"
@@ -258,7 +266,7 @@ extension LoginVC{
     }
     
     private func kakaoLogin() {
-        
+        loginInstance?.requestDeleteToken()
     }
     
     private func appleLogin () {
