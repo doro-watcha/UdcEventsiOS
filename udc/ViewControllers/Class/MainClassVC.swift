@@ -180,4 +180,3 @@ extension MainClassVC: UIScrollViewDelegate {
         }
     }
 }
-

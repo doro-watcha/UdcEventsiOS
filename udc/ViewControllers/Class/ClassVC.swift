@@ -13,6 +13,8 @@ class ClassVC : EXViewController {
     
     
     private var mainClassVC = MainClassVC()
+    private var dayClassVC = DayClassVC()
+    private var genreClassVC = GenreClassVC()
     
     private let scrollView = UIScrollView()
     
@@ -33,16 +35,22 @@ class ClassVC : EXViewController {
     
     private func initProvider() {
         mainClassVC.dataProvider = MainClassProvider.newInstance()
+        genreClassVC.dataProvider = GenreNameProvider.newInstance()
         
     }
     
     
     private func setupView(){
         addChild(mainClassVC)
-        
+        addChild(dayClassVC)
+        addChild(genreClassVC)
         mainClassVC.view.translatesAutoresizingMaskIntoConstraints = false
+        dayClassVC.view.translatesAutoresizingMaskIntoConstraints = false
+        genreClassVC.view.translatesAutoresizingMaskIntoConstraints = false
 
         mainClassVC.didMove(toParent: self)
+        dayClassVC.didMove(toParent : self)
+        genreClassVC.didMove(toParent: self)
    
         
         /// 스크롤 뷰
@@ -59,7 +67,8 @@ class ClassVC : EXViewController {
         let views = [
             "scrollView" : scrollView,
             "container" : container,
-            "mainClassView": mainClassVC.view!
+            "mainClassView": mainClassVC.view!,
+            "genreClassView" :genreClassVC.view!
         ]
 
         view.addConstraints("|[scrollView]|", views : views)
@@ -72,15 +81,19 @@ class ClassVC : EXViewController {
         container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         container.heightAnchor.constraint(equalToConstant: view.frame.height * 2).isActive = true
         
-        container.addSubview(mainClassVC.view)
+        container.addSubviews(mainClassVC.view, genreClassVC.view)
 
     
         container.addConstraints("H:|[mainClassView]|", views: views)
-        container.addConstraints("V:[mainClassView]", views: views)
+        container.addConstraints("H:|[genreClassView]|", views: views)
+        container.addConstraints("V:[mainClassView]-[genreClassView]", views: views)
         
     
         mainClassVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         mainClassVC.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        
+        genreClassVC.view.heightAnchor.constraint(equalToConstant:UIScreen.main.bounds.width).isActive = true
+        genreClassVC.view.topAnchor.constraint(equalTo: mainClassVC.view.bottomAnchor).isActive = true
 
 
         
