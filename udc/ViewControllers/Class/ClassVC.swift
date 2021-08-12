@@ -38,11 +38,12 @@ class ClassVC : EXViewController {
     
     
     private func setupView(){
-    
         addChild(mainClassVC)
+        
         mainClassVC.view.translatesAutoresizingMaskIntoConstraints = false
+
         mainClassVC.didMove(toParent: self)
-    
+   
         
         /// 스크롤 뷰
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,13 +56,12 @@ class ClassVC : EXViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(container)
     
-
-        
         let views = [
-            "mainClassView": mainClassVC.view!,
-            "scrollView" :scrollView,
-            "container" : container
+            "scrollView" : scrollView,
+            "container" : container,
+            "mainClassView": mainClassVC.view!
         ]
+
         view.addConstraints("|[scrollView]|", views : views)
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -69,18 +69,20 @@ class ClassVC : EXViewController {
         
         scrollView.addConstraints("|[container]|", views: views)
         scrollView.addConstraints("V:|[container]|", views: views)
-        
         container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         container.heightAnchor.constraint(equalToConstant: view.frame.height * 2).isActive = true
         
-        
         container.addSubview(mainClassVC.view)
-        
+
+    
         container.addConstraints("H:|[mainClassView]|", views: views)
         container.addConstraints("V:[mainClassView]", views: views)
-        mainClassVC.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
         
+    
         mainClassVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        mainClassVC.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+
+
         
     }
 }

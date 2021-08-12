@@ -47,6 +47,8 @@ class MainEventVC : EXViewController {
         
         initView()
         fetchMainItems()
+        
+        view.backgroundColor = .blue
     }
     
     private func pageChanged(_ sender: UIPageControl) {

@@ -33,7 +33,7 @@ class MainClassVC: EXViewController {
 
         debugE("Main Class VC")
         
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         
         initView()
         fetchItems()
@@ -55,9 +55,11 @@ class MainClassVC: EXViewController {
 
         collectionView.bounces = false
 
+        collectionView.alwaysBounceVertical = false
+        collectionView.alwaysBounceHorizontal = false
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.isPagingEnabled = true
         collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.isPagingEnabled = true 
         collectionView.register(MainClassItemCell.self, forCellWithReuseIdentifier: MainClassItemCell.identifier)
 
         
@@ -70,6 +72,8 @@ class MainClassVC: EXViewController {
         
         view.addConstraints("H:|[collectionView]|", views: views)
         view.addConstraints("V:|[collectionView]|", views: views)
+        
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true 
         
         
         
