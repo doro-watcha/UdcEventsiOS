@@ -14,8 +14,9 @@ class MainClassItemCell : EXCollectionViewCell{
     
     var danceClass : DanceClass?{
         didSet{
+            debugE("ASDASDASDASDASD")
             guard let danceClass = danceClass else { return }
-            posterImageView.imageUrl = URL(string: danceClass.posterImgUrl)
+            posterImageView.imageUrl = URL(string: danceClass.artistProfileImgUrl ?? "")
           }
     }
     
@@ -36,14 +37,17 @@ class MainClassItemCell : EXCollectionViewCell{
     }
     
     override func setup() {
+        
+        super.setup()
+        
+        debugE("SETUP 까쯔아")
     
         contentView.addSubviews(posterImageView)
 
 
         let views = ["posterImageView" :posterImageView]
 
-        contentView.addConstraints("V:|-50-[posterImageView]-50-|",views: views)
-        contentView.addConstraints("H:|-50-[posterImageView]-50-|",views: views)
+        contentView.addConstraints("|[posterImageView]|",views: views)
         
     }
 }

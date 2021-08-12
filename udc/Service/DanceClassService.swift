@@ -15,12 +15,16 @@ extension DanceClass {
     }
     
     
-    static func fetchMainClasses() -> Promise<[DanceClass]> {
+    static func fetchClasses( sort : String? = nil , day : Int? = nil, genreId : Int? = nil, academyId : Int? = nil ) -> Promise<[DanceClass]> {
         let params: Parameters = [
-            "sort": "main"
+            "sort" : sort,
+            "day" : day,
+            "genreId" : genreId,
+            "academyId" : academyId
             ].filterNotNil()
         return AppService.GET(endPoint: "/class", params: params, keyPath: "data.classes")
     }
+
 
 
     
@@ -71,7 +75,42 @@ final class MainClassProvider : DanceClassProvider {
         if refresh { maxId = Int(Int32.max) }
         guard !reachedEnd else { return Promise.value([]) }
         
-        return DanceClass.fetchMainClasses().then { (result: [DanceClass]) -> Promise<[DanceClass]> in
+        return DanceClass.fetchClasses(day : 1).then { (result: [DanceClass]) -> Promise<[DanceClass]> in
+            
+            self.reachedEnd = result.count < DanceClass.FETCH_COUNT
+            if let lastItem = result.last {
+                self.maxId = lastItem.id
+            }
+
+            return .value(result)
+
+        }
+    }
+    
+}
+
+final class DayClassProvider : DanceClassProvider {
+    
+    static func newInstance(
+
+    ) -> DanceClassProvider {
+        let provider = DayClassProvider()
+        return provider
+    }
+    
+    private init(){}
+    
+    var currentUserIdForBlocking: Int?
+    var reachedEnd = false
+    
+    // additions
+    private var maxId = Int(Int32.max)
+    
+    func fetchItems(refresh: Bool) -> Promise<[DanceClass]> {
+        if refresh { maxId = Int(Int32.max) }
+        guard !reachedEnd else { return Promise.value([]) }
+        
+        return DanceClass.fetchClasses(day : 1).then { (result: [DanceClass]) -> Promise<[DanceClass]> in
             
             self.reachedEnd = result.count < DanceClass.FETCH_COUNT
             if let lastItem = result.last {

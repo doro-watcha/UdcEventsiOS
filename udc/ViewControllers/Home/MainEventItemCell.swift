@@ -64,6 +64,11 @@ class MainEventItemCell : EXCollectionViewCell{
     }
     
     override func setup() {
+        
+        
+        super.setup()
+        
+        debugE("MainEvent까쯔아")
     
         contentView.addSubviews(posterImageView, titleLabel, subTitleLabel, dateLabel)
 

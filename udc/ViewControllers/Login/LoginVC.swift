@@ -249,12 +249,7 @@ extension LoginVC{
           guard let profileImage = object["profile_image"] as? String else { return }
           guard let nickname = object["name"] as? String else { return }
           
-//          self.nameLabel.text = "\(name)"
-//          self.emailLabel.text = "\(email)"
-//          self.nicknameLabel.text = "\(nickname)"
-            
-            debugE(nickname)
-            debugE(profileImage)
+            self.generalLogin(loginType : "naver", username : nickname, profileImgUrl : profileImage, userId : "sample")
         }
       }
     
@@ -274,6 +269,24 @@ extension LoginVC{
         
     }
     
+    private func generalLogin ( loginType : String , username : String ,profileImgUrl : String, userId : String ) {
+    
+        
+        User.signInWithSns(loginType : loginType, username : username, profileImageUrl : profileImgUrl , userId : userId ).done { user in
+            self.dismiss(animated: true, completion: nil)
+        }.catch {[unowned self] e in
+            
+            switch e.errorCode{
+
+                default:
+                    CommonDialog.show(error: e)
+                break
+            }
+        }.finally {
+            self.hideProgress()
+        }
+        
+    }
     
 }
 

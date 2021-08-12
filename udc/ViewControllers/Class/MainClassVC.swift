@@ -9,47 +9,34 @@ import Foundation
 import UIKit
 import PromiseKit
 
-
-class MainClassVC : EXViewController {
+class MainClassVC: EXViewController {
     
-    
-    private var isFetching = false
-    private var isFetchCompleted = false
-    
-    private var pager: UIPageControl!
     
     private var collectionView: UICollectionView!
-    private let refreshControl = UIRefreshControl()
+    
+    var sort : String = ""
+    
+    var dataProvider : DanceClassProvider?
+    private var mainClasses: [DanceClass] = []
+    private var isFetching = false
+    private var isFetchCompleted = false
     
     private var currentPage = 0
     
     
-    private var mainClasses: [DanceClass] = []
-    
-    private lazy var blurImageView : EXImageView = {
-       let v = EXImageView()
-        let blurEffect = UIBlurEffect(style : .extraLight)
-        let visualEffectView = UIVisualEffectView(effect : blurEffect)
-        visualEffectView.frame = v.frame
-        v.addSubview(visualEffectView)
-        v.contentMode = .center
-        
-        return v
-    }()
-    
-    var dataProvider: EventProvider?
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+
+        debugE("Main Class VC")
+        
+        view.backgroundColor = .black
+        
         initView()
-        fetchMainItems()
-    }
-    
-    private func pageChanged(_ sender: UIPageControl) {
-        let indexPath = IndexPath(item: sender.currentPage, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        fetchItems()
     }
     
     /** Layout */
@@ -59,6 +46,7 @@ class MainClassVC : EXViewController {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
+        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
@@ -67,87 +55,67 @@ class MainClassVC : EXViewController {
 
         collectionView.bounces = false
 
-
-        collectionView.alwaysBounceVertical = false
-        collectionView.alwaysBounceHorizontal = false
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.isPagingEnabled = true
         collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.isPagingEnabled = true 
         collectionView.register(MainClassItemCell.self, forCellWithReuseIdentifier: MainClassItemCell.identifier)
 
         
-        view.addSubviews(collectionView, blurImageView)
-        let views = ["collectionView": collectionView!, "blurImageView" : blurImageView]
+        view.addSubviews(collectionView)
+        let views = ["collectionView": collectionView!]
         
-        view.addConstraints("H:|[blurImageView]|", views: views)
+
 
         view.addSubview(collectionView)
         
         view.addConstraints("H:|[collectionView]|", views: views)
         view.addConstraints("V:|[collectionView]|", views: views)
         
-        blurImageView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
-        
-        view.bringSubviewToFront(collectionView)
-        
-
-        
-        
-        
-        collectionView.refreshControl = refreshControl
-//        refreshControl.addTarget(self, action: #selector(refreshControlActivated), for: .valueChanged)
-//
-//        if isUsedDetailScreen{
-//            collectionView.isScrollEnabled = false
-//
-//            self.videos = [detailScreenVideo!]
-//            self.updateCurrentVideoInformation()
-//            self.collectionView.reloadData()
-//        }
         
         
     }
     
+    private func fetchItems(forRefresh refresh: Bool = false) {
+    
+    
+        guard let dataProvider = dataProvider, isFetching == false else {
+            if refresh { self.refreshControl.endRefreshing() }
+            return
+        }
+        
+        self.isFetching = true
+        
+        firstly {
+            dataProvider.fetchItems(refresh: refresh)
+        }.done { items in
+            
+            debugE(items)
+            self.mainClasses.append(contentsOf: items)
+            
+            debugE(self.mainClasses[0].mainImgUrl)
+            debugE(self.mainClasses[1].mainImgUrl)
 
-    func fetchMainItems(forRefresh refresh: Bool = false) {
-//
-//        guard let dataProvider = dataProvider, isFetching == false else {
-//            if refresh { self.refreshControl.endRefreshing() }
-//            return
-//        }
-//
-//        self.isFetching = true
-//
-//        firstly {
-//            dataProvider.fetchItems(refresh: refresh)
-//        }.done { items in
-//
-//
-//            if refresh && !items.isEmpty {
-//            }
-//            self.mainClasses.append(contentsOf: items)
-//            self.blurImageView.imageUrl = URL(string : items[0].posterImgUrl)
-//
-//            debugE(items)
-//
-//        }.ensure {
-//
-//
-//            self.isFetching = false
-//            self.isFetchCompleted = true
-//            self.collectionView.reloadData()
-//
-//            if refresh {
-//                self.refreshControl.endRefreshing()
-//                self.collectionView.scrollToItem(at: 0.toIndexPath, at: .top, animated: true)
-//            }
-//        }.catch {_ in
-//
-//            debugE("ERROR")
-//
-//        }
+        }.ensure {
+            
+            
+            self.isFetching = false
+            self.isFetchCompleted = true
+            self.collectionView.reloadData()
+            
+            debugE("RELOAD!")
+            
+            if refresh {
+                self.refreshControl.endRefreshing()
+                self.collectionView.scrollToItem(at: 0.toIndexPath, at: .top, animated: true)
+            }
+        }.catch {_ in
+            
+            debugE("ERROR")
+            
+        }
     }
 }
+
 
 
 // MARK: -CollectionView DataSource
@@ -155,29 +123,35 @@ extension MainClassVC : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        debugE(section)
+        debugE("여기도 가즈아!")
+        debugE(mainClasses.count)
         return mainClasses.count
     }
     
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        debugE("혺씨..?")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainClassItemCell.identifier, for: indexPath) as! MainClassItemCell
         guard let item = mainClasses[safe: indexPath.item] else { return cell }
         cell.danceClass = item
+            
+        debugE("여기 가즈아!!!")
 
  
-//
-//        /**
-//        유저를 눌렀을 때 프로필로 이동
-//        */
-//        cell.userTapHandler = { [unowned self] in
+
+        /**
+        유저를 눌렀을 때 프로필로 이동
+        */
+//        cell.imageTapHandler = { [unowned self] in
 //            self.navigateUserProfile(item.author!.id)
 //        }
-//
-//
+            
+//        cell.imageTapHandler = { [unowned self] in
+//            self.navigateEventDetail(event : item)
+//        }
+
+
         return cell
     }
-    
-    
     
     
 }
@@ -185,7 +159,21 @@ extension MainClassVC : UICollectionViewDataSource{
 // MARK: -CollectionViewFlowLayout Delegate
 extension MainClassVC : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return self.view.frame.size
+        
+        return CGSize(width: view.frame.width, height: view.frame.height)
     }
     
 }
+
+extension MainClassVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) { // 컬렉션뷰를 스크롤하면 반복적으로 호출
+        let width = scrollView.bounds.size.width // 너비 저장
+        let x = scrollView.contentOffset.x + (width / 2.0) // 현재 스크롤한 x좌표 저장
+        
+        let newPage = Int(x / width)
+        if currentPage != newPage {
+            currentPage = newPage
+        }
+    }
+}
+

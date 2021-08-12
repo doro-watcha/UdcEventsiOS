@@ -30,13 +30,14 @@ extension User {
     
     AppModel을 이용해 Token과 현재 유저를 저장한다
     */
-    static func signIn(withEmail email: String, password: String) -> Promise<User> {
+    static func signInWithSns(loginType : String, username : String, profileImageUrl : String, userId : String  ) -> Promise<User> {
         let params: Parameters = [
-            "loginId": email,
-            "password": password
+            "loginType": loginType,
+            "username": username,
+            "profileImgUrl" : profileImageUrl,
+            "userId" : userId
             ].filterNotNil()
-        return AppService.POST(endPoint: "/auth/signin", params: params, keyPath: "data").then { (result: SignInResultWrapper) -> Promise<User> in
-            AppModel.shared.lastLoginnedEmail = result.user.email
+        return AppService.POST(endPoint: "/auth/social-signin", params: params).then { (result: SignInResultWrapper) -> Promise<User> in
             AppModel.shared.accessToken = result.token
             AppModel.shared.currentUser = result.user
             return .value(result.user)

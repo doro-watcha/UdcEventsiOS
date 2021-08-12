@@ -25,6 +25,9 @@
 		C11DA1D4265E907F006EA241 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1D3265E907F006EA241 /* Extensions.swift */; };
 		C11DA1DB265F1FF0006EA241 /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1DA265F1FF0006EA241 /* LogHelper.swift */; };
 		C11DA1DD26600637006EA241 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DA1DC26600637006EA241 /* UIColor.swift */; };
+		C147ED9926C4A83F001BE313 /* CommonDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147ED9826C4A83F001BE313 /* CommonDialog.swift */; };
+		C147ED9B26C4AF14001BE313 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147ED9A26C4AF14001BE313 /* Genre.swift */; };
+		C147ED9D26C4AF1C001BE313 /* Academy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147ED9C26C4AF1C001BE313 /* Academy.swift */; };
 		C16B83EC26ADA1230028FFD8 /* EventDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83EB26ADA1230028FFD8 /* EventDetailVC.swift */; };
 		C16B83EE26ADA60E0028FFD8 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83ED26ADA60E0028FFD8 /* PopAnimator.swift */; };
 		C16B83F026AEC34D0028FFD8 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B83EF26AEC34D0028FFD8 /* ImagePickerView.swift */; };
@@ -127,6 +130,9 @@
 		C11DA1D3265E907F006EA241 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C11DA1DA265F1FF0006EA241 /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 		C11DA1DC26600637006EA241 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		C147ED9826C4A83F001BE313 /* CommonDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDialog.swift; sourceTree = "<group>"; };
+		C147ED9A26C4AF14001BE313 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		C147ED9C26C4AF1C001BE313 /* Academy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Academy.swift; sourceTree = "<group>"; };
 		C16B83EB26ADA1230028FFD8 /* EventDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailVC.swift; sourceTree = "<group>"; };
 		C16B83ED26ADA60E0028FFD8 /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		C16B83EF26AEC34D0028FFD8 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
@@ -448,6 +454,8 @@
 				C1DA5AA326A8F589007158F6 /* DanceClass.swift */,
 				C1DA5AA526A8F626007158F6 /* Artist.swift */,
 				C16B83FB26AFD0B60028FFD8 /* NaverMap.swift */,
+				C147ED9A26C4AF14001BE313 /* Genre.swift */,
+				C147ED9C26C4AF1C001BE313 /* Academy.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -464,6 +472,7 @@
 				C16B83EF26AEC34D0028FFD8 /* ImagePickerView.swift */,
 				C16B83F126AF1A6E0028FFD8 /* CommonTextView.swift */,
 				C16B83F526AF1E6C0028FFD8 /* BoxLabel.swift */,
+				C147ED9826C4A83F001BE313 /* CommonDialog.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -708,12 +717,14 @@
 				C1DA5A9726A7D2A9007158F6 /* ExImageView.swift in Sources */,
 				C16B83F626AF1E6C0028FFD8 /* BoxLabel.swift in Sources */,
 				C1A51D5826AAAC8500501440 /* PendingEventVC.swift in Sources */,
+				C147ED9B26C4AF14001BE313 /* Genre.swift in Sources */,
 				C16B83EE26ADA60E0028FFD8 /* PopAnimator.swift in Sources */,
 				C1CD9D76268C5E570012E141 /* ExCollectionViewCell.swift in Sources */,
 				C1CD9D74268C5DF90012E141 /* EventListVC.swift in Sources */,
 				C1DA5AA026A8F388007158F6 /* MainClassVC.swift in Sources */,
 				C1DA5A9D26A8F346007158F6 /* MainClassItemCell.swift in Sources */,
 				C1CD9D97268C946E0012E141 /* ServiceError.swift in Sources */,
+				C147ED9926C4A83F001BE313 /* CommonDialog.swift in Sources */,
 				C11DA1CC265E8E71006EA241 /* ClassVC.swift in Sources */,
 				C1CD9D89268C8B220012E141 /* ExTextField.swift in Sources */,
 				C1CD9D8B268C8C0A0012E141 /* ErrorLabel.swift in Sources */,
@@ -754,6 +765,7 @@
 				C11DA1C8265E8E29006EA241 /* UIImage.swift in Sources */,
 				C1CD9D9B268C94D10012E141 /* Auth+UserService.swift in Sources */,
 				C1DA5A9126A7BE44007158F6 /* MainEventItemCell.swift in Sources */,
+				C147ED9D26C4AF1C001BE313 /* Academy.swift in Sources */,
 				C1A51D5626AAAC7C00501440 /* EventCollectionVC.swift in Sources */,
 				C16B83F226AF1A6E0028FFD8 /* CommonTextView.swift in Sources */,
 				C1CD9D9D268C96020012E141 /* AppService.swift in Sources */,

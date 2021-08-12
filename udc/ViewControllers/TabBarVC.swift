@@ -58,7 +58,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
-        if [viewControllers?[2], viewControllers?[3]].contains(viewController){
+        if [ viewControllers?[3]].contains(viewController){
 
 //            if AppModel.shared.currentUser == nil{
                 

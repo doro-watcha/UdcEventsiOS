@@ -9,10 +9,12 @@ import Foundation
 import UIKit
 
 
-final class ClassVC : EXViewController {
+class ClassVC : EXViewController {
     
     
     private var mainClassVC = MainClassVC()
+    
+    private let scrollView = UIScrollView()
     
     override func viewDidLoad() {
         
@@ -22,26 +24,63 @@ final class ClassVC : EXViewController {
       
         configureTPNavigationBar()
         
-        self.view.backgroundColor = .red
+        self.view.backgroundColor = .black
 
+        initProvider()
         setupView()
+
     }
+    
+    private func initProvider() {
+        mainClassVC.dataProvider = MainClassProvider.newInstance()
+        
+    }
+    
     
     private func setupView(){
     
         addChild(mainClassVC)
         mainClassVC.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubviews(mainClassVC.view)
         mainClassVC.didMove(toParent: self)
+    
         
-        let views = ["mainClassView": mainClassVC.view!]
+        /// 스크롤 뷰
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.zOrder = -1
+        scrollView.bounces = scrollView.contentOffset.y > 0
+        /// 스크롤 뷰 안 Container
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addConstraints("H:|[mainClassView]|", views: views)
+        view.addSubview(scrollView)
+        scrollView.addSubview(container)
+    
+
         
-        mainClassVC.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 16).isActive = true
+        let views = [
+            "mainClassView": mainClassVC.view!,
+            "scrollView" :scrollView,
+            "container" : container
+        ]
+        view.addConstraints("|[scrollView]|", views : views)
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+ 
         
-        mainClassVC.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        mainClassVC.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        scrollView.addConstraints("|[container]|", views: views)
+        scrollView.addConstraints("V:|[container]|", views: views)
+        
+        container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        container.heightAnchor.constraint(equalToConstant: view.frame.height * 2).isActive = true
+        
+        
+        container.addSubview(mainClassVC.view)
+        
+        container.addConstraints("H:|[mainClassView]|", views: views)
+        container.addConstraints("V:[mainClassView]", views: views)
+        mainClassVC.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        
+        mainClassVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         
     }
 }
