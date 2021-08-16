@@ -130,7 +130,7 @@ class MainEventVC : EXViewController {
             if refresh && !items.isEmpty {
             }
             self.mainEvents.append(contentsOf: items)
-            self.blurImageView.imageUrl = URL(string : items[0].posterImgUrl)
+//            self.blurImageView.imageUrl = URL(string : items[0].posterImgUrl)
             
             debugE(items)
 

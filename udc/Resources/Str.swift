@@ -7,6 +7,7 @@
 
 struct Str {
     static let common_login = "로그인"
+    static let common_logout = "로그아웃"
     static let common_id = "ID"
     static let common_password = "비밀번호"
     static let common_email = "이메일"

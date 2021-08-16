@@ -92,7 +92,7 @@ class HomeVC : EXViewController {
         
         uploadTapHandler = { [unowned self] in
             debugE("UPloadTapHandler")
-            self.presentUpload()
+            self.presentClassDetail(classId: 1)
         }
     }
     private func initView() {

@@ -60,14 +60,14 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
         
         if [ viewControllers?[3]].contains(viewController){
 
-//            if AppModel.shared.currentUser == nil{
+            if AppModel.shared.currentUser == nil{
                 
                 presentLoginDialog{[weak self] in
                     self?.dismiss(animated: true, completion: nil)
                 }
                 
                 return false
-//            }
+            }
             return true
             
         }else{

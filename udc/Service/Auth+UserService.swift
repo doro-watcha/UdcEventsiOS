@@ -35,9 +35,9 @@ extension User {
             "loginType": loginType,
             "username": username,
             "profileImgUrl" : profileImageUrl,
-            "userId" : userId
+            "loginId" : userId
             ].filterNotNil()
-        return AppService.POST(endPoint: "/auth/social-signin", params: params).then { (result: SignInResultWrapper) -> Promise<User> in
+        return AppService.POST(endPoint: "/auth/social-signin",  params: params, keyPath: "data").then { (result: SignInResultWrapper) -> Promise<User> in
             AppModel.shared.accessToken = result.token
             AppModel.shared.currentUser = result.user
             return .value(result.user)

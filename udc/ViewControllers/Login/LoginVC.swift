@@ -69,18 +69,14 @@ class LoginVC : EXViewController {
         v.text = Str.common_apple_login
         v.backgroundColor = .black
         v.layer.cornerRadius = 10
-        v.addTarget(self, action: #selector(appleLoginTapped(_:)), for: .touchUpInside)
+        if #available(iOS 13.0, *) {
+            v.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        } else {
+            // Fallback on earlier versions
+        }
         return v
     }()
     
-//    @available(iOS 13.0,*)
-//    private lazy var appleFakeButton: ASAuthorizationAppleIDButton = {
-//        let v = ASAuthorizationAppleIDButton()
-//        v.isHidden = true
-//        v.translatesAutoresizingMaskIntoConstraints = false
-//        v.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
-//        return v
-//    }()
     
     private var naverLogo : UIImageView = {
         let v = UIImageView(named:"naver_no_bg")
@@ -141,8 +137,13 @@ extension LoginVC{
         view.backgroundColor = .white
         
         initView()
-        initHandler()
+        if #available(iOS 13.0, *) {
+            initHandler()
+        } else {
+            // Fallback on earlier versions
+        }
     }
+    @available(iOS 13.0, *)
     private func initHandler() {
         
         naverTapHandler = { [unowned self] in
@@ -248,8 +249,9 @@ extension LoginVC{
           guard let object = result["response"] as? [String: Any] else { return }
           guard let profileImage = object["profile_image"] as? String else { return }
           guard let nickname = object["name"] as? String else { return }
+            guard let id = object["id"] as? String else {return}
           
-            self.generalLogin(loginType : "naver", username : nickname, profileImgUrl : profileImage, userId : "sample")
+            self.generalLogin(loginType : "naver", username : nickname, profileImgUrl : profileImage, userId : id )
         }
       }
     
@@ -264,9 +266,15 @@ extension LoginVC{
         loginInstance?.requestDeleteToken()
     }
     
+    @available(iOS 13.0, *)
     private func appleLogin () {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [ .fullName, .email]
         
-        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        controller.performRequests()
     }
     
     private func generalLogin ( loginType : String , username : String ,profileImgUrl : String, userId : String ) {
@@ -275,7 +283,7 @@ extension LoginVC{
         User.signInWithSns(loginType : loginType, username : username, profileImageUrl : profileImgUrl , userId : userId ).done { user in
             self.dismiss(animated: true, completion: nil)
         }.catch {[unowned self] e in
-            
+            debugE(e.localizedDescription)
             switch e.errorCode{
 
                 default:
@@ -292,64 +300,59 @@ extension LoginVC{
 
 
 
-//
-//// MARK: - Apple Login
-//extension LoginVC: ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding {
-//    @available(iOS 13.0, *)
-//    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-//        return self.view.window!
-//    }
-//    @available(iOS 13.0, *)
-//    @objc func handleAuthorizationAppleIDButtonPress() {
-//        let appleIDProvider = ASAuthorizationAppleIDProvider()
-//        let appleIDRequest = appleIDProvider.createRequest()
-//        appleIDRequest.requestedScopes = [.fullName, .email]
-//
-//        let authorizationController = ASAuthorizationController(authorizationRequests: [appleIDRequest])
-//        authorizationController.delegate = self
-//        authorizationController.presentationContextProvider = self
-//        authorizationController.performRequests()
-//    }
-//    @available(iOS 13.0, *)
-//    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-//        debugE(#function, error)
-//        AuthHelper.logout()
-//    }
-//    @available(iOS 13.0, *)
-//    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-//        switch authorization.credential {
-//            case let appleIDCredential as ASAuthorizationAppleIDCredential:
-//
-//                // Create an account in your system.
-//                let userIdentifier = appleIDCredential.user
-//                let fullName = appleIDCredential.fullName
-//                let name = "\(fullName?.givenName ?? "") \(fullName?.familyName ?? "")"
-//                let email = appleIDCredential.email
-//
-//                debugE(#function,"grant")
-//                // First Grant
-//                if let email = email, fullName != nil{
-//                    AppModel.shared.appleIDEmail = email
-//                    AppModel.shared.appleIDFullName = name
-//                }
-//                DispatchQueue.main.async {[weak self] in
-//                    self?.snsLogin(
-//                        .apple,
-//                        userIdentifier,
-//                        nil,
-//                        AppModel.shared.appleIDFullName,
-//                        AppModel.shared.appleIDEmail
-//                    )
-//            }
-//
-//
-//            default:
-//                break
-//        }
-//    }
-//
-//
-//}
+
+// MARK: - Apple Login
+extension LoginVC: ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding {
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    @available(iOS 13.0, *)
+    @objc func handleAuthorizationAppleIDButtonPress() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let appleIDRequest = appleIDProvider.createRequest()
+        appleIDRequest.requestedScopes = [.fullName, .email]
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [appleIDRequest])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        debugE(#function, error)
+        AuthHelper.logout()
+    }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+            case let appleIDCredential as ASAuthorizationAppleIDCredential:
+
+                // Create an account in your system.
+                let userIdentifier = appleIDCredential.user
+                let fullName = appleIDCredential.fullName
+                let name = "\(fullName?.givenName ?? "") \(fullName?.familyName ?? "")"
+                let email = appleIDCredential.email
+
+                debugE(#function,"grant")
+                // First Grant
+                if let email = email, fullName != nil{
+                    AppModel.shared.appleIDEmail = email
+                    AppModel.shared.appleIDFullName = name
+                }
+                DispatchQueue.main.async {[weak self] in
+                    
+                    self?.generalLogin(loginType : "apple", username : name, profileImgUrl : email ?? "zxcv", userId : email ?? "zxcv" )
+                }
+
+
+            default:
+                break
+        }
+    }
+
+
+}
 
 extension LoginVC: NaverThirdPartyLoginConnectionDelegate {
   // 로그인 버튼을 눌렀을 경우 열게 될 브라우저

@@ -65,9 +65,9 @@ final class ProfileHeaderVC: EXViewController {
 //        headerView.aboutTapHandler = { [unowned self] in
 //            self.presentAbout(self.user!)
 //        }
-//        headerView.settingTapHandler = { [unowned self] in
-//            self.presentSetting()
-//        }
+        headerView.settingTapHandler = { [unowned self] in
+            self.presentSetting()
+        }
 //        
         segmentView = SegmentView(titles: ["collection", "pending"])
         segmentView.backgroundColor = .surfaceBlack
@@ -92,6 +92,8 @@ final class ProfileHeaderVC: EXViewController {
         navBarCover.heightAnchor.constraint(equalToConstant: LayoutHelper.shared.safeAreaInsets.top + 44).isActive = true
         
         maxHeightChangeHandler?(maxHeight, false)
+        
+        
     }
 
     

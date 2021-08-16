@@ -49,4 +49,16 @@ extension EXViewController: UIViewControllerTransitioningDelegate {
         self.pushToNaviVC(vc)
     }
 
+    func presentSetting() {
+        
+        let vc = SettingVC()
+        self.pushToNaviVC(vc)
+    }
+    
+    func presentClassDetail ( classId : Int) {
+        
+        let vc = ClassDetailVC()
+        vc.classId = classId 
+        self.pushToNaviVC(vc)
+    }
 }

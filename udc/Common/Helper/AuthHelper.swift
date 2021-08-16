@@ -6,12 +6,12 @@
 //
 import Foundation
 import RxSwift
+import NaverThirdPartyLogin
 class AuthHelper{
     
- //   private static let facebookLoginManager = LoginManager()
     
-//    static func logout(){
-//        do{
+    static func logout(){
+        do{
 //            //FCM Unregister
 //            UserDevice.unregisterUserDevice()
 //            //Facebook Logout
@@ -22,13 +22,15 @@ class AuthHelper{
 //            GIDSignIn.sharedInstance()?.signOut()
 //            //Kakao Logout
 //            KOSession.shared()?.logoutAndClose(completionHandler: {_,_ in})
-//            //UserDefaults Logout
-//            AppModel.shared.clearUserInfo()
-//
-//        }catch let error{
-//            CommonDialog.show(error.localizedDescription)
-//        }
-//    }
+            //UserDefaults Logout
+            AppModel.shared.clearUserInfo()
+            
+            NaverThirdPartyLoginConnection.getSharedInstance()?.requestDeleteToken()
+
+        }catch let error{
+            CommonDialog.show(error.localizedDescription)
+        }
+    }
 //
 //    static func getFirebaseToken() -> Single<String>{
 //        return Single.create{event in

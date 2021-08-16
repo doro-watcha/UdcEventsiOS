@@ -38,7 +38,7 @@ class GenreItemCell : EXCollectionViewCell {
         let views = ["genreName" :genreName]
 
  
-        contentView.addConstraints("V:|[genreName]|",views: views)
+        //contentView.addConstraints("V:|[genreName]|",views: views)
         
         genreName.activateCenterXConstraint(to: self)
     }

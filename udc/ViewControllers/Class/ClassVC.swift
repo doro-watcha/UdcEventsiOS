@@ -14,7 +14,7 @@ class ClassVC : EXViewController {
     
     private var mainClassVC = MainClassVC()
     private var dayClassVC = DayClassVC()
-    private var genreClassVC = GenreClassVC()
+    private var genreClassVC = GenreListVC()
     
     private let scrollView = UIScrollView()
     
