@@ -28,6 +28,11 @@ extension DanceClass {
     static func fetchClass ( classId : Int) -> Promise<DanceClass> {
         return AppService.GET(endPoint: "/v1/class/\(classId)", params : nil , keyPath: "data.class", otherDecoder: nil)
     }
+    
+    static func fetchPopupClass () -> Promise<DanceClass> {
+        
+        return AppService.GET(endPoint: "/v1/popup/main", params : nil , keyPath : "data.class", otherDecoder: nil )
+    }
 
 
 

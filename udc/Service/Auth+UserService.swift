@@ -19,12 +19,6 @@ extension User {
     }
 
     
-    /** Email 중복체크 */
-    static func checkEmailDuplicated(email: String) -> Promise<VoidResult>{
-        let params: Parameters = ["email": email]
-        return AppService.POST(endPoint: "/auth/check-email", params: params)
-    }
-    
     /**
     Email/PW 를 이용한 로그인
     
@@ -37,7 +31,7 @@ extension User {
             "profileImgUrl" : profileImageUrl,
             "loginId" : userId
             ].filterNotNil()
-        return AppService.POST(endPoint: "/auth/social-signin",  params: params, keyPath: "data").then { (result: SignInResultWrapper) -> Promise<User> in
+        return AppService.POST(endPoint: "/v1/auth/social-signin",  params: params, keyPath: "data").then { (result: SignInResultWrapper) -> Promise<User> in
             AppModel.shared.accessToken = result.token
             AppModel.shared.currentUser = result.user
             return .value(result.user)

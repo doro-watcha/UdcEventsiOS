@@ -45,7 +45,6 @@ class MainClassItemCell : EXCollectionViewCell{
         let views = ["posterImageView" :posterImageView]
 
         contentView.addConstraints("H:|[posterImageView]|",views: views)
-        contentView.addConstraints("V:|[posterImageView]|",views: views)
         
         posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         

@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import PromiseKit
 import MaterialComponents
+import RxSwift
+
 
 class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationControllerDelegate {
     
@@ -21,7 +23,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
         super.viewDidLoad()
         
         self.delegate = self
-        
+
         
         tabBar.barTintColor = .black
         tabBar.isTranslucent = true
@@ -48,9 +50,32 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
 //        vc5.delegate = self
         
         viewControllers = [ vc1, vc2, vc4,vc5]
-      
+        
+        fetchPopupClass()
 
 
+
+    }
+    
+    func fetchPopupClass () {
+        
+        DanceClass.fetchPopupClass().done {danceClass in
+            CommonDialog.Builder()
+                .setIcon(named: "video")
+                .setTitle(danceClass.name!)
+                .setBody("테스트")
+                .setRightButtonText("테스트")
+                .setRightButtonColor(.theme)
+                .show()
+        }.catch {[unowned self] e in
+            debugE(e.localizedDescription)
+            switch e.errorCode{
+
+                default:
+                    CommonDialog.show(error: e)
+                break
+            }
+        }
         
     }
 

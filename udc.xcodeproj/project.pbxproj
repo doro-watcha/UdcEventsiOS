@@ -59,6 +59,7 @@
 		C1A51D5F26AAB14C00501440 /* EventCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D5E26AAB14C00501440 /* EventCVCell.swift */; };
 		C1A51D6126AAB62D00501440 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A51D6026AAB62D00501440 /* ProfileImageView.swift */; };
 		C1BC8D3F26D9EDCD005DBB79 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC8D3E26D9EDCD005DBB79 /* Level.swift */; };
+		C1BC8D4126DA0674005DBB79 /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC8D4026DA0674005DBB79 /* PopupDialog.swift */; };
 		C1BEA8FB267F691700BB8DAB /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BEA8FA267F691700BB8DAB /* AppNavigator.swift */; };
 		C1CB192626CA256E002381DF /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB192526CA256E002381DF /* SettingVC.swift */; };
 		C1CB192826CAAAE2002381DF /* ClassDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB192726CAAAE2002381DF /* ClassDetailVC.swift */; };
@@ -176,6 +177,7 @@
 		C1A51D5E26AAB14C00501440 /* EventCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCVCell.swift; sourceTree = "<group>"; };
 		C1A51D6026AAB62D00501440 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		C1BC8D3E26D9EDCD005DBB79 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		C1BC8D4026DA0674005DBB79 /* PopupDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialog.swift; sourceTree = "<group>"; };
 		C1BEA8FA267F691700BB8DAB /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		C1CB192526CA256E002381DF /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		C1CB192726CAAAE2002381DF /* ClassDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailVC.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				C16B83F126AF1A6E0028FFD8 /* CommonTextView.swift */,
 				C16B83F526AF1E6C0028FFD8 /* BoxLabel.swift */,
 				C147ED9826C4A83F001BE313 /* CommonDialog.swift */,
+				C1BC8D4026DA0674005DBB79 /* PopupDialog.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				C16B83F626AF1E6C0028FFD8 /* BoxLabel.swift in Sources */,
 				C1A51D5826AAAC8500501440 /* PendingEventVC.swift in Sources */,
 				C147ED9B26C4AF14001BE313 /* Genre.swift in Sources */,
+				C1BC8D4126DA0674005DBB79 /* PopupDialog.swift in Sources */,
 				C16B83EE26ADA60E0028FFD8 /* PopAnimator.swift in Sources */,
 				C1CD9D76268C5E570012E141 /* ExCollectionViewCell.swift in Sources */,
 				C147EDA626C4F1E2001BE313 /* DayClassItemCell.swift in Sources */,

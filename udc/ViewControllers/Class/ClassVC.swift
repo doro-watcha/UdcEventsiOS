@@ -21,13 +21,14 @@ class ClassVC : EXViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+
         configureTPNavigationBar()
         
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .red
 
         initProvider()
         setupView()
+        
 
     }
     
@@ -87,10 +88,14 @@ class ClassVC : EXViewController {
         
     
         mainClassVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-        mainClassVC.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        mainClassVC.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
         genreClassVC.view.heightAnchor.constraint(equalToConstant:UIScreen.main.bounds.width).isActive = true
         genreClassVC.view.topAnchor.constraint(equalTo: mainClassVC.view.bottomAnchor).isActive = true
+        
+        
+
+        
 
 
         

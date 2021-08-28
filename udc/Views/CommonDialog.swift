@@ -207,6 +207,8 @@ class CommonDialog : UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        debugE("FUCKASLFKJASFPSKJEFSPFSPFSPSPSOFKSEPFOKSFPOSEKFSPOFK")
     }
     
     convenience init(    _ icon : UIImage,

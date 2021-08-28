@@ -30,11 +30,14 @@ class MainEventVC : EXViewController {
     
     private lazy var blurImageView : EXImageView = {
        let v = EXImageView()
-        let blurEffect = UIBlurEffect(style : .extraLight)
-        let visualEffectView = UIVisualEffectView(effect : blurEffect)
-        visualEffectView.frame = v.frame
-        v.addSubview(visualEffectView)
+
         v.contentMode = .center
+        
+        let blurEffect = UIBlurEffect(style : .dark)
+        
+        let visualEffectView = UIVisualEffectView(effect : blurEffect)
+        visualEffectView.frame = CGRect(x : 0 , y: 0, width : v.frame.width, height : v.frame.height)
+        v.addSubview(visualEffectView)
         
         return v
     }()
@@ -48,7 +51,7 @@ class MainEventVC : EXViewController {
         initView()
         fetchMainItems()
         
-        view.backgroundColor = .blue
+        view.backgroundColor = .clear
     }
     
     private func pageChanged(_ sender: UIPageControl) {
@@ -130,12 +133,12 @@ class MainEventVC : EXViewController {
             if refresh && !items.isEmpty {
             }
             self.mainEvents.append(contentsOf: items)
-//            self.blurImageView.imageUrl = URL(string : items[0].posterImgUrl)
-            
             debugE(items)
 
         }.ensure {
-            
+            if ( self.mainEvents.isEmpty == false ) {
+                self.blurImageView.imageUrl = URL(string: self.mainEvents[0].posterImgUrl)
+            }
             
             self.isFetching = false
             self.isFetchCompleted = true
@@ -203,6 +206,8 @@ extension MainEventVC: UIScrollViewDelegate {
         if currentPage != newPage {
             currentPage = newPage
             blurImageView.imageUrl = URL( string : mainEvents[currentPage].posterImgUrl)
+            
+
         }
     }
 }

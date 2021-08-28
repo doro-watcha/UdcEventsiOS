@@ -24,9 +24,9 @@ class MainEventItemCell : EXCollectionViewCell{
 
     private lazy var posterImageView : EXImageView = {
         let v = EXImageView()
-        v.contentMode = .center
         v.layer.cornerRadius = CGFloat(15)
         v.layer.masksToBounds = true
+        v.backgroundColor = .blue 
 
         return v
     }()

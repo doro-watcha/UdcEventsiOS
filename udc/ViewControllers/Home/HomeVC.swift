@@ -77,14 +77,19 @@ class HomeVC : EXViewController {
         super.viewDidLoad()
 
         configureTPNavigationBar()
+
         
         initProvider()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         initView()
         initLayout()
         setupView()
         initTapHandler()
+        
+
+        
+        
         
     }
     
@@ -162,7 +167,7 @@ class HomeVC : EXViewController {
         scrollView.addConstraints("|[container]|", views: views)
         scrollView.addConstraints("V:|[container]|", views: views)
         container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        container.heightAnchor.constraint(equalToConstant: view.frame.height * 2).isActive = true
+        container.heightAnchor.constraint(equalToConstant: view.frame.height * 1.2).isActive = true
         
         container.addSubview(appNameLabel)
         container.addSubview(newEventLabel)

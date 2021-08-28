@@ -98,6 +98,7 @@ class MainClassVC: EXViewController {
             
             debugE(self.mainClasses[0].mainImgUrl)
             debugE(self.mainClasses[1].mainImgUrl)
+        
 
         }.ensure {
             
