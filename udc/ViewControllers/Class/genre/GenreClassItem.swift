@@ -14,7 +14,7 @@ class GenreClassItemCell : EXCollectionViewCell {
     var danceClass : DanceClass?{
         didSet{
             guard let danceClass = danceClass else { return }
-            posterImageView.imageUrl = URL(string: danceClass.artistProfileImgUrl ?? "")
+            posterImageView.imageUrl = URL(string: danceClass.mainImgUrl ?? "")
           }
     }
     

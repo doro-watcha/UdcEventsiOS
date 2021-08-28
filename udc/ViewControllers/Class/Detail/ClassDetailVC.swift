@@ -26,7 +26,6 @@ class ClassDetailVC : EXViewController {
     private lazy var mainImageView : EXImageView = {
         let v = EXImageView()
         v.contentMode = .center
-        v.layer.cornerRadius = CGFloat(15)
         v.layer.masksToBounds = true
 
         return v
@@ -81,6 +80,8 @@ class ClassDetailVC : EXViewController {
         view.addConstraints("H:|[mainImageView]|", views: views)
         view.addConstraints("H:|[backArrowImage]", views: views)
         view.addConstraints("V:|[mainImageView]", views : views)
+        
+        mainImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 3.0/4.0).isActive = true
     }
     
     

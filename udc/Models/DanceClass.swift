@@ -27,17 +27,7 @@ final class DanceClass : Codable {
     
     var startTime : String
     
-    var level : String? = "Basic"
-    
-    var target : String? = "Beginner"
-    
-    var artistName : String? = "goddoro"
-    
-    var artistProfileImgUrl : String? = "zxcv"
-    
-    var artistDescription : String? = nil
-    
-    var artistInstagram : String? = nil
+    var level : Level
     
     var academy : Academy? = nil
     
@@ -46,6 +36,10 @@ final class DanceClass : Codable {
     //var subImgs : [String]? = nil
 
     var artist : Artist? = nil
+    
+    var ratingPoint : Float? = 0.0
+    
+    var ratingCount : Int? = 0
 
 
     

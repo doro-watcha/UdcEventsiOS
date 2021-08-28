@@ -22,8 +22,6 @@ class ClassVC : EXViewController {
         
         super.viewDidLoad()
         
-
-      
         configureTPNavigationBar()
         
         self.view.backgroundColor = .black
@@ -36,7 +34,6 @@ class ClassVC : EXViewController {
     private func initProvider() {
         mainClassVC.dataProvider = MainClassProvider.newInstance()
         genreClassVC.dataProvider = GenreNameProvider.newInstance()
-        
     }
     
     

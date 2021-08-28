@@ -38,7 +38,7 @@ extension Event {
         let params: Parameters = [
             "sort": sort
             ].filterNotNil()
-        return AppService.GET(endPoint: "/event", params: params, keyPath: "data.events")
+        return AppService.GET(endPoint: "/v1/event", params: params, keyPath: "data.events")
     }
     
 //    static func uploadEvent ( title : String, description : String , location : String, date : String, type : String,

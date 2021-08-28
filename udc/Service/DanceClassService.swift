@@ -22,11 +22,11 @@ extension DanceClass {
             "genreId" : genreId,
             "academyId" : academyId
             ].filterNotNil()
-        return AppService.GET(endPoint: "/class", params: params, keyPath: "data.classes")
+        return AppService.GET(endPoint: "/v1/class", params: params, keyPath: "data.classes")
     }
     
     static func fetchClass ( classId : Int) -> Promise<DanceClass> {
-        return AppService.GET(endPoint: "/class/\(classId)", params : nil , keyPath: "data.class", otherDecoder: nil)
+        return AppService.GET(endPoint: "/v1/class/\(classId)", params : nil , keyPath: "data.class", otherDecoder: nil)
     }
 
 
@@ -80,7 +80,7 @@ final class MainClassProvider : DanceClassProvider {
         if refresh { maxId = Int(Int32.max) }
         guard !reachedEnd else { return Promise.value([]) }
         
-        return DanceClass.fetchClasses(day : 1).then { (result: [DanceClass]) -> Promise<[DanceClass]> in
+        return DanceClass.fetchClasses(sort : "main").then { (result: [DanceClass]) -> Promise<[DanceClass]> in
             
             self.reachedEnd = result.count < DanceClass.FETCH_COUNT
             if let lastItem = result.last {

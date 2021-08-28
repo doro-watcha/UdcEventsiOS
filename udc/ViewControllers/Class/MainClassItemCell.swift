@@ -16,7 +16,7 @@ class MainClassItemCell : EXCollectionViewCell{
         didSet{
             debugE("ASDASDASDASDASD")
             guard let danceClass = danceClass else { return }
-            posterImageView.imageUrl = URL(string: danceClass.artistProfileImgUrl ?? "")
+            posterImageView.imageUrl = URL(string: danceClass.mainImgUrl)
           }
     }
     
