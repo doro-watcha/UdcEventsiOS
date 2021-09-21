@@ -14,15 +14,15 @@ class MainClassItemCell : EXCollectionViewCell{
     
     var danceClass : DanceClass?{
         didSet{
-            debugE("ASDASDASDASDASD")
             guard let danceClass = danceClass else { return }
-            posterImageView.imageUrl = URL(string: danceClass.mainImgUrl)
+            posterImageView.imageUrl = URL(string: danceClass.artist.profileImgUrl)
           }
     }
     
 
     private lazy var posterImageView : EXImageView = {
         let v = EXImageView()
+        v.contentMode = .scaleAspectFit
 
         return v
     }()
@@ -37,16 +37,15 @@ class MainClassItemCell : EXCollectionViewCell{
         
         super.setup()
         
-        debugE("SETUP 까쯔아")
     
         contentView.addSubviews(posterImageView)
-
 
         let views = ["posterImageView" :posterImageView]
 
         contentView.addConstraints("H:|[posterImageView]|",views: views)
         
         posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true 
         
     }
 }

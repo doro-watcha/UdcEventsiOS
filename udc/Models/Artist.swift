@@ -16,13 +16,13 @@ final class Artist : Codable{
 
     var team : String? = nil
 
-    var instagramUrl : String? = nil
-
-    var youtubeUrl : String? = nil
+    var instagram : String
+    
+    var youtube : String? = nil
 
     var location : String? = nil
 
     var genre : String? = nil
 
-    var avatarUrl : String? = nil
+    var profileImgUrl : String
 }

@@ -11,7 +11,7 @@ import Alamofire
 
 enum ServiceEnvironment: Int, CaseIterable, Codable {
     
-    static let defaultServer = ServiceEnvironment.development
+    static let defaultServer = ServiceEnvironment.production
     static var currentServer: ServiceEnvironment{
         ServiceEnvironment(rawValue: AppModel.shared.serviceEnvironment)!
     }
@@ -21,8 +21,8 @@ enum ServiceEnvironment: Int, CaseIterable, Codable {
     
     var apiHostURLString: String {
         switch self {
-            case .development : return "http://ec2-3-35-4-201.ap-northeast-2.compute.amazonaws.com:3000"
-            case .production: return "http://ec2-13-209-64-88.ap-northeast-2.compute.amazonaws.com:3000"
+            case .development : return "http://ec2-3-36-131-58.ap-northeast-2.compute.amazonaws.com:3000"
+            case .production: return "http://ec2-3-36-131-58.ap-northeast-2.compute.amazonaws.com:3000"
         }
     }
 

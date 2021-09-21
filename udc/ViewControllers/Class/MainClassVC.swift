@@ -29,11 +29,7 @@ class MainClassVC: EXViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-
-        debugE("Main Class VC")
-        
-        view.backgroundColor = .white
+    
         
         initView()
         fetchItems()
@@ -92,22 +88,14 @@ class MainClassVC: EXViewController {
         firstly {
             dataProvider.fetchItems(refresh: refresh)
         }.done { items in
-            
-            debugE(items)
             self.mainClasses.append(contentsOf: items)
-            
-            debugE(self.mainClasses[0].mainImgUrl)
-            debugE(self.mainClasses[1].mainImgUrl)
-        
-
         }.ensure {
             
             
             self.isFetching = false
             self.isFetchCompleted = true
             self.collectionView.reloadData()
-            
-            debugE("RELOAD!")
+
             
             if refresh {
                 self.refreshControl.endRefreshing()
@@ -127,21 +115,13 @@ class MainClassVC: EXViewController {
 extension MainClassVC : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        debugE("여기도 가즈아!")
-        debugE(mainClasses.count)
         return mainClasses.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        debugE("혺씨..?")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainClassItemCell.identifier, for: indexPath) as! MainClassItemCell
         guard let item = mainClasses[safe: indexPath.item] else { return cell }
         cell.danceClass = item
-            
-        debugE("여기 가즈아!!!")
-
- 
 
         /**
         유저를 눌렀을 때 프로필로 이동

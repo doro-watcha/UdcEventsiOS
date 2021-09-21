@@ -29,40 +29,18 @@ final class DanceClass : Codable {
     
     var level : Level
     
-    var academy : Academy? = nil
+    var academy : Academy
     
-    var genre : Genre? = nil
+    var genre : Genre
     
     //var subImgs : [String]? = nil
 
-    var artist : Artist? = nil
+    var artist : Artist
     
     var ratingPoint : Float? = 0.0
     
     var ratingCount : Int? = 0
 
-
-    
-//    enum CodingKeys: String, CodingKey {
-//        case id = "id"
-//        case mainImgUrl = "mainImgUrl"
-//        case description = "description"
-//        case youtubeUrl = "youtubeUrl"
-//        case isMainClass = "isMainClass"
-//        case name = "name"
-//        case status = "status"
-//        case date = "date"
-//        case startTime = "startTime"
-//        case level = "level"
-//        case target = "target"
-//        case artistName = "artistName"
-//        case artistProfileImgUrl = "artistProfileImgUrl"
-//        case artistDescription = "artistDescription"
-//        case artistInstagram = "artistInstagram"
-//        case academy = "academy"
-//        case genre = "genre"
-//        case artist = "artist"
-//    }
 
     
 }

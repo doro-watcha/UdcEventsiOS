@@ -51,7 +51,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate, UINavigationCont
         
         viewControllers = [ vc1, vc2, vc4,vc5]
         
-        fetchPopupClass()
+        //fetchPopupClass()
 
 
 

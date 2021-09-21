@@ -57,6 +57,7 @@ class ClassVC : EXViewController {
         scrollView.bounces = scrollView.contentOffset.y > 0
         /// 스크롤 뷰 안 Container
         let container = UIView()
+        container.backgroundColor = .red 
         container.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(scrollView)
@@ -77,7 +78,7 @@ class ClassVC : EXViewController {
         scrollView.addConstraints("|[container]|", views: views)
         scrollView.addConstraints("V:|[container]|", views: views)
         container.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        container.heightAnchor.constraint(equalToConstant: view.frame.height * 2).isActive = true
+        container.heightAnchor.constraint(equalToConstant: view.frame.height * 1.2).isActive = true
         
         container.addSubviews(mainClassVC.view, genreClassVC.view)
 
@@ -87,7 +88,7 @@ class ClassVC : EXViewController {
         container.addConstraints("V:[mainClassView]-[genreClassView]", views: views)
         
     
-        mainClassVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        mainClassVC.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 1.2).isActive = true
         mainClassVC.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
         genreClassVC.view.heightAnchor.constraint(equalToConstant:UIScreen.main.bounds.width).isActive = true
